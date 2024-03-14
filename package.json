@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "nuxt": "^3.10.3",
+    "nuxt-appwrite": "^1.0.8",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@iconify-json/material-symbols": "^1.1.75",
+    "@nuxtjs/seo": "2.0.0-rc.9",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@tailwindcss/typography": "^0.5.10",
+    "cross-fetch": "^4.0.0",
     "daisyui": "^4.7.3"
   }
 }
