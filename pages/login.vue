@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const account = useAccount();
+const account = await useAccount();
 </script>
 <template>
   <div>

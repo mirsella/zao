@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Capacitor } from "@capacitor/core";
-const account = useAccount();
+const account = await useAccount();
 definePageMeta({
-  middleware: () => {
+  middleware: async () => {
     if (Capacitor.isNativePlatform()) {
       await navigateTo("/library");
     }

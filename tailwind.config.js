@@ -13,10 +13,7 @@ export default {
     require("daisyui"),
     require("@tailwindcss/typography"),
     iconsPlugin({
-      collections: getIconCollections(["material-symbols"]),
-      collectionNamesAlias: {
-        "material-symbols": "ms",
-      },
+      collections: getIconCollections(["carbon"]),
     }),
   ],
   daisyui: {
