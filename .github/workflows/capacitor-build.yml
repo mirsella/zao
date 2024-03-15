@@ -1,6 +1,7 @@
 name: CapacitorJS Build
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - "android/**"
