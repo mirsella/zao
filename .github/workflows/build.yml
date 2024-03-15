@@ -1,0 +1,42 @@
+name: Build nuxtjs and capacitor
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  nuxtjs-build:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-path: ${{ steps.build.outputs.artifact-path }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - run: npm install
+      - run: npm run nuxt:build
+      - id: build
+        run: echo "::set-output name=artifact-path::$(pwd)/.output/public"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: nuxtjs-output
+          path: ${{ steps.build.outputs.artifact-path }}
+
+  capacitor-build:
+    needs: nuxtjs-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - uses: actions/download-artifact@v3
+        with:
+          name: nuxtjs-output
+          path: .output/public/
+      - run: npm install
+      - run: npx cap sync
+      - run: npx cap copy
+      - name: Build Android
+        run: |
+          cd android
+          ./gradlew assembleDebug
