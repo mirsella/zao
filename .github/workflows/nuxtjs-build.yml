@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: "16"
       - run: npm install
-      - run: npm run build
+      - run: npm run nuxt:build
       - uses: actions/upload-artifact@v3
         with:
           name: nuxtjs-output
