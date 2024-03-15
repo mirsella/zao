@@ -1,4 +1,4 @@
-name: Build nuxtjs and capacitor
+name: Build Nuxtjs and Capacitorjs
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -14,6 +14,7 @@ jobs:
           node-version: "16"
       - run: npm install
       - run: npm run nuxt:build
+      - run: npm run nuxt:generate
       - id: build
         run: echo "::set-output name=artifact-path::$(pwd)/.output/public"
       - uses: actions/upload-artifact@v3
