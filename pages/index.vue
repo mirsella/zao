@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { Capacitor } from "@capacitor/core";
 const account = useAccount();
-// todo: add middleware if mobile go to browse directly
+definePageMeta({
+  middleware: () => {
+    if (Capacitor.isNativePlatform()) {
+      await navigateTo("/library");
+    }
+  },
+});
 </script>
 <template>
   <div>
