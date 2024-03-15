@@ -10,3 +10,4 @@ hetzner 3.8e/month
 ecouter les classes ecran eteint
 ecouter hors ligne
 admin pannel, upload new vid, manage comments (approve or delete)
+turbosmtp dns record (hostname)
