@@ -19,4 +19,8 @@ export default {
       },
     }),
   ],
+  daisyui: {
+    themes: ["forest"],
+    darkTheme: "forest",
+  },
 };

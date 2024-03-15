@@ -2,12 +2,20 @@
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "nuxt-appwrite", "@nuxtjs/seo"],
   devtools: { enabled: true },
+  // for mobile we can't use ssr (capacitor)
   ssr: false,
+  // useless without ssr
+  ogImage: { enabled: false },
+  // useless without ssr
+  schemaOrg: {
+    enabled: false,
+  },
   appwrite: { project: process.env.APPWRITE_PROJECT },
+  // nuxt seo module
   site: {
     url: process.env.SITE_URL || "http://localhost:3000",
     name: "Inspire",
-    description: "quality classes to improve your life",
+    description: "quality video classes to improve your life",
     defaultLocale: "fr",
   },
 });
