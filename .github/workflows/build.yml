@@ -8,8 +8,8 @@ jobs:
     outputs:
       artifact-path: ${{ steps.build.outputs.artifact-path }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
       - run: npm install
@@ -17,7 +17,7 @@ jobs:
       - run: npm run nuxt:generate
       - id: build
         run: echo "::set-output name=artifact-path::$(pwd)/.output/public"
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: nuxtjs-output
           path: ${{ steps.build.outputs.artifact-path }}
@@ -26,17 +26,17 @@ jobs:
     needs: nuxtjs-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "21"
           distribution: "temurin"
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: nuxtjs-output
           path: .output/public/
