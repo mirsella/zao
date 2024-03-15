@@ -1,21 +1,27 @@
 {
-  "name": "nuxt-app",
+  "name": "inspire",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "nuxt:build": "nuxt build",
+    "nuxt:dev": "nuxt dev",
+    "nuxt:generate": "nuxt generate",
+    "nuxt:preview": "nuxt preview",
+    "nuxt:postinstall": "nuxt prepare",
+    "cap:sync": "cap sync",
+    "cap:android": "cap run android"
   },
   "dependencies": {
+    "@capacitor/android": "^5.7.2",
+    "@capacitor/core": "^5.7.2",
+    "@capacitor/ios": "^5.7.2",
     "nuxt": "^3.10.3",
     "nuxt-appwrite": "^1.0.8",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.7.2",
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@iconify-json/material-symbols": "^1.1.75",
     "@nuxtjs/seo": "2.0.0-rc.9",
