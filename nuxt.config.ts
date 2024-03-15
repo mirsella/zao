@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   schemaOrg: {
     enabled: false,
   },
-  appwrite: { project: process.env.APPWRITE_PROJECT },
+  appwrite: { project: "65ef4ce532070e537d98" },
   // nuxt seo module
   site: {
     url: process.env.SITE_URL || "http://localhost:3000",
