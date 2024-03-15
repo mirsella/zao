@@ -1,11 +1,9 @@
-<script setup lang="ts">
-const account = await useAccount();
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div data-theme="forest">
+  <div data-theme="forest" class="flex flex-col h-screen">
     <Header />
-    {{ account }}
-    <NuxtPage />
+    <NuxtPage class="mb-auto" />
+    <Footer v-if="!useMobile()" />
   </div>
 </template>
