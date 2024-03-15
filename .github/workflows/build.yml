@@ -16,7 +16,7 @@ jobs:
       - run: npm run nuxt:build
       - run: npm run nuxt:generate
       - id: build
-        run: echo "::set-output name=artifact-path::$(pwd)/.output/public"
+        run: echo "artifact-path=$(pwd)/.output/public" >> $GITHUB_OUTPUT
       - uses: actions/upload-artifact@v4
         with:
           name: nuxtjs-output
