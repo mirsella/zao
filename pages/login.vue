@@ -1,15 +1,35 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
+import { ID } from "appwrite";
 
 const account = await useAccount();
+let userId = null;
 const error = ref("");
 const email = ref("");
-const showOTP = ref(true);
-const otp = ref("");
-// const redirectPath = useRoute().redirectedFrom.path;
-function submitEmail() {
-  // account.sendEmailVerification(email.value);
+const showOTP = ref(false);
+
+async function submitEmail() {
+  try {
+    // TODO: when appwrite clould 1.5 is released
+    // const sessionToken = await account.createEmailToken(ID.unique(), email.value);
+    // userId = sessionToken.userId;
+  } catch (e) {
+    console.log(e);
+    error.value = e;
+  }
   showOTP.value = true;
+}
+
+async function submitOTP(value: string) {
+  try {
+    // TODO: when appwrite clould 1.5 is released
+    // const session = await account.createSession(userId, value);
+  } catch (e) {
+    console.log(e);
+    error.value = e;
+  }
+  const redirectPath = useRoute().redirectedFrom.path;
+  router.push(redirectPath);
 }
 </script>
 
@@ -32,12 +52,12 @@ function submitEmail() {
           required
         />
       </label>
-      <input
-        type="submit"
+      <button
         class="btn mt-2 btn-primary tooltip tooltip-bottom"
         data-tip="Vous allez recevoir un code de verification par mail pour se connecter"
-        value="Envoyer le mail de vérification"
-      />
+      >
+        Envoyer le mail de vérification
+      </button>
     </form>
     <div
       v-show="showOTP"
@@ -46,8 +66,11 @@ function submitEmail() {
       <div class="flex flex-col items-center">
         <h1 class="mb-2">entrez le code reçu par mail:</h1>
         <VOtpInput
+          :should-auto-focus="true"
+          :should-focus-order="true"
           :num-inputs="6"
           input-classes="w-8 h-10 m-1 rounded-lg text-center !font-xl"
+          @on-complete="submitOTP"
           separator=""
         />
       </div>
