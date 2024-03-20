@@ -4,6 +4,6 @@
   <div data-theme="forest" class="flex flex-col h-screen">
     <Header />
     <NuxtPage class="mb-auto" />
-    <Footer v-if="!useMobile()" />
+    <Footer class="mt-10" v-if="!useMobile()" />
   </div>
 </template>

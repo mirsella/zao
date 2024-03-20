@@ -13,7 +13,7 @@
     <nav>
       <h6 class="footer-title">Applications</h6>
       <!-- TODO: -->
-      <h1>&lt insert applications links &gt</h1>
+      <h1>&lt app/play store links &gt</h1>
     </nav>
     <nav>
       <h6 class="footer-title">Social</h6>

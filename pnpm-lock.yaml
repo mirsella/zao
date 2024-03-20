@@ -26,6 +26,9 @@ dependencies:
   vue-router:
     specifier: ^4.3.0
     version: 4.3.0(vue@3.4.21)
+  vue3-otp-input:
+    specifier: ^0.4.4
+    version: 0.4.4(vue@3.4.21)
 
 devDependencies:
   '@capacitor/cli':
@@ -9204,6 +9207,15 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.6.1
       vue: 3.4.21
+
+  /vue3-otp-input@0.4.4(vue@3.4.21):
+    resolution: {integrity: sha512-LI1MeBiiEy59cnjqXzlcz4G4cMxZcHF/xOKilb6sfw4uFHfQ22Luu2ls0Bb51zL0pb3gGp7RuIL5eurEJXkoBg==}
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+    peerDependencies:
+      vue: ^3.0.*
+    dependencies:
+      vue: 3.4.21
+    dev: false
 
   /vue@3.4.21:
     resolution: {integrity: sha512-5hjyV/jLEIKD/jYl4cavMcnzKwjMKohureP8ejn3hhEjwhWIhWeuzL2kJAjzl/WyVsgPY56Sy4Z40C3lVshxXA==}
