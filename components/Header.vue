@@ -1,10 +1,3 @@
-<script setup lang="ts">
-// let res = await useAppwrite().account.createEmailSession(
-//   "test@gmail.com",
-//   "testtest",
-// );
-// console.log(res);
-</script>
 <template>
   <div class="navbar">
     <div class="flex-1"><a class="font-bold text-xl">Inspire 🍿</a></div>

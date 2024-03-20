@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
 import { ID } from "appwrite";
-
-(async () => {
-  try {
-    await useAppwrite().account.get();
-    return navigateTo("/settings");
-  } catch (e) {}
-})();
+definePageMeta({
+  // if user is already logged in, redirect to settings page
+  middleware: async () => {
+    const account = await useAccount();
+    if (account) {
+      return navigateTo("/settings");
+    }
+  },
+});
 
 const { account } = useAppwrite();
 let userId = null;
@@ -35,6 +37,7 @@ async function submitOTP(value: string) {
     console.log(e);
     error.value = e;
   }
+  // redirect to the previous page
   const redirectPath = useRoute().redirectedFrom.path;
   router.push(redirectPath);
 }

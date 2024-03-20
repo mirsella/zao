@@ -2,7 +2,8 @@
 definePageMeta({
   middleware: "auth",
 });
-const account = await useAppwrite().account.get();
+
+const account = await useAccount();
 </script>
 <template>
   <div>

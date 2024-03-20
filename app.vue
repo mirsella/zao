@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const account = await useAccount();
+
+// let res = await useAppwrite().account.createEmailSession(
+//   "test@gmail.com",
+//   "testtest",
+// );
+// console.log(res);
+</script>
 
 <template>
   <div data-theme="forest" class="flex flex-col h-screen">
