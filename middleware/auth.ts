@@ -1,6 +1,7 @@
 export default defineNuxtRouteMiddleware(async () => {
-  const account = await useAccount();
-  if (!account.value) {
+  try {
+    await useAppwrite().account.get();
+  } catch (error) {
     return navigateTo("/login");
   }
 });

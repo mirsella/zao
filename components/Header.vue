@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const account = await useAccount();
+// let res = await useAppwrite().account.createEmailSession(
+//   "test@gmail.com",
+//   "testtest",
+// );
+// console.log(res);
 </script>
 <template>
   <div class="navbar">
@@ -22,6 +26,4 @@ const account = await useAccount();
       <span class="my-2 i-carbon-user-settings size-8"></span>
     </NuxtLink>
   </div>
-  <!-- WARN: remove -->
-  {{ account || "no account" }}
 </template>
