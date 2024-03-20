@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
 import { ID } from "appwrite";
-definePageMeta({
-  middleware: async () => {
-    try {
-      await useAppwrite().account.get();
-      return navigateTo("/settings");
-    } catch (e) {}
-  },
-});
+
+(async () => {
+  try {
+    await useAppwrite().account.get();
+    return navigateTo("/settings");
+  } catch (e) {}
+})();
 
 const { account } = useAppwrite();
 let userId = null;
