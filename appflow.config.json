@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "appId": "inspire",
+      "appId": "fd2a596b",
       "dependencyInstallCommand": "npm i -g pnpm && pnpm i",
       "webBuildCommand": "pnpm nuxt:generate"
     }
