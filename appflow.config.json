@@ -2,7 +2,7 @@
   "apps": [
     {
       "appId": "fd2a596b",
-      "dependencyInstallCommand": "npm i -g pnpm && pnpm i",
+      "dependencyInstallCommand": "pnpm i",
       "webBuildCommand": "pnpm nuxt:generate"
     }
   ]
