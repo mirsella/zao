@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { Class } from "~/types/class";
+const { Query } = useAppwrite();
 const search = ref("");
 const error = ref("");
-const classes = ref<any[]>([]);
+const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
 
@@ -9,10 +11,10 @@ const selectedtags = ref<string[]>([]);
   try {
     const { database } = useAppwrite();
     classes.value = (
-      await database.listDocuments("classes", "class")
+      await database.listDocuments("classes", "class", [Query.limit(1000)])
     ).documents;
     tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
-    // tags.value = [...tags.value, ...tags.value, ...tags.value];
+    tags.value = [...tags.value, ...tags.value, ...tags.value];
   } catch (e: any) {
     console.error(e);
     error.value = e.message;
@@ -44,8 +46,8 @@ function toggleTag(tag: string) {
       ></button>
     </label>
     <template v-if="classes.length">
-      <div class="w-full">
-        <h1 class="inline-block mx-2">Tags:</h1>
+      <div class="w-full flex items-center justify-center px-2 flex-wrap">
+        <h1 class="inline-block mx-2 prose">Tags:</h1>
         <button
           v-for="(tag, index) in tags"
           :class="[
@@ -59,6 +61,7 @@ function toggleTag(tag: string) {
           {{ tag }}
         </button>
       </div>
+      <ClassPreview v-for="cl in classes" :data="cl" />
     </template>
     <span
       v-else

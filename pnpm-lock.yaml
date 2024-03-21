@@ -14,6 +14,12 @@ dependencies:
   '@capacitor/ios':
     specifier: ^5.7.2
     version: 5.7.2(@capacitor/core@5.7.2)
+  '@vue-youtube/component':
+    specifier: ^0.0.6
+    version: 0.0.6(vue@3.4.21)
+  '@vue-youtube/core':
+    specifier: ^0.0.6
+    version: 0.0.6(vue@3.4.21)
   nuxt:
     specifier: ^3.10.3
     version: 3.10.3(vite@5.1.6)
@@ -3102,6 +3108,48 @@ packages:
       vue: 3.4.21
     transitivePeerDependencies:
       - rollup
+
+  /@vue-youtube/component@0.0.6(vue@3.4.21):
+    resolution: {integrity: sha512-Ouv7VJy8r//F9gE8Y1H2M0d4IQmOtZh8I79ttgsAGge3a/AdtXzSBVJ7ijhCAH4ZNulkhsN3CO46V/ReW5mwKA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.7.2
+      vue: ^2.7.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue-youtube/core': 0.0.6(vue@3.4.21)
+      '@vue-youtube/shared': 0.0.6(vue@3.4.21)
+      vue: 3.4.21
+      vue-demi: 0.14.7(vue@3.4.21)
+    dev: false
+
+  /@vue-youtube/core@0.0.6(vue@3.4.21):
+    resolution: {integrity: sha512-3bqs41WCP1901vv7EXxYD0/mKhhjq6YA3r9Lhr0wyFV+UHPLyxcZZ50yUtkXn1cIr9Pz0DRzEGwi65Quj94Pmg==}
+    peerDependencies:
+      '@vue/composition-api': ^1.7.2
+      vue: ^2.7.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue-youtube/shared': 0.0.6(vue@3.4.21)
+      vue: 3.4.21
+      vue-demi: 0.14.7(vue@3.4.21)
+    dev: false
+
+  /@vue-youtube/shared@0.0.6(vue@3.4.21):
+    resolution: {integrity: sha512-5GxwPkiHOhNpjBbRuL5UmE4EpX8hmTpA+UOiTNEZzeYyrGY6iSYwL8w3Ot+QJ8Koc3K0o9GHD8XywHrKDXbs3g==}
+    peerDependencies:
+      '@vue/composition-api': ^1.7.2
+      vue: ^2.7.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.4.21
+      vue-demi: 0.14.7(vue@3.4.21)
+    dev: false
 
   /@vue/babel-helper-vue-transform-on@1.2.1:
     resolution: {integrity: sha512-jtEXim+pfyHWwvheYwUwSXm43KwQo8nhOBDyjrUITV6X2tB7lJm6n/+4sqR8137UVZZul5hBzWHdZ2uStYpyRQ==}
@@ -9187,7 +9235,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.4.21
-    dev: true
 
   /vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
