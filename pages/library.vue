@@ -14,7 +14,8 @@ const selectedtags = ref<string[]>([]);
       await database.listDocuments("classes", "class", [Query.limit(1000)])
     ).documents;
     tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
-    tags.value = [...tags.value, ...tags.value, ...tags.value];
+    // DEBUG: add more tags to test responsiveness
+    // tags.value = [...tags.value, ...tags.value, ...tags.value];
   } catch (e: any) {
     console.error(e);
     error.value = e.message;

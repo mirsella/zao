@@ -14,14 +14,14 @@ const props = defineProps<{ data: Class }>();
       ({{ data.videos.length }} videos)
     </p>
     </p>
-    <div class="flex max-h-60 md:!max-h-96 justify-items-center justify-around">
+    <div class="flex max-h-60 md:!max-h-96 justify-items-center items-center justify-around">
       <youtube-iframe
         video-id="dQw4w9WgXcQ"
         class="w-1/2 h-auto max-w-sm"
         :cookie="false"
       />
       <p
-        class="w-fit m-2 text-pretty font-medium h-fill !text-ellipsis overflow-hidden leading-snug mb-0"
+        class="w-fit m-2 text-balance font-medium h-fill line-clamp-[8] leading-snug"
       >
         {{ data.description }}
       </p>
