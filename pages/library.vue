@@ -14,14 +14,35 @@ const selectedtags = ref<string[]>([]);
       await database.listDocuments("classes", "class", [Query.limit(1000)])
     ).documents;
     tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
-    // DEBUG: add more tags to test responsiveness
-    tags.value = [...tags.value, ...tags.value, ...tags.value];
-    classes.value = [...classes.value, ...classes.value].flat();
+    // FIXME: add more tags to test responsiveness
+    // tags.value = [...tags.value, ...tags.value, ...tags.value];
+    // classes.value = [...classes.value, ...classes.value].flat();
   } catch (e: any) {
     console.error(e);
     error.value = e.message;
   }
 })();
+
+const classesfiltered = computed(() =>
+  classes.value.filter((cl) => {
+    if (
+      selectedtags.value.length &&
+      !selectedtags.value.some((tag) => cl.tags.includes(tag))
+    ) {
+      return false;
+    }
+    if (search.value.length) {
+      const searchLower = search.value.toLowerCase();
+      if (
+        !cl.title.toLowerCase().includes(searchLower) &&
+        !cl.description.toLowerCase().includes(searchLower)
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }),
+);
 
 function toggleTag(tag: string) {
   const index = selectedtags.value.indexOf(tag);
@@ -40,7 +61,7 @@ function toggleTag(tag: string) {
       Essayer de recharger la page
     </h1>
     <label class="input input-secondary flex items-center w-full max-w-lg">
-      <input v-model="search" class="grow" placeholder="Recherche..." />
+      <input v-model.trim="search" class="grow" placeholder="Recherche..." />
       <button
         class="i-carbon-close size-6"
         v-show="search.length !== 0"
@@ -63,7 +84,7 @@ function toggleTag(tag: string) {
           {{ tag }}
         </button>
       </div>
-      <ClassPreview v-for="cl in classes" :data="cl" />
+      <ClassPreview v-for="cl in classesfiltered" :data="cl" />
     </template>
     <span
       v-else
