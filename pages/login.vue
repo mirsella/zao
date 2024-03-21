@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
-import { ID } from "appwrite";
+const { ID } = useAppwrite();
+
 definePageMeta({
   // if user is already logged in, redirect to settings page
   middleware: async () => {
@@ -22,9 +23,9 @@ async function submitEmail() {
     // TODO: when appwrite cloud 1.5 is released
     // const sessionToken = await account.createEmailToken(ID.unique(), email.value);
     // userId = sessionToken.userId;
-  } catch (e) {
+  } catch (e: any) {
     console.log(e);
-    error.value = e;
+    error.value = e.message;
   }
   showOTP.value = true;
 }
@@ -33,20 +34,21 @@ async function submitOTP(value: string) {
   try {
     // TODO: when appwrite cloud 1.5 is released
     // const session = await account.createSession(userId, value);
-  } catch (e) {
+  } catch (e: any) {
     console.log(e);
-    error.value = e;
+    error.value = e.message;
   }
   // redirect to the previous page
-  const redirectPath = useRoute().redirectedFrom.path;
-  router.push(redirectPath);
+  const redirectPath = useRoute().redirectedFrom?.path;
+  await navigateTo(redirectPath || "/settings");
 }
 </script>
 
 <template>
   <div class="w-full items-center flex flex-col mt-4">
-    <h1 class="text-red-500 m-10" v-if="error">
-      {{ error }}. Essayer de recharger la page
+    <h1 class="text-error m-10" v-if="error">
+      {{ error }}.<br />
+      Essayer de recharger la page
     </h1>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
