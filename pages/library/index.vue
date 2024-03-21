@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Class } from "~/types/class";
+import type { Class } from "~/types/classes";
 const { Query } = useAppwrite();
 const search = ref("");
 const error = ref("");
@@ -12,7 +12,7 @@ const selectedtags = ref<string[]>([]);
     const { database } = useAppwrite();
     classes.value = (
       await database.listDocuments("classes", "class", [Query.limit(1000)])
-    ).documents;
+    ).documents as Class[];
     tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
     // FIXME: add more tags to test responsiveness
     // tags.value = [...tags.value, ...tags.value, ...tags.value];

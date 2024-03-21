@@ -1,11 +1,8 @@
-<script setup lang="ts">
-const route = useRoute();
-</script>
 <template>
   <div class="navbar">
     <div class="flex-1"><a class="font-bold text-xl">Inspire 🍿</a></div>
     <NuxtLink
-      v-if="route != 'index'"
+      v-if="$route.name != 'index'"
       to="/library"
       class="mx-1 btn btn-primary tooltip tooltip-bottom hover:scale-105"
       activeClass="shadow-md shadow-primary"
