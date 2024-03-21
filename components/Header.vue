@@ -1,10 +1,13 @@
+<script setup lang="ts">
+const route = useRoute();
+</script>
 <template>
   <div class="navbar">
     <div class="flex-1"><a class="font-bold text-xl">Inspire 🍿</a></div>
     <NuxtLink
-      v-if="$router.currentRoute.value.name != 'index'"
+      v-if="route != 'index'"
       to="/library"
-      class="mx-1 btn btn-primary tooltip tooltip-bottom"
+      class="mx-1 btn btn-primary tooltip tooltip-bottom hover:scale-105"
       activeClass="shadow-md shadow-primary"
       data-tip="Bibliothèque"
     >
@@ -12,7 +15,7 @@
     </NuxtLink>
     <NuxtLink
       to="/settings"
-      class="mx-1 btn btn-primary tooltip tooltip-left"
+      class="mx-1 btn btn-primary tooltip tooltip-left hover:scale-105"
       activeClass="shadow-md shadow-primary"
       data-tip="Compte / Paramètres"
     >
