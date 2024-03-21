@@ -15,7 +15,8 @@ const selectedtags = ref<string[]>([]);
     ).documents;
     tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
     // DEBUG: add more tags to test responsiveness
-    // tags.value = [...tags.value, ...tags.value, ...tags.value];
+    tags.value = [...tags.value, ...tags.value, ...tags.value];
+    classes.value = [...classes.value, ...classes.value].flat();
   } catch (e: any) {
     console.error(e);
     error.value = e.message;
