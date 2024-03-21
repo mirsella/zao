@@ -6,6 +6,9 @@ const error = ref("");
 const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
+definePageMeta({
+  keepAlive: true,
+});
 
 (async () => {
   try {
@@ -84,7 +87,12 @@ function toggleTag(tag: string) {
           {{ tag }}
         </button>
       </div>
-      <ClassPreview v-for="cl in classesfiltered" :data="cl" />
+      <ClassPreview
+        v-for="cl in classesfiltered"
+        :data="cl"
+        class="hover:shadow-md hover:shadow-secondary hover:scale-[1.01] btn"
+        @click="navigateTo(`/library/${cl.$id}`)"
+      />
     </template>
     <span
       v-else

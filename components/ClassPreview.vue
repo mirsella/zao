@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { Class } from "~/types/classes";
 import { YoutubeIframe } from "@vue-youtube/component";
-const props = defineProps<{ data: Class }>();
-
+defineProps<{ data: Class }>();
 
 const player = ref();
 function setVolume(volume: number) {
@@ -12,7 +11,7 @@ function setVolume(volume: number) {
 
 <template>
   <div
-    class="h-auto btn bg-base-300 hover:shadow-md hover:shadow-secondary p-4 max-w-6xl hover:scale-[1.01]"
+    class="h-auto bg-base-300 p-4 max-w-6xl"
   >
     <p class="font-bold text-md md:text-lg">
       {{ data.title }}
