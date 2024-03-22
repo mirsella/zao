@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: "Bibliothèque" });
+useHeadSafe({ title: "Bibliothèque" });
 const search = ref("");
 const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);

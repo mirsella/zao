@@ -20,6 +20,9 @@ dependencies:
   '@vue-youtube/core':
     specifier: ^0.0.6
     version: 0.0.6(vue@3.4.21)
+  capacitor-video-player:
+    specifier: ^5.5.1
+    version: 5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.7)
   nuxt:
     specifier: ^3.10.3
     version: 3.10.3(vite@5.1.6)
@@ -3926,6 +3929,17 @@ packages:
   /caniuse-lite@1.0.30001597:
     resolution: {integrity: sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==}
 
+  /capacitor-video-player@5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.7):
+    resolution: {integrity: sha512-8XbrEInrZifW0UXQwj3UFG4ZBNlom+CTvwoj/ksh/bei48lO1hKV2eZtyvY/UogPt5X59C/Z1+fCA2py3vWAiA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+      hls.js: ^1.4.0
+    dependencies:
+      '@capacitor/core': 5.7.2
+      hls.js: 1.5.7
+    dev: false
+
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -5245,6 +5259,10 @@ packages:
     resolution: {integrity: sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw==}
     engines: {node: '>=6'}
     dev: true
+
+  /hls.js@1.5.7:
+    resolution: {integrity: sha512-Hnyf7ojTBtXHeOW1/t6wCBJSiK1WpoKF9yg7juxldDx8u3iswrkPt2wbOA/1NiwU4j27DSIVoIEJRAhcdMef/A==}
+    dev: false
 
   /hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}

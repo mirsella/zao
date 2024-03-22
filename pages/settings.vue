@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ middleware: "auth" });
-useHead({ title: "Compte / Paramètres" });
+useHeadSafe({ title: "Compte / Paramètres" });
 
 const account = await useAccount();
 </script>

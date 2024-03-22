@@ -17,26 +17,27 @@ useClasses().then((classes) => {
     let bep = getEp(b);
     return aep - bep;
   });
-  useHead({ title: cl.value?.title });
+  useHeadSafe({ title: cl.value?.title });
 });
 
-const player = ref();
-function setVolume(volume: number) {
-  player.value?.instance.setVolume(volume);
+const ytplayer = ref();
+function ytsetVolume(volume: number) {
+  ytplayer.value?.instance.setVolume(volume);
 }
 </script>
 
 <template>
   <div class="flex flex-col gap-4 p-4 items-center">
+    <div id="fullscreenvideoplayer"></div>
     <div v-if="cl" class="max-w-7xl justify-center prose">
       <p class="font-semibold prose-lg w-full text-center">{{ cl.title }}</p>
       <div class="flex flex-wrap md:flex-nowrap gap-6">
         <youtube-iframe
-          ref="player"
+          ref="ytplayer"
           :video-id="parseYoutubeId(cl.trailer)"
           class="h-auto aspect-video max-w-sm md:max-w-xl"
           :cookie="false"
-          @ready="setVolume(40)"
+          @ready="ytsetVolume(40)"
         />
         <p class="m-0">{{ cl.description }}</p>
       </div>

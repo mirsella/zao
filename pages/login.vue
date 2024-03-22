@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
 const { ID } = useAppwrite();
-useHead({ title: "Connexion" });
+useHeadSafe({ title: "Connexion" });
 
 definePageMeta({
   // if user is already logged in, redirect to settings page

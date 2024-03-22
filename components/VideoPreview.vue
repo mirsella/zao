@@ -1,5 +1,17 @@
 <script setup lang="ts">
+import { CapacitorVideoPlayer } from "capacitor-video-player";
+const { storage } = useAppwrite();
 const props = defineProps<{ data: Video }>();
+
+function play() {
+  const url = storage.getFileView("videos", props.data.file_id);
+  console.log(props.data.title, url);
+  CapacitorVideoPlayer.initPlayer({
+    // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
+    url: url.toString(),
+    playerId: "fullscreenvideoplayer",
+  });
+}
 </script>
 
 <template>
@@ -13,10 +25,9 @@ const props = defineProps<{ data: Video }>();
           <span class="i-carbon-download size-6"></span>
           <!-- TODO: add to downloads -->
         </button>
-        <button class="btn btn-accent">
+        <button class="btn btn-accent" @click="play()">
           Regarder
           <span class="i-carbon-play size-6"></span>
-          <!-- TODO: Add a video player -->
         </button>
       </div>
     </div>
