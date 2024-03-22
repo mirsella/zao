@@ -8,7 +8,7 @@ export const useClasses = async () => {
       ).documents as Class[];
     } catch (e: any) {
       console.error("fetching classes", e);
-      showError({ ...e, message: "récupérations des vidéos" });
+      showError(e);
     }
   });
   return classes;
