@@ -13,6 +13,5 @@ export const useAccount = async () => {
       account.value = null;
     }
   });
-  // return account.value;
   return account;
 };

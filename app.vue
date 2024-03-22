@@ -1,6 +1,9 @@
 <script setup lang="ts">
-// preload the account data
-useAccount();
+// preload account and classes
+onMounted(() => {
+  useAccount();
+  useClasses();
+});
 
 // FIXME: manual logging for development
 // const account = await useAccount();

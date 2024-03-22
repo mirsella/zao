@@ -1,5 +1,3 @@
-import type { Class } from "../types/classes";
-
 export const useClasses = async () => {
   const { database, Query } = useAppwrite();
   const classes = useState("classes", () => [] as Class[]);
@@ -10,9 +8,8 @@ export const useClasses = async () => {
       ).documents as Class[];
     } catch (e: any) {
       console.error("fetching classes", e);
-      createError({ ...e, message: "récupérations des Vidéos" });
+      showError({ ...e, message: "récupérations des vidéos" });
     }
   });
-  // return classes.value;
   return classes;
 };

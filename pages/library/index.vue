@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { Class } from "~/types/classes";
-
+useHead({ title: "Bibliothèque" });
 const search = ref("");
 const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
 const { ID } = useAppwrite();
+useHead({ title: "Connexion" });
 
 definePageMeta({
   // if user is already logged in, redirect to settings page
@@ -13,7 +14,7 @@ definePageMeta({
 });
 
 const { account } = useAppwrite();
-let userId = null;
+let userId;
 const email = ref("");
 const showOTP = ref(false);
 

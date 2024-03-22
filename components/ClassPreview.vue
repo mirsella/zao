@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Class } from "~/types/classes";
 import { YoutubeIframe } from "@vue-youtube/component";
 defineProps<{ data: Class }>();
 
