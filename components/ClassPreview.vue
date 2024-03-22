@@ -21,7 +21,7 @@ function setVolume(volume: number) {
     <div class="flex max-h-60 md:!max-h-96 justify-items-center items-center justify-around">
       <youtube-iframe
         ref="player"
-        video-id="dQw4w9WgXcQ"
+        :video-id="parseYoutubeId(data.trailer)"
         class="w-3/5 h-auto max-w-md"
         :cookie="false"
         @ready="setVolume(40)"

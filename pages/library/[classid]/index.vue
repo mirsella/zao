@@ -26,14 +26,15 @@ function setVolume(volume: number) {
       <div class="flex flex-wrap md:flex-nowrap gap-2">
         <youtube-iframe
           ref="player"
-          video-id="dQw4w9WgXcQ"
+          :video-id="parseYoutubeId(cl.trailer)"
           class="h-auto aspect-video max-w-sm md:max-w-md"
           :cookie="false"
           @ready="setVolume(40)"
         />
-        <p class="mt-0">{{ cl.description }}</p>
+        <p class="m-0">{{ cl.description }}</p>
       </div>
       <p class="divider">Épisodes:</p>
+      <VideoPreview v-for="video of cl.videos" :data="video" />
     </div>
     <span
       v-else

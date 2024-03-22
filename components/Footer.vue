@@ -3,7 +3,7 @@
     <nav>
       <h6 class="footer-title">Contact</h6>
       <h1>
-        envoyez nous votre retour et idées <br />
+        envoyez nous vos retours et idées <br />
         pour améliorer notre site, applications et services !
       </h1>
       <a class="link link-hover" href="mailto:mirsella@protonmail.com"
