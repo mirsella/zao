@@ -6,7 +6,7 @@ export const useAccount = async () => {
     "account",
     () => null as Models.User<Models.Preferences> | null,
   );
-  await callOnce(async () => {
+  callOnce(async () => {
     try {
       account.value = await appwrite.account.get();
     } catch {

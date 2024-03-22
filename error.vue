@@ -22,6 +22,7 @@ defineProps({
         >
           retourner a la bibliothèque
         </button>
+        <p class="m-4">Si l'erreur persiste, contactez nous.</p>
       </div>
     </div>
     <Footer class="mt-10" v-if="!useMobile()" />

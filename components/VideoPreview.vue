@@ -1,17 +1,7 @@
 <script setup lang="ts">
-import { CapacitorVideoPlayer } from "capacitor-video-player";
-const { storage } = useAppwrite();
-const props = defineProps<{ data: Video }>();
-
-function play() {
-  const url = storage.getFileView("videos", props.data.file_id);
-  console.log(props.data.title, url);
-  CapacitorVideoPlayer.initPlayer({
-    // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
-    url: url.toString(),
-    playerId: "fullscreenvideoplayer",
-  });
-}
+defineProps<{ data: Video }>();
+const account = await useAccount();
+const premium = account.value?.labels.includes("premium");
 </script>
 
 <template>
@@ -20,15 +10,44 @@ function play() {
       <h4 class="card-title m-0">{{ data.title }}</h4>
       {{ data.description }}
       <div class="card-actions justify-end">
-        <button class="btn btn-accent" v-if="useMobile()">
-          Télécharger
-          <span class="i-carbon-download size-6"></span>
-          <!-- TODO: add to downloads -->
-        </button>
-        <button class="btn btn-accent" @click="play()">
+        <div v-if="useMobile()">
+          <button class="btn btn-accent" v-if="premium">
+            Télécharger
+            <span class="i-carbon-download size-6"></span>
+            <!-- TODO: add to downloads -->
+          </button>
+
+          <div
+            class="tooltip tooltip-left tooltip-error"
+            v-else
+            data-tip="Vous devez être premium pour télécharger cette vidéo"
+          >
+            <button class="btn btn-disabled">
+              Télécharger
+              <span class="i-carbon-download size-6"></span>
+            </button>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-accent"
+          @click="$emit('play', data.file_id, data.title)"
+          v-if="premium"
+        >
           Regarder
           <span class="i-carbon-play size-6"></span>
         </button>
+
+        <div
+          class="tooltip tooltip-left tooltip-error"
+          v-else
+          data-tip="Vous devez être premium pour regarder cette vidéo"
+        >
+          <button class="btn btn-disabled">
+            Regarder
+            <span class="i-carbon-play size-6"></span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

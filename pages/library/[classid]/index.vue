@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { YoutubeIframe } from "@vue-youtube/component";
+import { CapacitorVideoPlayer } from "capacitor-video-player";
+const { storage } = useAppwrite();
 
 const route = useRoute();
 const cl = ref<Class>();
@@ -24,6 +26,33 @@ const ytplayer = ref();
 function ytsetVolume(volume: number) {
   ytplayer.value?.instance.setVolume(volume);
 }
+
+const videoplayer = () =>
+  document.querySelector(
+    "#fullscreenvideoplayer video",
+  ) as HTMLMediaElement | null;
+async function play(file_id: string, title: string) {
+  videoplayer()?.pause();
+  const url = storage.getFileView("videos", file_id);
+  const res = await CapacitorVideoPlayer.initPlayer({
+    // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
+    url: url.href,
+    playerId: "fullscreenvideoplayer",
+    componentTag: "div",
+    mode: "fullscreen",
+    title,
+  });
+  if (!res.result) {
+    console.error(res.message);
+    showError("Impossible de lire la vidéo:" + res.message);
+  }
+  const player = videoplayer();
+  if (!player) {
+    showError("L'élément vidéo n'a pas été trouvé pour changer le volume");
+    return;
+  }
+  player.volume = 0.3;
+}
 </script>
 
 <template>
@@ -45,7 +74,8 @@ function ytsetVolume(volume: number) {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto my-4 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
+        class="mx-auto m-2 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
+        @play="play"
       />
       <!-- TODO: comment section -->
     </div>
