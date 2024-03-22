@@ -14,7 +14,6 @@ definePageMeta({
 
 const { account } = useAppwrite();
 let userId = null;
-const error = ref("");
 const email = ref("");
 const showOTP = ref(false);
 
@@ -25,7 +24,7 @@ async function submitEmail() {
     // userId = sessionToken.userId;
   } catch (e: any) {
     console.log(e);
-    error.value = e.message;
+    showError(e);
   }
   showOTP.value = true;
 }
@@ -36,7 +35,7 @@ async function submitOTP(value: string) {
     // const session = await account.createSession(userId, value);
   } catch (e: any) {
     console.log(e);
-    error.value = e.message;
+    showError(e);
   }
   // redirect to the previous page
   const redirectPath = useRoute().redirectedFrom?.path;
@@ -46,10 +45,6 @@ async function submitOTP(value: string) {
 
 <template>
   <div class="w-full items-center flex flex-col mt-4">
-    <h1 class="text-error m-10" v-if="error">
-      {{ error }}.<br />
-      Essayer de recharger la page
-    </h1>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
       @submit.prevent="submitEmail"

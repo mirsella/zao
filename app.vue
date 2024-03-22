@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const account = await useAccount();
+// preload the account data
+useAccount();
 
+// FIXME: manual logging for development
+// const account = await useAccount();
 // let res = await useAppwrite().account.createEmailSession(
 //   "test@gmail.com",
 //   "testtest",
@@ -11,7 +14,7 @@ const account = await useAccount();
 <template>
   <div data-theme="forest" class="flex flex-col h-screen">
     <Header />
-    <NuxtPage class="mb-auto" />
+    <NuxtPage class="mb-auto" :keepalive="true" />
     <Footer class="mt-10" v-if="!useMobile()" />
   </div>
 </template>

@@ -1,30 +1,17 @@
 <script setup lang="ts">
 import type { Class } from "~/types/classes";
-const { Query } = useAppwrite();
+
 const search = ref("");
-const error = ref("");
 const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
-definePageMeta({
-  keepAlive: true,
-});
 
-(async () => {
-  try {
-    const { database } = useAppwrite();
-    classes.value = (
-      await database.listDocuments("classes", "class", [Query.limit(1000)])
-    ).documents as Class[];
-    tags.value = [...new Set(classes.value.flatMap((c) => c.tags))];
-    // FIXME: add more tags to test responsiveness
-    // tags.value = [...tags.value, ...tags.value, ...tags.value];
-    // classes.value = [...classes.value, ...classes.value].flat();
-  } catch (e: any) {
-    console.error(e);
-    error.value = e.message;
-  }
-})();
+useClasses().then((data) => {
+  classes.value = data.value;
+  tags.value = Array.from(
+    new Set(data.value.flatMap((cl) => cl.tags).filter((tag) => tag.length)),
+  );
+});
 
 const classesfiltered = computed(() =>
   classes.value.filter((cl) => {
@@ -59,10 +46,6 @@ function toggleTag(tag: string) {
 
 <template>
   <div class="flex flex-col w-full gap-4 p-4 items-center">
-    <h1 class="text-error m-10" v-if="error">
-      {{ error }}.<br />
-      Essayer de recharger la page
-    </h1>
     <label class="input input-secondary flex items-center w-full max-w-lg">
       <input v-model.trim="search" class="grow" placeholder="Recherche..." />
       <button
@@ -75,7 +58,7 @@ function toggleTag(tag: string) {
       <div class="w-full flex items-center justify-center px-2 flex-wrap">
         <h1 class="inline-block mx-2 prose">Tags:</h1>
         <button
-          v-for="(tag, index) in tags"
+          v-for="tag in tags"
           :class="[
             selectedtags.includes(tag)
               ? '!bg-secondary text-secondary-content'

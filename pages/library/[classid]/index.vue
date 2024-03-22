@@ -1,30 +1,23 @@
 <script setup lang="ts">
 import type { Class } from "~/types/classes";
+
 const route = useRoute();
-const error = ref("");
 const cl = ref<Class>();
 
-(async () => {
-  try {
-    const { database } = useAppwrite();
-    cl.value = (await database.getDocument(
-      "classes",
-      "class",
-      route.params.classid as string,
-    )) as Class;
-  } catch (e: any) {
-    console.error(e);
-    error.value = e.message;
+useClasses().then((classes) => {
+  cl.value = classes.value.find((cl) => cl.$id === route.params.classid);
+  if (!cl.value) {
+    showError("cette classe n'existe pas");
   }
-})();
+});
 </script>
 
 <template>
-  <div>
-    <h1 class="text-error m-10" v-if="error">
-      {{ error }}.<br />
-      Essayer de recharger la page, ou le lien est incorrect
-    </h1>
-    on the page for the class {{ cl?.$id }}
+  <div class="flex flex-col w-full gap-4 p-4 items-center">
+    <template v-if="cl">on the page for the class {{ cl?.$id }}</template>
+    <span
+      v-else
+      class="loading loading-infinity text-secondary loading-lg mt-10"
+    />
   </div>
 </template>
