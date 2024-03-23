@@ -66,7 +66,7 @@ function toggleTag(tag: string) {
           class="btn btn-sm ml-px hover:scale-105 transition hover:brightness-90"
           @click="toggleTag(tag)"
         >
-          {{ tag }}
+          {{ tag.toLowerCase() }}
         </button>
       </div>
       <ClassPreview
