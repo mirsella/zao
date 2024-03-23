@@ -32,6 +32,7 @@ const videoplayer = () =>
     "#fullscreenvideoplayer video",
   ) as HTMLMediaElement | null;
 async function play(file_id: string, title: string) {
+  // pause the yt embed if it's playing
   ytplayer.value?.instance.pauseVideo();
   const url = storage.getFileView("videos", file_id);
   const res = await CapacitorVideoPlayer.initPlayer({

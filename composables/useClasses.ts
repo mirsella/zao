@@ -7,7 +7,6 @@ export const useClasses = async () => {
         await database.listDocuments("classes", "class", [Query.limit(1000)])
       ).documents as Class[];
     } catch (e: any) {
-      console.error("fetching classes", e);
       showError(e);
     }
   });

@@ -18,4 +18,7 @@ export default defineNuxtConfig({
     description: "quality video classes to improve your life",
     defaultLocale: "fr",
   },
+  nitro: {
+    compressPublicAssets: { gzip: true, brotli: true },
+  },
 });
