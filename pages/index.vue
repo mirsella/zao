@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: async () => {
+  middleware: () => {
     if (useMobile()) {
-      await navigateTo("/library");
+      return navigateTo("/library");
     }
   },
 });

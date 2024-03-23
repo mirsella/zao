@@ -18,9 +18,9 @@ const premium = account.value?.labels.includes("premium");
           </button>
 
           <div
-            class="tooltip tooltip-left tooltip-error"
+            class="tooltip tooltip-top tooltip-error"
             v-else
-            data-tip="Vous devez être premium pour télécharger cette vidéo"
+            data-tip="Vous devez être premium"
           >
             <button class="btn btn-disabled">
               Télécharger
@@ -39,9 +39,9 @@ const premium = account.value?.labels.includes("premium");
         </button>
 
         <div
-          class="tooltip tooltip-left tooltip-error"
+          class="tooltip tooltip-top tooltip-error"
           v-else
-          data-tip="Vous devez être premium pour regarder cette vidéo"
+          data-tip="Vous devez être premium"
         >
           <button class="btn btn-disabled">
             Regarder

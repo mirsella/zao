@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
 const { ID } = useAppwrite();
-useHeadSafe({ title: "Connexion" });
+const { account } = useAppwrite();
+useHeadSafe({ title: "Connection" });
 
-definePageMeta({
-  // if user is already logged in, redirect to settings page
-  middleware: async () => {
-    const account = await useAccount();
+// automaticlly redirect when the user is logged in
+watch(
+  await useAccount(),
+  async (account) => {
     if (account) {
-      return navigateTo("/settings");
+      // redirect to the previous page
+      const redirectPath = useRoute().redirectedFrom?.path;
+      await navigateTo(redirectPath || "/settings");
     }
   },
-});
+  { immediate: true },
+);
 
-const { account } = useAppwrite();
 let userId;
 const email = ref("");
 const showOTP = ref(false);
@@ -34,28 +37,26 @@ async function submitOTP(value: string) {
   try {
     // TODO: when appwrite cloud 1.5 is released
     // const session = await account.createSession(userId, value);
+    (await useAccount()).value = await account.get();
   } catch (e: any) {
     console.log(e);
     showError(e);
   }
-  // redirect to the previous page
-  const redirectPath = useRoute().redirectedFrom?.path;
-  await navigateTo(redirectPath || "/settings");
 }
 
 // FIXME: manual logging for development
 async function devlogin() {
-  const account = await useAccount();
-  let res = await useAppwrite().account.createEmailSession(
-    "test@gmail.com",
-    "testtest",
-  );
+  let res = await account.createEmailSession("test@gmail.com", "testtest");
+  console.log(res);
+  (await useAccount()).value = await account.get();
 }
 </script>
 
 <template>
   <div class="w-full items-center flex flex-col mt-4">
-    <buntton class="btn btn-primary" @click="devlogin"></buntton>
+    <button class="btn btn-primary" @click="devlogin">
+      dev login as test@gmail.com
+    </button>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
       @submit.prevent="submitEmail"
