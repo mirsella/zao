@@ -11,7 +11,7 @@ install! 'cocoapods', :disable_input_output_paths => true
 def capacitor_pods
   pod 'Capacitor', :path => '../../node_modules/.pnpm/@capacitor+ios@5.7.2_@capacitor+core@5.7.2/node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../node_modules/.pnpm/@capacitor+ios@5.7.2_@capacitor+core@5.7.2/node_modules/@capacitor/ios'
-
+  pod 'CapacitorVideoPlayer', :path => '../../node_modules/.pnpm/capacitor-video-player@5.5.1_@capacitor+core@5.7.2_hls.js@1.5.7/node_modules/capacitor-video-player'
 end
 
 target 'App' do

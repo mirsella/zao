@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     defaultLocale: "fr",
   },
   nitro: {
-    compressPublicAssets: { gzip: true, brotli: true },
+    // gzip doesn't work with capacitor
+    compressPublicAssets: { gzip: false, brotli: true },
   },
 });
