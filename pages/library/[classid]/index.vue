@@ -32,7 +32,7 @@ const videoplayer = () =>
     "#fullscreenvideoplayer video",
   ) as HTMLMediaElement | null;
 async function play(file_id: string, title: string) {
-  videoplayer()?.pause();
+  ytplayer.value?.instance.pauseVideo();
   const url = storage.getFileView("videos", file_id);
   const res = await CapacitorVideoPlayer.initPlayer({
     // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
@@ -53,6 +53,15 @@ async function play(file_id: string, title: string) {
   }
   player.volume = 0.3;
 }
+// the video player doesn't exit when fullscreen is exited, for example by pressing escape
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    // doesn't work, but i'll keep it here
+    CapacitorVideoPlayer.exitPlayer();
+    // @ts-ignore this is the button (X) next to the <video> that close the player
+    videoplayer()?.nextSibling?.click();
+  }
+});
 </script>
 
 <template>
