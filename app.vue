@@ -2,14 +2,6 @@
 // preload account and classes
 useAccount();
 useClasses();
-
-// FIXME: manual logging for development
-// const account = await useAccount();
-// let res = await useAppwrite().account.createEmailSession(
-//   "test@gmail.com",
-//   "testtest",
-// );
-// console.log(res);
 </script>
 
 <template>

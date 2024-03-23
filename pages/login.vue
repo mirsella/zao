@@ -42,10 +42,20 @@ async function submitOTP(value: string) {
   const redirectPath = useRoute().redirectedFrom?.path;
   await navigateTo(redirectPath || "/settings");
 }
+
+// FIXME: manual logging for development
+async function devlogin() {
+  const account = await useAccount();
+  let res = await useAppwrite().account.createEmailSession(
+    "test@gmail.com",
+    "testtest",
+  );
+}
 </script>
 
 <template>
   <div class="w-full items-center flex flex-col mt-4">
+    <buntton class="btn btn-primary" @click="devlogin"></buntton>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
       @submit.prevent="submitEmail"
