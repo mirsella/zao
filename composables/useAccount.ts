@@ -8,13 +8,14 @@ export const useAccount = async () => {
     () => null as Models.User<Models.Preferences> | null,
   );
   if (!call) {
-    try {
-      call = appwrite.account.get();
-      account.value = await call;
-    } catch {
-      account.value = null;
-    }
+    call = appwrite.account.get();
   }
-  await call;
+  try {
+    if (!account.value) {
+      account.value = await call;
+    }
+  } catch {
+    account.value = null;
+  }
   return account;
 };
