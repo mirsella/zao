@@ -7,9 +7,9 @@ defineProps({
 <template>
   <div data-theme="forest" class="flex flex-col h-screen">
     <Header />
-    <div class="mb-auto mt-6 grid place-items-center gap-4">
+    <div class="mb-auto mt-6 grid place-items-center gap-4 m-2">
       <p class="text-3xl font-bold">Une erreur est survenue:</p>
-      <p class="text-xl font-bold text-error">
+      <p class="text-xl font-bold text-error text-wrap w-full text-center">
         {{ error?.message }}
       </p>
       <div
