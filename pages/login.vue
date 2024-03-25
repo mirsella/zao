@@ -2,6 +2,7 @@
 import VOtpInput from "vue3-otp-input";
 const { ID } = useAppwrite();
 const { account } = useAppwrite();
+const router = useRouter();
 useHeadSafe({ title: "Connection" });
 
 // automaticlly redirect when the user is logged in
@@ -11,7 +12,11 @@ watch(
     if (account) {
       // redirect to the previous page
       const redirectPath = useRoute().redirectedFrom?.path;
-      await navigateTo(redirectPath || "/settings");
+      if (redirectPath) {
+        router.back();
+      } else {
+        await router.replace("/library");
+      }
     }
   },
   { immediate: true },

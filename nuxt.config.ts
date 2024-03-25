@@ -11,15 +11,15 @@ export default defineNuxtConfig({
     enabled: false,
   },
   appwrite: { project: "65ef4ce532070e537d98" },
+  nitro: {
+    // gzip doesn't work with capacitor
+    compressPublicAssets: { gzip: false, brotli: true },
+  },
   // nuxt seo module
   site: {
     url: process.env.SITE_URL || "http://localhost:3000",
     name: "Inspire",
     description: "quality video classes to improve your life",
     defaultLocale: "fr",
-  },
-  nitro: {
-    // gzip doesn't work with capacitor
-    compressPublicAssets: { gzip: false, brotli: true },
   },
 });
