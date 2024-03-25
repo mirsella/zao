@@ -23,37 +23,46 @@ watch(
 );
 
 let userId;
+const loading = ref(false);
 const email = ref("");
 const showOTP = ref(false);
 
 async function submitEmail() {
+  loading.value = true;
   try {
     // TODO: when appwrite cloud 1.5 is released
     // const sessionToken = await account.createEmailToken(ID.unique(), email.value);
     // userId = sessionToken.userId;
   } catch (e: any) {
+    loading.value = false;
     console.log(e);
     showError(e);
   }
+  loading.value = false;
   showOTP.value = true;
 }
 
 async function submitOTP(value: string) {
+  loading.value = true;
   try {
     // TODO: when appwrite cloud 1.5 is released
     // const session = await account.createSession(userId, value);
     (await useAccount()).value = await account.get();
   } catch (e: any) {
+    loading.value = false;
     console.log(e);
     showError(e);
   }
+  loading.value = false;
 }
 
 // FIXME: manual logging for development
 async function devlogin() {
+  loading.value = true;
   let res = await account.createEmailSession("test@gmail.com", "testtest");
   console.log(res);
   (await useAccount()).value = await account.get();
+  loading.value = false;
 }
 </script>
 
@@ -103,5 +112,9 @@ async function devlogin() {
         regardez dans vos spam si besoin. code valide 5 minutes.
       </h1>
     </div>
+    <span
+      v-if="loading"
+      class="loading loading-infinity text-secondary loading-lg mt-10"
+    />
   </div>
 </template>
