@@ -3,6 +3,7 @@ export const useClasses = async () => {
   const classes = useState("classes", () => [] as Class[]);
   await callOnce(async () => {
     try {
+      await useAccount();
       classes.value = (
         await database.listDocuments("classes", "class", [Query.limit(1000)])
       ).documents as Class[];
