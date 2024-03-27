@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{ data: Video }>();
 const account = await useAccount();
-const premium = account.value?.labels.includes("premium");
+const premium = computed(() => account.value?.labels.includes("premium"));
 </script>
 
 <template>
@@ -39,7 +39,7 @@ const premium = account.value?.labels.includes("premium");
         </button>
 
         <div
-          class="tooltip tooltip-top tooltip-error"
+          class="tooltip tooltip-left tooltip-error"
           v-else
           data-tip="Vous devez être premium"
         >
