@@ -49,11 +49,9 @@ async function play(file_id: string, title: string) {
     showError("Impossible de lire la vidéo:" + res.message);
   }
   const player = videoplayer();
-  if (!player) {
-    showError("L'élément vidéo n'a pas été trouvé pour changer le volume");
-    return;
+  if (player) {
+    player.volume = 0.5;
   }
-  player.volume = 0.5;
 }
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
 document.addEventListener("fullscreenchange", () => {
@@ -67,7 +65,7 @@ document.addEventListener("fullscreenchange", () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 p-4 items-center">
+  <div class="flex flex-col gap-4 p-6 items-center">
     <div id="fullscreenvideoplayer"></div>
     <div v-if="cl" class="max-w-7xl justify-center prose">
       <p class="font-semibold prose-lg w-full text-center">{{ cl.title }}</p>
