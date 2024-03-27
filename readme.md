@@ -14,7 +14,7 @@ hetzner for server hosting ?
 TODO:
 ecouter hors ligne
 video to explain how to add new videos and classes
-hostname
+hostname: appwrite, lemonsquessy, and nuxt client
 appwrite smtp
 chaine yt, video trailer
 google play store
