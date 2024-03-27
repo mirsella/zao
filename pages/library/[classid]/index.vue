@@ -52,7 +52,7 @@ async function play(file_id: string, title: string) {
     showError("L'élément vidéo n'a pas été trouvé pour changer le volume");
     return;
   }
-  player.volume = 0.3;
+  player.volume = 0.5;
 }
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
 document.addEventListener("fullscreenchange", () => {

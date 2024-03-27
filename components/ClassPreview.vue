@@ -24,7 +24,7 @@ function setVolume(volume: number) {
         :video-id="parseYoutubeId(data.trailer)"
         class="w-3/5 h-auto max-w-md"
         :cookie="false"
-        @ready="setVolume(40)"
+        @ready="setVolume(50)"
       />
       <p
         class="w-fit m-2 text-balance font-medium h-fill line-clamp-[8] leading-snug"
