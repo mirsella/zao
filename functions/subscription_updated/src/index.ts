@@ -23,10 +23,13 @@ export default async ({ req, res, log, error }: Context) => {
   const users = new Users(client);
 
   if (req.method !== "POST") {
-    return res.status(405).send("only supporting POST");
+    return res.send("only supporting POST", 405);
   }
-  if (req.headers["x-event-name"] !== "subscription_updated") {
-    return res.status(405).send("only supporting subscription_updated event");
+  if (
+    req.headers["x-event-name"] !== "subscription_updated" ||
+    req.body.meta.event_name !== "subscription_updated"
+  ) {
+    return res.send("only supporting subscription_updated event", 405);
   }
 
   log(JSON.stringify(req.body));
