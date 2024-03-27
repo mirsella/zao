@@ -9,7 +9,7 @@
     "nuxt:preview": "nuxt preview",
     "nuxt:postinstall": "nuxt prepare",
     "cap:sync": "cap sync",
-    "cap:android": "cap run android"
+    "cap:android": "cap sync && cd android && ./gradlew assembleDebug && adb install -r -d -t $(fd -I -e apk) && adb shell am start -n com.inspire./.MainActivity"
   },
   "dependencies": {
     "@capacitor/android": "^5.7.2",
