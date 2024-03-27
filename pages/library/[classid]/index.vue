@@ -42,6 +42,7 @@ async function play(file_id: string, title: string) {
     componentTag: "div",
     mode: "fullscreen",
     title,
+    chromecast: false,
   });
   if (!res.result) {
     console.error(res.message);

@@ -42,7 +42,6 @@ jobs:
           path: .output/public/
       - run: npm install
       - run: npx cap sync
-      - run: npx cap copy
       - name: Build Android
         run: |
           cd android
