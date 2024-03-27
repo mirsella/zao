@@ -12,12 +12,10 @@ wasabi is the best for storage
 hetzner for server hosting ?
 
 TODO:
-ecouter les classes ecran eteint
 ecouter hors ligne
 video to explain how to add new videos and classes
 hostname
-turbosmtp dns record (hostname)
-https://ionic.io/appflow for capacitor build
+appwrite smtp
 chaine yt, video trailer
 google play store
 apple app store

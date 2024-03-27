@@ -61,6 +61,9 @@ async function devlogin() {
   loading.value = true;
   let res = await account.createEmailSession("test@gmail.com", "testtest");
   console.log(res);
+  await account.updateName(
+    `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`,
+  );
   (await useAccount()).value = await account.get();
   loading.value = false;
 }
@@ -109,7 +112,7 @@ async function devlogin() {
         />
       </div>
       <h1 class="italic font-thin text-center">
-        regardez dans vos spam si besoin. code valide 5 minutes.
+        regardez dans vos spam si besoin. code valide 15 minutes.
       </h1>
     </div>
     <span

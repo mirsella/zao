@@ -50,7 +50,7 @@ async function play(file_id: string, title: string) {
   }
   const player = videoplayer();
   if (player) {
-    player.volume = 0.5;
+    player.volume = 0.4;
   }
 }
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
