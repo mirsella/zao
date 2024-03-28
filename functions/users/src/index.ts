@@ -1,9 +1,5 @@
-import {
-  createCustomer,
-  lemonSqueezySetup,
-} from "@lemonsqueezy/lemonsqueezy.js";
+import { getCustomer, lemonSqueezySetup } from "@lemonsqueezy/lemonsqueezy.js";
 import { Client, Users, Databases, Query } from "node-appwrite";
-import { isJSDocFunctionType } from "typescript";
 
 type Context = {
   req: any;
@@ -27,11 +23,11 @@ export default async ({ req, res, log, error }: Context) => {
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
     .setKey(process.env.APPWRITE_API_KEY);
   const databases = new Databases(client);
-  lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
 
   log(JSON.stringify(req.body));
   log(JSON.stringify(req.headers));
 
+  // if user is created, create it's document in the users collection
   if (req.headers["x-appwrite-event"] === "users.*.create") {
     let name = "";
     while (true) {
@@ -50,7 +46,23 @@ export default async ({ req, res, log, error }: Context) => {
     return;
   }
 
-  // request lm customer page
+  lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
+  const user_id = req.headers["x-appwrite-user-id"];
+  if (!user_id) {
+    throw new Error("missing user id header");
+  }
+
+  if (req.method === "GET" && req.path === "/customer_portal") {
+    const user = await databases.getDocument("classes", "users", user_id);
+    // @ts-ignore we know the users collection has a lemonsqueezy_id field
+    const { error, statusCode, data } = await getCustomer(user.lemonsqueezy_id);
+    if (error) {
+      throw new Error(JSON.stringify(error));
+    }
+    // https://docs.lemonsqueezy.com/api/customers#retrieve-a-customer
+    // res.send(customer.);
+    return;
+  }
 
   // change user name
 };
