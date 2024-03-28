@@ -1,4 +1,4 @@
-import { Client, Users } from "node-appwrite";
+import { Client, Users, Databases, Query, ID, Models } from "node-appwrite";
 
 type Context = {
   req: any;
@@ -33,8 +33,18 @@ export default async ({ req, res, log, error }: Context) => {
   }
 
   log(JSON.stringify(req.body));
-  const user = await users.get(req.headers["x-appwrite-user-id"]);
+  const email = req.body.data.attributes.user_email;
+  let userslist = await users.list([Query.equal("email", email)]);
+  let user: Models.User<Models.Preferences>;
+  if (userslist.total === 1) {
+    let user = userslist.users[0];
+  } else if (userslist.total === 0) {
+    let user = await users.create(ID.unique(), email);
+  } else {
+    throw new Error("multiple users with same email");
+  }
 
+  // @ts-ignore the value is initialized in the if/else block
   let labels = user.labels;
   if (req.body.data.attributes.status === "active") {
     labels.push("premium");
