@@ -33,4 +33,15 @@ export default async ({ req, res, log, error }: Context) => {
   }
 
   log(JSON.stringify(req.body));
+  const user = await users.get(req.headers["x-appwrite-user-id"]);
+
+  let labels = user.labels;
+  if (req.body.data.attributes.status === "active") {
+    labels.push("premium");
+    await users.updateLabels(req.headers["x-appwrite-user-id"], labels);
+  } else if (req.body.data.attributes.status === "expired") {
+    labels.splice(labels.indexOf("premium"), 1);
+    await users.updateLabels(req.headers["x-appwrite-user-id"], labels);
+  }
+  log(`User ${req.headers["x-appwrite-user-id"]} updated labels: ${labels}`);
 };
