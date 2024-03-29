@@ -79,7 +79,7 @@ export default async ({ req, res, log, error }: Context) => {
   if (req.body.data.attributes.status === "active") {
     labels.push("premium");
     await databases.updateDocument("classes", "users", user.$id, {
-      lemonsqueezy_id: req.body.data.attributes.customer_id,
+      lemonsqueezy_id: req.body.data.attributes.customer_id.toString(),
     });
     await users.updateLabels(user.$id, labels);
   } else if (req.body.data.attributes.status === "expired") {

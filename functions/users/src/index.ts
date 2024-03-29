@@ -45,7 +45,7 @@ export default async ({ req, res, log, error }: Context) => {
     const doc = await databases.createDocument("classes", "users", userid, {
       name,
     });
-    log(`created document ${doc}`);
+    log(`created document ${JSON.stringify(doc)} for user ${userid}`);
     return res.empty();
   }
 
