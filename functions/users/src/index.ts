@@ -27,7 +27,13 @@ export default async ({ req, res, log, error }: Context) => {
   log(JSON.stringify(req.headers));
 
   // if user is created, create it's document in the users collection
-  if (req.headers["x-appwrite-event"] === "users.*.create") {
+  if (req.headers["x-appwrite-trigger"] === "event") {
+    const userid = (req.headers["x-appwrite-event"] as string).match(
+      /users\.(.+)\.create/,
+    )?.[1];
+    if (!userid) {
+      throw new Error("event wasn't user.*.create");
+    }
     let name = "";
     while (true) {
       name = `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`;
@@ -36,13 +42,8 @@ export default async ({ req, res, log, error }: Context) => {
       ]);
       if (res.total === 0) break;
     }
-    databases.createDocument(
-      "classes",
-      "users",
-      req.headers["x-appwrite-user-id"],
-      { name },
-    );
-    return;
+    databases.createDocument("classes", "users", userid, { name });
+    return res.empty();
   }
 
   lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
@@ -58,8 +59,7 @@ export default async ({ req, res, log, error }: Context) => {
     if (error) {
       throw new Error(JSON.stringify(error));
     }
-    res.send(data?.data.attributes.urls.customer_portal);
-    return;
+    return res.send(data?.data.attributes.urls.customer_portal);
   }
 
   if (req.method === "PUT" && req.path === "/name") {
@@ -73,6 +73,9 @@ export default async ({ req, res, log, error }: Context) => {
     if (withName.total > 0) {
       res.send("name already taken");
     }
-    databases.updateDocument("classes", "users", user_id, { name });
+    await databases.updateDocument("classes", "users", user_id, { name });
+    return res.send("ok");
   }
+
+  res.send("not found");
 };
