@@ -12,7 +12,6 @@ export default async ({ req, res, log, error }: Context) => {
   if (
     !process.env.APPWRITE_FUNCTION_PROJECT_ID ||
     !process.env.APPWRITE_API_KEY ||
-    !process.env.LEMONSQUEEZY_SECRET ||
     !process.env.LEMONSQUEEZY_API_KEY
   ) {
     throw new Error("missings env variables");
@@ -49,7 +48,7 @@ export default async ({ req, res, log, error }: Context) => {
   lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
   const user_id = req.headers["x-appwrite-user-id"];
   if (!user_id) {
-    throw new Error("missing user id header");
+    res.send("no user id");
   }
 
   if (req.method === "GET" && req.path === "/customer_portal") {
@@ -66,13 +65,13 @@ export default async ({ req, res, log, error }: Context) => {
   if (req.method === "PUT" && req.path === "/name") {
     const name = req.body.name;
     if (!name) {
-      throw new Error("missing name");
+      res.send("no name in body");
     }
     const withName = await databases.listDocuments("classes", "users", [
       Query.equal("name", name),
     ]);
     if (withName.total > 0) {
-      throw new Error("name already taken");
+      res.send("name already taken");
     }
     databases.updateDocument("classes", "users", user_id, { name });
   }
