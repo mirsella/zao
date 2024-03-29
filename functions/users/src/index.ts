@@ -42,7 +42,10 @@ export default async ({ req, res, log, error }: Context) => {
       ]);
       if (res.total === 0) break;
     }
-    databases.createDocument("classes", "users", userid, { name });
+    const doc = await databases.createDocument("classes", "users", userid, {
+      name,
+    });
+    log(`created document ${doc}`);
     return res.empty();
   }
 
@@ -59,6 +62,7 @@ export default async ({ req, res, log, error }: Context) => {
     if (error) {
       throw new Error(JSON.stringify(error));
     }
+    log(`got lemonsqueezy customer for ${user_id}: ${data}`);
     return res.send(data?.data.attributes.urls.customer_portal);
   }
 
@@ -74,6 +78,7 @@ export default async ({ req, res, log, error }: Context) => {
       res.send("name already taken");
     }
     await databases.updateDocument("classes", "users", user_id, { name });
+    log(`updated name for ${user_id} to ${name}`);
     return res.send("ok");
   }
 
