@@ -53,7 +53,7 @@ export default async ({ req, res, log, error }: Context) => {
   const databases = new Databases(client);
 
   const email = req.body.data.attributes.user_email;
-  let userslist = await users.list([Query.equal("email", email)]);
+  let userslist = await users.list([Query.equal("email", [email])]);
   let user: Models.User<Models.Preferences>;
   if (userslist.total === 1) {
     user = userslist.users[0];
