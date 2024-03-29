@@ -59,7 +59,10 @@ async function submitOTP(value: string) {
 // FIXME: manual logging for development
 async function devlogin() {
   loading.value = true;
-  let res = await account.createEmailSession("test@gmail.com", "testtest");
+  let res = await account.createEmailSession(
+    email.value + "@gmail.com",
+    "testtest",
+  );
   console.log(res);
   await account.updateName(
     `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`,
@@ -71,8 +74,8 @@ async function devlogin() {
 
 <template>
   <div class="w-full items-center flex flex-col mt-4">
-    <button class="btn btn-primary" @click="devlogin">
-      dev login as test@gmail.com
+    <button class="btn btn-error m-4" @click="devlogin">
+      dev login as insertemail@gmail.com
     </button>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"

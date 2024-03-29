@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import type { Models } from "nuxt-appwrite";
-
+const { account, functions } = useAppwrite();
 definePageMeta({ middleware: "auth" });
 useHeadSafe({ title: "Compte / Paramètres" });
 
 // this can't be null because of the middleware
-const account = (await useAccount()) as Ref<Models.User<Models.Preferences>>;
+const user = await useAccount();
 
 const name = ref("");
 const nameUsed = ref(false);
 watch(name, () => (nameUsed.value = false));
 async function updateName() {
   try {
-    const res = await useAppwrite().functions.createExecution(
+    const res = await functions.createExecution(
       "users",
       JSON.stringify({ name: name.value }),
       false,
@@ -20,31 +19,63 @@ async function updateName() {
       "PUT",
       { "Content-Type": "application/json" },
     );
-    console.log(res.responseBody);
     if (res.responseBody === "name already taken") {
       nameUsed.value = true;
     } else if (res.responseBody !== "ok") {
       throw new Error(res.responseBody);
     }
-    account.value.name = name.value;
+    if (user.value) user.value.name = name.value;
     name.value = "";
   } catch (error) {
     console.error(error);
     showError("Impossible de changer le pseudonyme: " + error);
   }
 }
+
+async function redirectStore() {
+  const url = useRuntimeConfig().public.store_url;
+  await navigateTo(url, {
+    external: true,
+    open: {
+      target: "_blank",
+    },
+  });
+}
+async function redirectCustomerPortal() {
+  const res = await functions.createExecution(
+    "users",
+    "",
+    false,
+    "/customer_portal",
+    "GET",
+  );
+  if (res.responseStatusCode !== 200) {
+    throw new Error(res.responseBody);
+  }
+  await navigateTo(res.responseBody, {
+    external: true,
+    open: {
+      target: "_blank",
+    },
+  });
+}
+async function logout() {
+  await account.deleteSession("current");
+  user.value = null;
+  await navigateTo("/");
+}
 </script>
 <template>
   <div>
-    <div class="flex gap-2 p-4 w-full flex-wrap grid-cols-2 justify-around">
+    <div class="flex gap-4 p-4 w-full flex-wrap grid-cols-2 justify-center">
       <div
-        class="tooltip bg-base-300 p-2 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md"
+        class="tooltip bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
         data-tip="uniquement utilise pour les commentaires"
       >
-        <p class="mx-1">pseudonyme:</p>
+        <p class="mx-1">Pseudonyme</p>
         <p class="text-error" v-show="nameUsed">déjà en utilisation</p>
         <label class="input-accent input w-2/3 flex items-center">
-          <input class="grow" :placeholder="account.name" v-model="name" />
+          <input class="grow" :placeholder="user?.name" v-model="name" />
           <button
             class="i-carbon-save size-4 btn"
             @click="updateName()"
@@ -53,13 +84,47 @@ async function updateName() {
         </label>
       </div>
       <div
-        class="bg-base-300 p-2 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md"
+        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
       >
-        <p class="mx-1">email:</p>
+        <p class="mx-1">Email</p>
         <input
           class="!text-base-content input w-2/3 flex items-center input-disabled"
-          :value="account.email"
+          :value="user?.email"
         />
+      </div>
+      <div
+        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
+      >
+        <p class="mx-1">Premium</p>
+        <div class="w-2/3 text-center btn !border-accent hover:scale-[1.05]">
+          <button
+            v-if="user?.labels.includes('premium')"
+            class="flex place-items-center gap-2"
+            @click="redirectCustomerPortal()"
+          >
+            <span>Gérer</span>
+            <span class="i-carbon-user-admin size-6"></span>
+          </button>
+          <button
+            v-else
+            class="flex place-items-center gap-2"
+            @click="redirectStore()"
+          >
+            <span>S'inscrire</span>
+            <span class="i-carbon-airline-manage-gates size-6"></span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="bg-base-300 rounded-xl flex justify-center w-full max-w-md p-4"
+      >
+        <button
+          class="w-2/3 btn gap-2 !border-error hover:scale-[1.05]"
+          @click="logout()"
+        >
+          <span>Se déconnecter</span>
+          <span class="i-carbon-logout size-6"></span>
+        </button>
       </div>
     </div>
   </div>

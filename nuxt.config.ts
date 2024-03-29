@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     enabled: false,
   },
   appwrite: { project: "65ef4ce532070e537d98" },
+  runtimeConfig: {
+    public: {
+      store_url:
+        "https://inspire-videos.lemonsqueezy.com/buy/a8c623da-3c78-46a2-b1b2-6c53d74ebc42?discount=0",
+    },
+  },
   nitro: {
     // gzip doesn't work with capacitor
     compressPublicAssets: { gzip: false, brotli: true },
