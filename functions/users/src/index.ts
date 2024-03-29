@@ -46,24 +46,25 @@ export default async ({ req, res, log, error }: Context) => {
     const doc = await databases.createDocument("classes", "users", userid, {
       name,
     });
+    await users.updateName(userid, name);
     log(`created document ${JSON.stringify(doc)} for user ${userid}`);
     return res.empty();
   }
 
-  const user_id = req.headers["x-appwrite-user-id"];
-  if (!user_id) {
+  const userid = req.headers["x-appwrite-user-id"];
+  if (!userid) {
     res.send("no user id");
   }
 
   if (req.method === "GET" && req.path === "/customer_portal") {
-    const user = await databases.getDocument("classes", "users", user_id);
+    const user = await databases.getDocument("classes", "users", userid);
     lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
     // @ts-ignore we know the users collection has a lemonsqueezy_id field
     const { error, statusCode, data } = await getCustomer(user.lemonsqueezy_id);
     if (error) {
       throw new Error(JSON.stringify(error));
     }
-    log(`got lemonsqueezy customer for ${user_id}: ${data}`);
+    log(`got lemonsqueezy customer for ${userid}: ${data}`);
     return res.send(data?.data.attributes.urls.customer_portal);
   }
 
@@ -78,9 +79,9 @@ export default async ({ req, res, log, error }: Context) => {
     if (withName.total > 0) {
       res.send("name already taken");
     }
-    await databases.updateDocument("classes", "users", user_id, { name });
-    await users.updateName(user_id, name);
-    log(`updated name for ${user_id} to ${name}`);
+    await databases.updateDocument("classes", "users", userid, { name });
+    await users.updateName(userid, name);
+    log(`updated name for ${userid} to ${name}`);
     return res.send("ok");
   }
 
