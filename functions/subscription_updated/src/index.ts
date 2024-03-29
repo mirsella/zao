@@ -1,4 +1,5 @@
 import { Client, Users, Databases, Query, ID, Models } from "node-appwrite";
+import crypto from "crypto";
 
 type Context = {
   req: any;
@@ -7,7 +8,19 @@ type Context = {
   error: (msg: any) => void;
 };
 
+function is_signature_valid(rawbody: string, xsignature: string): boolean {
+  const secret = process.env.LEMONSQUEEZY_SECRET;
+  const hmac = crypto.createHmac("sha256", secret || "");
+  const digest = Buffer.from(hmac.update(rawbody).digest("hex"), "utf8");
+  const signature = Buffer.from(xsignature || "", "utf8");
+
+  return crypto.timingSafeEqual(digest, signature);
+}
+
 export default async ({ req, res, log, error }: Context) => {
+  log(JSON.stringify(req.body));
+  log(JSON.stringify(req.headers));
+
   if (
     !process.env.APPWRITE_FUNCTION_PROJECT_ID ||
     !process.env.APPWRITE_API_KEY ||
@@ -25,6 +38,12 @@ export default async ({ req, res, log, error }: Context) => {
   ) {
     return res.send("only supporting subscription_updated event", 405);
   }
+
+  if (!is_signature_valid(req.bodyRaw, req.headers["x-signature"])) {
+    error("invalid signature");
+    return res.send("invalid signature", 403);
+  }
+  log("signature is valid");
 
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
@@ -67,6 +86,6 @@ export default async ({ req, res, log, error }: Context) => {
     await users.updateLabels(user.$id, labels);
   }
   log(
-    `User ${req.headers["x-appwrite-user-id"]} updated labels: ${labels} becauses of subscription status: ${req.body.data.attributes.status}`,
+    `User ${user.$id} updated labels: ${labels} becauses of subscription status: ${req.body.data.attributes.status}`,
   );
 };

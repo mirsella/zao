@@ -9,6 +9,9 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
+  log(JSON.stringify(req.body));
+  log(JSON.stringify(req.headers));
+
   if (
     !process.env.APPWRITE_FUNCTION_PROJECT_ID ||
     !process.env.APPWRITE_API_KEY ||
@@ -22,9 +25,6 @@ export default async ({ req, res, log, error }: Context) => {
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
     .setKey(process.env.APPWRITE_API_KEY);
   const databases = new Databases(client);
-
-  log(JSON.stringify(req.body));
-  log(JSON.stringify(req.headers));
 
   // if user is created, create it's document in the users collection
   if (req.headers["x-appwrite-trigger"] === "event") {
