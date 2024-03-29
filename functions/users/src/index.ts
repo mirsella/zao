@@ -38,7 +38,7 @@ export default async ({ req, res, log, error }: Context) => {
     while (true) {
       name = `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`;
       let res = await databases.listDocuments("classes", "users", [
-        Query.equal("name", name),
+        Query.equal("name", [name]),
       ]);
       if (res.total === 0) break;
     }
@@ -68,7 +68,7 @@ export default async ({ req, res, log, error }: Context) => {
       res.send("no name in body");
     }
     const withName = await databases.listDocuments("classes", "users", [
-      Query.equal("name", name),
+      Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
       res.send("name already taken");
