@@ -25,6 +25,7 @@ export default async ({ req, res, log, error }: Context) => {
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
     .setKey(process.env.APPWRITE_API_KEY);
   const databases = new Databases(client);
+  const users = new Users(client);
 
   // if user is created, create it's document in the users collection
   if (req.headers["x-appwrite-trigger"] === "event") {
@@ -49,7 +50,6 @@ export default async ({ req, res, log, error }: Context) => {
     return res.empty();
   }
 
-  lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
   const user_id = req.headers["x-appwrite-user-id"];
   if (!user_id) {
     res.send("no user id");
@@ -57,6 +57,7 @@ export default async ({ req, res, log, error }: Context) => {
 
   if (req.method === "GET" && req.path === "/customer_portal") {
     const user = await databases.getDocument("classes", "users", user_id);
+    lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
     // @ts-ignore we know the users collection has a lemonsqueezy_id field
     const { error, statusCode, data } = await getCustomer(user.lemonsqueezy_id);
     if (error) {
@@ -78,6 +79,7 @@ export default async ({ req, res, log, error }: Context) => {
       res.send("name already taken");
     }
     await databases.updateDocument("classes", "users", user_id, { name });
+    await users.updateName(user_id, name);
     log(`updated name for ${user_id} to ${name}`);
     return res.send("ok");
   }

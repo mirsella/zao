@@ -76,17 +76,18 @@ export default async ({ req, res, log, error }: Context) => {
   log("finished retrieving/creating the user");
 
   let labels = user.labels;
-  if (req.body.data.attributes.status === "active") {
+  const status = req.body.data.attributes.status;
+  if (status === "active") {
     labels.push("premium");
     await databases.updateDocument("classes", "users", user.$id, {
       lemonsqueezy_id: req.body.data.attributes.customer_id.toString(),
     });
     await users.updateLabels(user.$id, labels);
-  } else if (req.body.data.attributes.status === "expired") {
-    labels.splice(labels.indexOf("premium"), 1);
+  } else if (status === "expired") {
+    labels = labels.filter((label) => label !== "premium");
     await users.updateLabels(user.$id, labels);
   }
-  const message = `User ${user.$id} updated labels: '${labels}' becauses of subscription status: ${req.body.data.attributes.status}`;
+  const message = `Authuser ${user.$id} updated labels: '${labels}' becauses of subscription status: ${status}`;
   log(message);
   return res.send(message);
 };

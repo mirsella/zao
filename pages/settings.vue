@@ -6,19 +6,31 @@ useHeadSafe({ title: "Compte / Paramètres" });
 
 // this can't be null because of the middleware
 const account = (await useAccount()) as Ref<Models.User<Models.Preferences>>;
-if (!account.value?.name) {
-  useAppwrite()
-    .account.updateName(`anonyme`)
-    .then((new_account) => (account.value = new_account));
-}
 
 const name = ref("");
+const nameUsed = ref(false);
+watch(name, () => (nameUsed.value = false));
 async function updateName() {
   try {
-    account.value = await useAppwrite().account.updateName(name.value);
+    const res = await useAppwrite().functions.createExecution(
+      "users",
+      JSON.stringify({ name: name.value }),
+      false,
+      "/name",
+      "PUT",
+      { "Content-Type": "application/json" },
+    );
+    console.log(res.responseBody);
+    if (res.responseBody === "name already taken") {
+      nameUsed.value = true;
+    } else if (res.responseBody !== "ok") {
+      throw new Error(res.responseBody);
+    }
+    account.value.name = name.value;
+    name.value = "";
   } catch (error) {
     console.error(error);
-    showError("Impossible de changer le pseudonyme" + error);
+    showError("Impossible de changer le pseudonyme: " + error);
   }
 }
 </script>
@@ -30,9 +42,14 @@ async function updateName() {
         data-tip="uniquement utilise pour les commentaires"
       >
         <p class="mx-1">pseudonyme:</p>
+        <p class="text-error" v-show="nameUsed">déjà en utilisation</p>
         <label class="input-accent input w-2/3 flex items-center">
           <input class="grow" :placeholder="account.name" v-model="name" />
-          <button class="i-carbon-save size-6" @click="updateName()"></button>
+          <button
+            class="i-carbon-save size-4 btn"
+            @click="updateName()"
+            :disabled="name.length === 0"
+          ></button>
         </label>
       </div>
       <div
