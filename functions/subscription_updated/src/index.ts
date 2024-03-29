@@ -54,6 +54,7 @@ export default async ({ req, res, log, error }: Context) => {
 
   const email = req.body.data.attributes.user_email;
   let userslist = await users.list([Query.equal("email", [email])]);
+  log("userlist:" + JSON.stringify(userslist));
   let user: Models.User<Models.Preferences>;
   if (userslist.total === 1) {
     user = userslist.users[0];
@@ -85,7 +86,7 @@ export default async ({ req, res, log, error }: Context) => {
     labels.splice(labels.indexOf("premium"), 1);
     await users.updateLabels(user.$id, labels);
   }
-  log(
-    `User ${user.$id} updated labels: ${labels} becauses of subscription status: ${req.body.data.attributes.status}`,
-  );
+  const message = `User ${user.$id} updated labels: '${labels}' becauses of subscription status: ${req.body.data.attributes.status}`;
+  log(message);
+  return res.send(message);
 };
