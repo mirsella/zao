@@ -59,10 +59,21 @@ export default async ({ req, res, log, error }: Context) => {
     if (error) {
       throw new Error(JSON.stringify(error));
     }
-    // https://docs.lemonsqueezy.com/api/customers#retrieve-a-customer
-    // res.send(customer.);
+    res.send(data?.data.attributes.urls.customer_portal);
     return;
   }
 
-  // change user name
+  if (req.method === "PUT" && req.path === "/name") {
+    const name = req.body.name;
+    if (!name) {
+      throw new Error("missing name");
+    }
+    const withName = await databases.listDocuments("classes", "users", [
+      Query.equal("name", name),
+    ]);
+    if (withName.total > 0) {
+      throw new Error("name already taken");
+    }
+    databases.updateDocument("classes", "users", user_id, { name });
+  }
 };
