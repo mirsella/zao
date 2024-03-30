@@ -1,12 +1,22 @@
-import { getCustomer, lemonSqueezySetup } from "@lemonsqueezy/lemonsqueezy.js";
+import {
+  createCheckout,
+  getCustomer,
+  lemonSqueezySetup,
+} from "@lemonsqueezy/lemonsqueezy.js";
 import { Client, Users, Databases, Query } from "node-appwrite";
+import { Models } from "node-appwrite";
 
-type Context = {
+interface Context {
   req: any;
   res: any;
   log: (msg: any) => void;
   error: (msg: any) => void;
-};
+}
+
+interface User extends Models.Document {
+  lemonsqueezy_id?: string;
+  name: string;
+}
 
 export default async ({ req, res, log, error }: Context) => {
   log(JSON.stringify(req.body));
@@ -20,6 +30,11 @@ export default async ({ req, res, log, error }: Context) => {
     throw new Error("missings env variables");
   }
 
+  const userid = req.headers["x-appwrite-user-id"];
+  if (!userid) {
+    res.send("no user id", 400);
+  }
+
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
@@ -27,57 +42,51 @@ export default async ({ req, res, log, error }: Context) => {
   const databases = new Databases(client);
   const users = new Users(client);
 
-  // if user is created, create it's document in the users collection
-  if (req.headers["x-appwrite-trigger"] === "event") {
-    const userid = (req.headers["x-appwrite-event"] as string).match(
-      /users\.(.+)\.create/,
-    )?.[1];
-    if (!userid) {
-      throw new Error("event wasn't user.*.create");
-    }
-    let name = "";
-    while (true) {
-      name = `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`;
-      let res = await databases.listDocuments("classes", "users", [
-        Query.equal("name", [name]),
-      ]);
-      if (res.total === 0) break;
-    }
-    const doc = await databases.createDocument("classes", "users", userid, {
-      name,
-    });
-    await users.updateName(userid, name);
-    log(`created document ${JSON.stringify(doc)} for user ${userid}`);
-    return res.empty();
-  }
-
-  const userid = req.headers["x-appwrite-user-id"];
-  if (!userid) {
-    res.send("no user id");
-  }
-
-  if (req.method === "GET" && req.path === "/customer_portal") {
-    const user = await databases.getDocument("classes", "users", userid);
+  if (req.path === "/customer_portal") {
     lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
-    // @ts-ignore we know the users collection has a lemonsqueezy_id field
-    const { error, statusCode, data } = await getCustomer(user.lemonsqueezy_id);
-    if (error) {
-      throw new Error(JSON.stringify(error));
+    const user = (await databases.getDocument(
+      "classes",
+      "users",
+      userid,
+    )) as User;
+    if (user.lemonsqueezy_id) {
+      const { error, data } = await getCustomer(user.lemonsqueezy_id);
+      if (error) {
+        throw new Error(JSON.stringify(error));
+      }
+      log(`got lemonsqueezy customer for ${userid}: ${data}`);
+      return res.send(data?.data.attributes.urls.customer_portal);
+    } else {
+      const { storeid, variantid } = req.query;
+      if (!storeid || !variantid) {
+        return res.send("missing storeid or variantid in query", 400);
+      }
+      const authuser = await users.get(userid);
+      const { error, data } = await createCheckout(storeid, variantid, {
+        checkoutData: {
+          email: authuser.email,
+          name: user.name,
+          billingAddress: { country: "FR" },
+        },
+      });
+      if (error) {
+        throw new Error(JSON.stringify(error));
+      }
+      log(`created lemonsqueezy checkout for ${userid}`);
+      return res.send(data?.data.attributes.url);
     }
-    log(`got lemonsqueezy customer for ${userid}: ${data}`);
-    return res.send(data?.data.attributes.urls.customer_portal);
   }
 
-  if (req.method === "PUT" && req.path === "/name") {
-    const name = req.body.name;
+  if (req.path === "/name") {
+    const name = req.query.name;
     if (!name) {
-      res.send("no name in body");
+      res.send("no name in query", 400);
     }
     const withName = await databases.listDocuments("classes", "users", [
       Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
-      res.send("name already taken");
+      res.send("name already taken", 409);
     }
     await databases.updateDocument("classes", "users", userid, { name });
     await users.updateName(userid, name);
@@ -85,5 +94,5 @@ export default async ({ req, res, log, error }: Context) => {
     return res.send("ok");
   }
 
-  res.send("not found");
+  res.send("not found", 404);
 };
