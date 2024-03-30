@@ -49,9 +49,12 @@ async function play(file_id: string, title: string) {
     showError("Impossible de lire la vidéo:" + res.message);
   }
   const player = videoplayer();
-  if (player) {
-    player.volume = 0.4;
+  if (!player) {
+    showError("Impossible de recupere l'element video");
+    return;
   }
+  player.volume = 0.4;
+  player.setAttribute("controlsList", "nodownload");
 }
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
 document.addEventListener("fullscreenchange", () => {
