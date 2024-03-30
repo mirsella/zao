@@ -10,6 +10,12 @@ const { storeid, variantid } = useRuntimeConfig().public;
 const user = await useAccount();
 const premium = computed(() => user.value?.labels.includes("premium"));
 
+onMounted(() => {
+  window.addEventListener("focus", async () => {
+    user.value = await account.get();
+  });
+});
+
 const name = ref("");
 const nameUsed = ref(false);
 watch(name, () => (nameUsed.value = false));
@@ -36,7 +42,14 @@ async function updateName() {
   }
 }
 
+const portalLoading = ref(false);
+const portalbuttonicon = computed(() => {
+  if (portalLoading.value) return "loading loading-spinner";
+  else if (premium.value) return "i-carbon-user-admin";
+  else return "i-carbon-airline-manage-gates";
+});
 async function redirectCustomerPortal() {
+  portalLoading.value = true;
   try {
     const res = await functions.createExecution(
       "users",
@@ -45,7 +58,7 @@ async function redirectCustomerPortal() {
       `/customer_portal?storeid=${storeid}&variantid=${variantid}`,
       "GET",
     );
-    console.log(res);
+    portalLoading.value = false;
     if (res.responseStatusCode !== 200) {
       throw new Error(res.responseBody);
     }
@@ -57,6 +70,7 @@ async function redirectCustomerPortal() {
     });
   } catch (error) {
     console.error(error);
+    portalLoading.value = false;
     showError("Impossible de rediriger vers le portail de payement: " + error);
   }
 }
@@ -68,9 +82,11 @@ async function logout() {
 </script>
 <template>
   <div>
-    <div class="flex gap-4 p-4 w-full flex-wrap grid-cols-2 justify-center">
+    <div
+      class="flex gap-2 lg:gap-6 lg:px-20 p-4 w-full flex-wrap justify-center"
+    >
       <div
-        class="tooltip bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
+        class="tooltip bg-base-3020 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
         data-tip="uniquement utilise pour les commentaires"
       >
         <p class="mx-1">Pseudonyme</p>
@@ -85,7 +101,7 @@ async function logout() {
         </label>
       </div>
       <div
-        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
+        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
       >
         <p class="mx-1">Email</p>
         <input
@@ -94,7 +110,7 @@ async function logout() {
         />
       </div>
       <div
-        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-md p-4"
+        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
       >
         <p class="mx-1">Premium</p>
         <button
@@ -102,16 +118,11 @@ async function logout() {
           @click="redirectCustomerPortal()"
         >
           <span>{{ premium ? "Gérer" : "S'inscrire" }}</span>
-          <span
-            class="size-6"
-            :class="[
-              premium ? 'i-carbon-user-admin' : 'i-carbon-airline-manage-gates',
-            ]"
-          ></span>
+          <span class="size-6" :class="portalbuttonicon"></span>
         </button>
       </div>
       <div
-        class="bg-base-300 rounded-xl flex justify-center w-full max-w-md p-4"
+        class="bg-base-300 rounded-xl flex justify-center w-full max-w-xl p-4"
       >
         <button
           class="w-2/3 btn gap-2 !border-error hover:scale-[1.05]"

@@ -66,8 +66,6 @@ export default async ({ req, res, log, error }: Context) => {
         return res.send("missing storeid or variantid in query", 400);
       }
       const authuser = await users.get(userid);
-      const test = await createCheckout(storeid, variantid);
-      log(`test checkout: ${JSON.stringify(test)}`);
       const { error, data } = await createCheckout(storeid, variantid, {
         checkoutData: {
           email: authuser.email,

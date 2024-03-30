@@ -13,7 +13,8 @@ export default defineNuxtConfig({
   appwrite: { project: "65ef4ce532070e537d98" },
   runtimeConfig: {
     public: {
-      storeid: "232597",
+      storeid: "75435",
+      // premium variant
       variantid: "317198",
     },
   },
