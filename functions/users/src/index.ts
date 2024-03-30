@@ -41,9 +41,9 @@ export default async ({ req, res, log, error }: Context) => {
     .setKey(process.env.APPWRITE_API_KEY);
   const databases = new Databases(client);
   const users = new Users(client);
+  lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
 
   if (req.path === "/customer_portal") {
-    lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
     const user = (await databases.getDocument(
       "classes",
       "users",
@@ -74,6 +74,8 @@ export default async ({ req, res, log, error }: Context) => {
         },
       });
       if (error) {
+        log(JSON.stringify(error));
+        log(JSON.stringify(data));
         throw new Error(JSON.stringify(error));
       }
       log(`created lemonsqueezy checkout for ${userid}`);

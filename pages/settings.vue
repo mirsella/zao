@@ -4,6 +4,7 @@ import Downloads from "~/components/Downloads.vue";
 const { account, functions } = useAppwrite();
 definePageMeta({ middleware: "auth" });
 useHeadSafe({ title: "Compte / Paramètres" });
+const { storeid, variantid } = useRuntimeConfig().public;
 
 // this can't be null because of the middleware
 const user = await useAccount();
@@ -36,26 +37,28 @@ async function updateName() {
 }
 
 async function redirectCustomerPortal() {
-  const res = await functions.createExecution(
-    "users",
-    "",
-    false,
-    "/customer_portal",
-    "GET",
-  );
-  console.log(res);
-  if (res.responseStatusCode !== 200) {
-    showError(
-      "Impossible de rediriger vers le portail de payement: " +
-        res.responseBody,
+  try {
+    const res = await functions.createExecution(
+      "users",
+      "",
+      false,
+      `/customer_portal?storeid=${storeid}&variantid=${variantid}`,
+      "GET",
     );
+    console.log(res);
+    if (res.responseStatusCode !== 200) {
+      throw new Error(res.responseBody);
+    }
+    await navigateTo(res.responseBody, {
+      external: true,
+      open: {
+        target: "_blank",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    showError("Impossible de rediriger vers le portail de payement: " + error);
   }
-  await navigateTo(res.responseBody, {
-    external: true,
-    open: {
-      target: "_blank",
-    },
-  });
 }
 async function logout() {
   await account.deleteSession("current");
