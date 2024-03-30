@@ -50,6 +50,9 @@ export default async ({ req, res, log, error }: Context) => {
       userid,
     )) as User;
     if (user.lemonsqueezy_id) {
+      log(
+        `getting lemonsqueezy customer for ${userid}, with lemonsqueezy_id ${user.lemonsqueezy_id}`,
+      );
       const { error, data } = await getCustomer(user.lemonsqueezy_id);
       if (error) {
         throw new Error(JSON.stringify(error));
@@ -57,6 +60,7 @@ export default async ({ req, res, log, error }: Context) => {
       log(`got lemonsqueezy customer for ${userid}: ${data}`);
       return res.send(data?.data.attributes.urls.customer_portal);
     } else {
+      log(`no lemonsqueezy customer for ${userid}`);
       const { storeid, variantid } = req.query;
       if (!storeid || !variantid) {
         return res.send("missing storeid or variantid in query", 400);
