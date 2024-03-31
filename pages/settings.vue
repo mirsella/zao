@@ -23,9 +23,9 @@ async function updateName() {
   try {
     const res = await functions.createExecution(
       "users",
-      "",
+      JSON.stringify({ name: name.value }),
       false,
-      `/name?name=${name.value}`,
+      "/name",
       "PUT",
       { "Content-Type": "application/json" },
     );
@@ -53,9 +53,9 @@ async function redirectCustomerPortal() {
   try {
     const res = await functions.createExecution(
       "users",
-      "",
+      JSON.stringify({ storeid, variantid }),
       false,
-      `/customer_portal?storeid=${storeid}&variantid=${variantid}`,
+      "/customer_portal",
       "GET",
     );
     portalLoading.value = false;
@@ -86,7 +86,7 @@ async function logout() {
       class="flex gap-2 lg:gap-6 lg:px-20 p-4 w-full flex-wrap justify-center"
     >
       <div
-        class="tooltip bg-base-3020 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
+        class="tooltip bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
         data-tip="uniquement utilise pour les commentaires"
       >
         <p class="mx-1">Pseudonyme</p>
@@ -136,6 +136,7 @@ async function logout() {
     <!-- FIXME: only for dev -->
     <!-- <div v-if="useMobile()"> -->
     <div>
+      <div class="divider m-4">Téléchargements</div>
       <Downloads />
     </div>
   </div>

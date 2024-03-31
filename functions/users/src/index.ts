@@ -61,7 +61,7 @@ export default async ({ req, res, log, error }: Context) => {
       return res.send(data?.data.attributes.urls.customer_portal);
     } else {
       log(`no lemonsqueezy customer for ${userid}`);
-      const { storeid, variantid } = req.query;
+      const { storeid, variantid } = req.body;
       if (!storeid || !variantid) {
         return res.send("missing storeid or variantid in query", 400);
       }
@@ -82,7 +82,7 @@ export default async ({ req, res, log, error }: Context) => {
   }
 
   if (req.path === "/name") {
-    const name = req.query.name;
+    const { name } = req.body;
     if (!name) {
       res.send("no name in query", 400);
     }

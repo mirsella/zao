@@ -1,7 +1,7 @@
 {
   "appId": "com.inspire.app",
   "appName": "Inspire",
-  "webDir": ".output/public",
+  "webDir": "dist",
   "server": {
     "androidScheme": "https"
   }
