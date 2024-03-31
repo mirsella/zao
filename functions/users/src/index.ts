@@ -3,8 +3,15 @@ import {
   getCustomer,
   lemonSqueezySetup,
 } from "@lemonsqueezy/lemonsqueezy.js";
-import { Client, Users, Databases, Query } from "node-appwrite";
-import { Models } from "node-appwrite";
+import {
+  Client,
+  Users,
+  Databases,
+  Query,
+  Permission,
+  Models,
+  Role,
+} from "node-appwrite";
 
 interface Context {
   req: any;
@@ -43,7 +50,7 @@ export default async ({ req, res, log, error }: Context) => {
   const users = new Users(client);
   lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
 
-  if (req.path === "/customer_portal") {
+  if (req.method === "GET" && req.path === "/customer_portal") {
     const user = (await databases.getDocument(
       "classes",
       "users",
@@ -81,7 +88,7 @@ export default async ({ req, res, log, error }: Context) => {
     }
   }
 
-  if (req.path === "/name") {
+  if (req.method === "PUT" && req.path === "/name") {
     const { name } = req.body;
     if (!name) {
       res.send("no name in query", 400);
@@ -96,6 +103,28 @@ export default async ({ req, res, log, error }: Context) => {
     await users.updateName(userid, name);
     log(`updated name for ${userid} to ${name}`);
     return res.send("ok");
+  }
+
+  if (req.method === "POST" && req.path === "/comment") {
+    const authuser = await users.get(userid);
+    if (!authuser.labels.includes("premium")) {
+      return res.send("not authorized", 403);
+    }
+    const { classid, content } = req.body;
+    if (!classid || !content) {
+      return res.send("missing classid or content in query", 400);
+    }
+    databases.updateDocument("classes", "classes", classid, {
+      comments: [
+        {
+          users: userid,
+          content,
+          verified: false,
+          $permissions: [Permission.delete(Role.user(userid))],
+        },
+      ],
+    });
+    res.send("ok");
   }
 
   res.send("not found", 404);
