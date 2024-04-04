@@ -53,10 +53,10 @@ async function redirectCustomerPortal() {
   try {
     const res = await functions.createExecution(
       "users",
-      JSON.stringify({ storeid, variantid }),
+      JSON.stringify({ storeid: storeid, variantid: storeid }),
       false,
       "/customer_portal",
-      "GET",
+      "POST",
     );
     portalLoading.value = false;
     if (res.responseStatusCode !== 200) {
@@ -91,8 +91,12 @@ async function logout() {
       >
         <p class="mx-1">Pseudonyme</p>
         <p class="text-error" v-show="nameUsed">déjà en utilisation</p>
-        <label class="input-accent input w-2/3 flex items-center">
-          <input class="grow" :placeholder="user?.name" v-model="name" />
+        <label class="input-accent input w-2/3 flex items-center gap-2">
+          <input
+            class="grow min-w-10"
+            :placeholder="user?.name"
+            v-model="name"
+          />
           <button
             class="i-carbon-save size-4 btn"
             @click="updateName()"
@@ -105,7 +109,7 @@ async function logout() {
       >
         <p class="mx-1">Email</p>
         <input
-          class="!text-base-content input w-2/3 flex items-center input-disabled"
+          class="!text-base-content input w-2/3 flex items-center input-disabled truncate"
           :value="user?.email"
         />
       </div>

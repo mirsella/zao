@@ -89,7 +89,10 @@ document.addEventListener("fullscreenchange", () => {
         class="mx-auto m-4 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
         @play="play"
       />
-      <!-- TODO: comment section -->
+      <div class="flex justify-center">
+        <p class="divider w-full">Épisodes:</p>
+        <input class="input input-primary" />
+      </div>
     </div>
     <span
       v-else

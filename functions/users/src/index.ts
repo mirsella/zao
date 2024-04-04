@@ -50,7 +50,7 @@ export default async ({ req, res, log, error }: Context) => {
   const users = new Users(client);
   lemonSqueezySetup({ apiKey: process.env.LEMONSQUEEZY_API_KEY });
 
-  if (req.method === "GET" && req.path === "/customer_portal") {
+  if (req.path === "/customer_portal") {
     const user = (await databases.getDocument(
       "classes",
       "users",
@@ -88,7 +88,7 @@ export default async ({ req, res, log, error }: Context) => {
     }
   }
 
-  if (req.method === "PUT" && req.path === "/name") {
+  if (req.path === "/name") {
     const { name } = req.body;
     if (!name) {
       res.send("no name in query", 400);
@@ -105,7 +105,7 @@ export default async ({ req, res, log, error }: Context) => {
     return res.send("ok");
   }
 
-  if (req.method === "POST" && req.path === "/comment") {
+  if (req.path === "/comment") {
     const authuser = await users.get(userid);
     if (!authuser.labels.includes("premium")) {
       return res.send("not authorized", 403);
