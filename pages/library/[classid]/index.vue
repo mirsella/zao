@@ -90,8 +90,9 @@ document.addEventListener("fullscreenchange", () => {
         @play="play"
       />
       <div class="flex justify-center">
-        <p class="divider w-full">Épisodes:</p>
-        <input class="input input-primary" />
+        <p class="divider w-full">Commentaires:</p>
+        <!-- TODO: text area and button to send a comment -->
+        <!-- TODO: v-for of comments component -->
       </div>
     </div>
     <span
