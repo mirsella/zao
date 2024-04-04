@@ -72,7 +72,7 @@ document.addEventListener("fullscreenchange", () => {
     <div id="fullscreenvideoplayer"></div>
     <div v-if="cl" class="max-w-7xl justify-center prose">
       <p class="font-semibold prose-lg w-full text-center">{{ cl.title }}</p>
-      <div class="flex flex-wrap md:flex-nowrap gap-6">
+      <div class="flex justify-center flex-wrap md:flex-nowrap gap-6">
         <youtube-iframe
           ref="ytplayer"
           :video-id="parseYoutubeId(cl.trailer)"
@@ -86,7 +86,7 @@ document.addEventListener("fullscreenchange", () => {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto m-2 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
+        class="mx-auto m-4 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
         @play="play"
       />
       <!-- TODO: comment section -->

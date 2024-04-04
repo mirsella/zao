@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer p-10 bg-base-300 text-base-content">
+  <footer class="footer p-10 bg-base-200">
     <nav>
       <h6 class="footer-title">Contact</h6>
       <h1>
