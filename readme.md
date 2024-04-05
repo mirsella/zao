@@ -8,7 +8,7 @@ appwrite 15e/month
 hetzner 3.8e/month
 
 if bandwidth on pro is not enough, move to self hosted appwrite https://appwrite.io/docs/advanced/self-hosting/storage
-wasabi is the best for storage
+cloudflare r2 good storage
 hetzner for server hosting ?
 
 TODO:

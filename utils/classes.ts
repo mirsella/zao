@@ -16,8 +16,7 @@ export interface Video extends Models.Document {
 }
 
 export interface Comment extends Models.Document {
-  author_id: string;
+  user: Models.User<Models.Preferences>;
   content: string;
   verified: boolean;
-  like: number;
 }

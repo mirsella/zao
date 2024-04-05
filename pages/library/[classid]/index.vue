@@ -4,7 +4,9 @@ import { CapacitorVideoPlayer } from "capacitor-video-player";
 const { storage } = useAppwrite();
 
 const route = useRoute();
+const user = await useAccount();
 const cl = ref<Class>();
+const premium = computed(() => user.value?.labels.includes("premium"));
 
 useClasses().then((classes) => {
   cl.value = classes.value.find((cl) => cl.$id === route.params.classid);
@@ -20,6 +22,21 @@ useClasses().then((classes) => {
     return aep - bep;
   });
   useHeadSafe({ title: cl.value?.title });
+});
+
+const comments = computed(() => {
+  const comments = cl.value?.comments;
+  if (!comments) return [];
+  return comments
+    .filter((c) => c.verified || c.author_id === user.value?.$id)
+    .sort((a, b) => {
+      // put self comments first, then sort by date
+      if (a.author_id === user.value?.$id && a.author_id !== b.author_id)
+        return -1;
+      return (
+        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+    });
 });
 
 const ytplayer = ref();
@@ -91,14 +108,16 @@ document.addEventListener("fullscreenchange", () => {
       />
       <div>
         <p class="divider w-full">Commentaires:</p>
-        <div class="max-w-6xl flex flex-nowrap">
+        <div class="max-w-6xl grid" v-if="premium">
           <textarea
-            class="textarea w-full bg-base-300"
+            class="textarea !w-full bg-base-300"
             placeholder="Commentaire..."
           ></textarea>
-          <button class="self-end btn btn-accent">Poster</button>
+          <button class="m-4 justify-self-end btn px-8 btn-accent">
+            Poster
+          </button>
         </div>
-        <!-- TODO: v-for of comments component -->
+        <Comment :data="comment" v-for="comment of comments" />
       </div>
     </div>
     <span
