@@ -26,6 +26,7 @@ interface User extends Models.Document {
 }
 
 export default async ({ req, res, log, error }: Context) => {
+  log(JSON.stringify(req.url));
   log(JSON.stringify(req.body));
   log(JSON.stringify(req.headers));
 
@@ -70,7 +71,7 @@ export default async ({ req, res, log, error }: Context) => {
       log(`no lemonsqueezy customer for ${userid}`);
       const { storeid, variantid } = req.body;
       if (!storeid || !variantid) {
-        return res.send("missing storeid or variantid in query", 400);
+        return res.send("missing storeid or variantid in body", 400);
       }
       const authuser = await users.get(userid);
       const { error, data } = await createCheckout(storeid, variantid, {
@@ -112,7 +113,7 @@ export default async ({ req, res, log, error }: Context) => {
     }
     const { classid, content } = req.body;
     if (!classid || !content) {
-      return res.send("missing classid or content in query", 400);
+      return res.send("missing classid or content in body", 400);
     }
     databases.updateDocument("classes", "classes", classid, {
       comments: [

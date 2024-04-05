@@ -89,9 +89,15 @@ document.addEventListener("fullscreenchange", () => {
         class="mx-auto m-4 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
         @play="play"
       />
-      <div class="flex justify-center">
+      <div>
         <p class="divider w-full">Commentaires:</p>
-        <!-- TODO: text area and button to send a comment -->
+        <div class="max-w-6xl flex flex-nowrap">
+          <textarea
+            class="textarea w-full bg-base-300"
+            placeholder="Commentaire..."
+          ></textarea>
+          <button class="self-end btn btn-accent">Poster</button>
+        </div>
         <!-- TODO: v-for of comments component -->
       </div>
     </div>

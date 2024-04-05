@@ -57,6 +57,7 @@ async function redirectCustomerPortal() {
       false,
       "/customer_portal",
       "POST",
+      { "Content-Type": "application/json" },
     );
     portalLoading.value = false;
     if (res.responseStatusCode !== 200) {

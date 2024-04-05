@@ -5,7 +5,7 @@ const premium = computed(() => account.value?.labels.includes("premium"));
 </script>
 
 <template>
-  <div class="card bg-base-300 card-compact prose">
+  <div class="card bg-base-200 card-compact prose">
     <div class="card-body">
       <h4 class="card-title m-0">{{ data.title }}</h4>
       {{ data.description }}
