@@ -11,6 +11,7 @@ import {
   Permission,
   Models,
   Role,
+  ID,
 } from "node-appwrite";
 
 interface Context {
@@ -115,17 +116,25 @@ export default async ({ req, res, log, error }: Context) => {
     if (!classid || !content) {
       return res.send("missing classid or content in body", 400);
     }
-    databases.updateDocument("classes", "classes", classid, {
-      comments: [
-        {
-          users: userid,
-          content,
-          verified: false,
-          $permissions: [Permission.delete(Role.user(userid))],
-        },
-      ],
-    });
-    res.send("ok");
+    const comment_id = ID.unique();
+    const response: any = await databases.updateDocument(
+      "classes",
+      "classes",
+      classid,
+      {
+        comments: [
+          {
+            $id: comment_id,
+            users: userid,
+            content,
+            verified: false,
+            $permissions: [Permission.delete(Role.user(userid))],
+          },
+        ],
+      },
+    );
+    console.log(response);
+    res.send(response.comments.find((c: any) => c.$id === comment_id));
   }
 
   res.send("not found", 404);
