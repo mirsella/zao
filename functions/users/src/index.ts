@@ -116,35 +116,24 @@ export default async ({ req, res, log, error }: Context) => {
     if (!classid || !content) {
       return res.send("missing classid or content in body", 400);
     }
-    const current_comments: any = await databases.getDocument(
+    const cl: any = await databases.getDocument("classes", "class", classid);
+    const existing_comments = cl.comments.map((c: any) => c.$id);
+    const new_comment: any = await databases.createDocument(
       "classes",
-      "class",
-      classid,
-      // [Query.select(["comments"])],
-    );
-    const comment_id = ID.unique();
-    log("creating comment with id " + comment_id);
-    const response: any = await databases.updateDocument(
-      "classes",
-      "class",
-      classid,
+      "comment",
+      ID.unique(),
       {
-        comments: [
-          ...current_comments.comments.map((c: any) => c.$id),
-          {
-            $id: comment_id,
-            user: userid,
-            content,
-            verified: false,
-            $permissions: [Permission.delete(Role.user(userid))],
-          },
-        ],
+        user: userid,
+        content,
+        verified: false,
       },
+      [Permission.delete(Role.user(userid))],
     );
-    log("response: " + response);
-    const comment = response.comments.find((c: any) => c.$id === comment_id);
-    log("created comment: " + comment);
-    res.send(comment);
+    log("new comment: " + new_comment);
+    await databases.updateDocument("classes", "class", classid, {
+      comments: [...existing_comments, new_comment.$id],
+    });
+    res.send(new_comment);
   }
 
   res.send("not found", 404);
