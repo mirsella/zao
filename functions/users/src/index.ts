@@ -130,7 +130,7 @@ export default async ({ req, res, log, error }: Context) => {
       classid,
       {
         comments: [
-          ...current_comments.comments,
+          ...current_comments.comments.map((c: any) => c.$id),
           {
             $id: comment_id,
             user: userid,
