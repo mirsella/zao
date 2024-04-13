@@ -123,6 +123,7 @@ export default async ({ req, res, log, error }: Context) => {
       // [Query.select(["comments"])],
     );
     const comment_id = ID.unique();
+    log("creating comment with id " + comment_id);
     const response: any = await databases.updateDocument(
       "classes",
       "class",
@@ -140,10 +141,10 @@ export default async ({ req, res, log, error }: Context) => {
         ],
       },
     );
-    log(response);
+    log("response: " + response);
     const comment = response.comments.find((c: any) => c.$id === comment_id);
-    log(comment);
-    res.send(comment || "ok");
+    log("created comment: " + comment);
+    res.send(comment);
   }
 
   res.send("not found", 404);
