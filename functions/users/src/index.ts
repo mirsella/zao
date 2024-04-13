@@ -117,7 +117,6 @@ export default async ({ req, res, log, error }: Context) => {
       return res.send("missing classid or content in body", 400);
     }
     const cl: any = await databases.getDocument("classes", "class", classid);
-    const existing_comments = cl.comments.map((c: any) => c.$id);
     const new_comment: any = await databases.createDocument(
       "classes",
       "comment",
@@ -129,12 +128,11 @@ export default async ({ req, res, log, error }: Context) => {
       },
       [Permission.delete(Role.user(userid))],
     );
-    log("new comment: " + new_comment);
     await databases.updateDocument("classes", "class", classid, {
-      comments: [...existing_comments, new_comment.$id],
+      comments: [...cl.comments.map((c: any) => c.$id), new_comment.$id],
     });
-    res.send(new_comment);
+    return res.send(new_comment);
   }
 
-  res.send("not found", 404);
+  return res.send("not found", 404);
 };

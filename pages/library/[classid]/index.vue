@@ -28,7 +28,6 @@ useClasses().then((classes) => {
 const comments = computed(() => {
   const comments = cl.value?.comments;
   if (!comments) return [];
-  console.log("before", comments);
   const c = comments
     .filter((c) => c.verified || c.user.$id === user.value?.$id)
     .sort((a, b) => {
@@ -41,7 +40,6 @@ const comments = computed(() => {
         new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
       );
     });
-  console.log("after", c);
   return c;
 });
 
