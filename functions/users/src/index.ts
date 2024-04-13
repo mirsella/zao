@@ -125,7 +125,7 @@ export default async ({ req, res, log, error }: Context) => {
         comments: [
           {
             $id: comment_id,
-            users: userid,
+            user: userid,
             content,
             verified: false,
             $permissions: [Permission.delete(Role.user(userid))],
