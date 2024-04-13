@@ -116,6 +116,12 @@ export default async ({ req, res, log, error }: Context) => {
     if (!classid || !content) {
       return res.send("missing classid or content in body", 400);
     }
+    const current_comments: any = await databases.getDocument(
+      "classes",
+      "class",
+      classid,
+      [Query.select(["comments"])],
+    );
     const comment_id = ID.unique();
     const response: any = await databases.updateDocument(
       "classes",
@@ -123,6 +129,7 @@ export default async ({ req, res, log, error }: Context) => {
       classid,
       {
         comments: [
+          ...current_comments.comments,
           {
             $id: comment_id,
             user: userid,
@@ -133,8 +140,10 @@ export default async ({ req, res, log, error }: Context) => {
         ],
       },
     );
-    console.log(response);
-    res.send(response.comments.find((c: any) => c.$id === comment_id));
+    log(response);
+    const comment = response.comments.find((c: any) => c.$id === comment_id);
+    log(comment);
+    res.send(comment || "ok");
   }
 
   res.send("not found", 404);

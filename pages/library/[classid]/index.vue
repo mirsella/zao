@@ -30,7 +30,7 @@ const comments = computed(() => {
   if (!comments) return [];
   console.log("before", comments);
   const c = comments
-    .filter((c) => c.verified || c.author_id === user.value?.$id)
+    .filter((c) => c.verified || c.user.$id === user.value?.$id)
     .sort((a, b) => {
       // put self comments first, then sort by date
       if (a.user.$id !== b.user.$id) {
