@@ -119,7 +119,7 @@ export default async ({ req, res, log, error }: Context) => {
     const comment_id = ID.unique();
     const response: any = await databases.updateDocument(
       "classes",
-      "classes",
+      "class",
       classid,
       {
         comments: [

@@ -103,6 +103,7 @@ async function postComment() {
     if (res.responseStatusCode !== 200) {
       throw new Error(res.responseBody);
     }
+    console.log(res);
   } catch (e) {
     console.error(e);
     showError("impossible de poster le commentaire: " + e);
@@ -140,7 +141,10 @@ async function postComment() {
             placeholder="Commentaire..."
             v-model="newcomment"
           ></textarea>
-          <button class="m-4 justify-self-end btn px-8 btn-accent">
+          <button
+            @click="postComment()"
+            class="m-4 justify-self-end btn px-8 btn-accent"
+          >
             Poster
           </button>
         </div>
