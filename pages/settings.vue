@@ -78,6 +78,7 @@ async function redirectCustomerPortal() {
 async function logout() {
   await account.deleteSession("current");
   user.value = null;
+  console.log(await useAccount());
   await navigateTo("/");
 }
 </script>

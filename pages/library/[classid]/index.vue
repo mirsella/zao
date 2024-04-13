@@ -2,12 +2,10 @@
 import { YoutubeIframe } from "@vue-youtube/component";
 import { CapacitorVideoPlayer } from "capacitor-video-player";
 import type { Class, Video } from "~/utils/databases";
-const { storage, functions } = useAppwrite();
+const { storage } = useAppwrite();
 
 const route = useRoute();
-const user = await useAccount();
 const cl = ref<Class>();
-const premium = computed(() => user.value?.labels.includes("premium"));
 
 useClasses().then((classes) => {
   cl.value = classes.value.find((cl) => cl.$id === route.params.classid);
@@ -23,24 +21,6 @@ useClasses().then((classes) => {
     return aep - bep;
   });
   useHeadSafe({ title: cl.value?.title });
-});
-
-const comments = computed(() => {
-  const comments = cl.value?.comments;
-  if (!comments) return [];
-  const c = comments
-    .filter((c) => c.verified || c.user.$id === user.value?.$id)
-    .sort((a, b) => {
-      // put self comments first, then sort by date
-      if (a.user.$id !== b.user.$id) {
-        if (a.user.$id === user.value?.$id) return -1;
-        else if (b.user.$id === user.value?.$id) return 1;
-      }
-      return (
-        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-      );
-    });
-  return c;
 });
 
 const ytplayer = ref();
@@ -86,27 +66,6 @@ document.addEventListener("fullscreenchange", () => {
     videoplayer()?.nextSibling?.click();
   }
 });
-
-const newcomment = ref("");
-async function postComment() {
-  try {
-    const res = await functions.createExecution(
-      "users",
-      JSON.stringify({ classid: cl.value?.$id, content: newcomment.value }),
-      false,
-      "/comment",
-      "POST",
-      { "Content-Type": "application/json" },
-    );
-    if (res.responseStatusCode !== 200) {
-      throw new Error(res.responseBody);
-    }
-    console.log(res);
-  } catch (e) {
-    console.error(e);
-    showError("impossible de poster le commentaire: " + e);
-  }
-}
 </script>
 
 <template>
@@ -133,24 +92,7 @@ async function postComment() {
       />
       <div>
         <p class="divider w-full">Commentaires:</p>
-        <div class="max-w-6xl grid" v-if="premium">
-          <textarea
-            class="textarea !w-full bg-base-300"
-            placeholder="Commentaire..."
-            v-model="newcomment"
-          ></textarea>
-          <button
-            @click="postComment()"
-            class="m-4 justify-self-end btn px-8 btn-accent"
-          >
-            Poster
-          </button>
-        </div>
-        <Comment
-          :data="comment"
-          v-for="comment of comments"
-          class="bg-base-200 my-2 p-2 rounded-md"
-        />
+        <Comments :comments="cl.comments" :classid="cl.$id" />
       </div>
     </div>
     <span

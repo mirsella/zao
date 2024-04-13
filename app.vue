@@ -7,7 +7,7 @@ useClasses();
 <template>
   <div class="flex flex-col h-screen">
     <Header />
-    <NuxtPage class="mb-auto" :keepalive="true" />
+    <NuxtPage class="mb-auto" />
     <Footer class="mt-10" v-if="!useMobile()" />
   </div>
 </template>
