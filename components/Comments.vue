@@ -16,7 +16,7 @@ const comments = computed(() => {
         else if (b.user.$id === user.value?.$id) return 1;
       }
       return (
-        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+        new Date(b.$createdAt).getTime() - new Date(a.$createdAt).getTime()
       );
     });
   return c;
@@ -82,14 +82,25 @@ function deleteComment(id: string) {
     <div
       :data="comment"
       v-for="comment of comments"
-      class="bg-base-200 my-2 p-2 rounded-md card card-compact"
+      class="bg-base-200 my-2 p-2 rounded-md card card-compact prose"
     >
       <div class="card-title">
         <span class="font-normal">auteur:</span>
-        {{ comment.user.name }}
+        <span class="grow font-medium">
+          {{ comment.user.name }}
+        </span>
+        <span class="font-medium">{{
+          new Date(comment.$createdAt).toLocaleDateString()
+        }}</span>
       </div>
       <div class="card-body">{{ comment.content }}</div>
       <div class="card-actions justify-end">
+        <span
+          class="italic text-sm my-auto m-2 tooltip"
+          v-if="!comment.verified"
+          data-tip="votre commentaire sera vérifié par un modérateur avant d'être affiché publiquement, pour eviter les spam et contenu inapproprié."
+          >en attente de vérification</span
+        >
         <button
           v-if="comment.user.$id === user?.$id"
           @click="deleteComment(comment.$id)"
