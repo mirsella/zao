@@ -90,16 +90,16 @@ function deleteComment(id: string) {
         <span class="grow font-medium">
           {{ comment.user.name }}
         </span>
-        <span class="font-medium">{{
-          new Date(comment.$createdAt).toLocaleDateString()
-        }}</span>
+        <span class="font-medium">
+          {{ new Date(comment.$createdAt).toLocaleDateString() }}
+        </span>
       </div>
       <div class="card-body">{{ comment.content }}</div>
       <div class="card-actions justify-end">
         <span
           class="italic text-sm my-auto m-2 tooltip"
           v-if="!comment.verified"
-          data-tip="votre commentaire sera vérifié par un modérateur avant d'être affiché publiquement, pour eviter les spam et contenu inapproprié."
+          data-tip="votre commentaire sera vérifié par un modérateur avant d'être affiché publiquement, afin eviter les spam et contenu inapproprié."
           >en attente de vérification</span
         >
         <button

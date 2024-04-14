@@ -55,7 +55,7 @@ export default async ({ req, res, log, error }: Context) => {
   if (req.path === "/customer_portal") {
     const user = (await databases.getDocument(
       "classes",
-      "users",
+      "user",
       userid,
     )) as User;
     if (user.lemonsqueezy_id) {
