@@ -70,7 +70,7 @@ document.addEventListener("fullscreenchange", () => {
         <youtube-iframe
           ref="ytplayer"
           :video-id="parseYoutubeId(cl.trailer)"
-          class="h-auto aspect-video max-w-sm md:max-w-xl"
+          class="h-auto aspect-video max-w-sm md:max-w-xl w-auto"
           :cookie="false"
           @ready="ytsetVolume(40)"
         />
@@ -80,7 +80,7 @@ document.addEventListener("fullscreenchange", () => {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto m-4 max-w-none hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
+        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
         @play="play"
       />
       <div>
