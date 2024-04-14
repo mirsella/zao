@@ -69,6 +69,7 @@ function deleteComment(id: string) {
         class="textarea !w-full bg-base-300"
         placeholder="Commentaire..."
         v-model="newcomment"
+        maxlength="1024"
       ></textarea>
       <button
         @click="postComment()"
