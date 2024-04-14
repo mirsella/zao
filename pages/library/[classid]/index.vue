@@ -28,10 +28,6 @@ function ytsetVolume(volume: number) {
   ytplayer.value?.instance.setVolume(volume);
 }
 
-const videoplayer = () =>
-  document.querySelector(
-    "#fullscreenvideoplayer video",
-  ) as HTMLMediaElement | null;
 async function play(file_id: string, title: string) {
   // pause the yt embed if it's playing
   ytplayer.value?.instance.pauseVideo();
@@ -39,7 +35,7 @@ async function play(file_id: string, title: string) {
   const res = await CapacitorVideoPlayer.initPlayer({
     // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
     url: url.href,
-    playerId: "fullscreenvideoplayer",
+    playerId: "fullscreen",
     componentTag: "div",
     mode: "fullscreen",
     title,
@@ -49,13 +45,10 @@ async function play(file_id: string, title: string) {
     console.error(res.message);
     showError("Impossible de lire la vidéo:" + res.message);
   }
-  const player = videoplayer();
-  if (!player) {
-    showError("Impossible de recupere l'element video");
-    return;
-  }
-  player.volume = 0.4;
-  player.setAttribute("controlsList", "nodownload");
+  await CapacitorVideoPlayer.setVolume({
+    playerId: "fullscreen",
+    volume: 0.4,
+  });
 }
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
 document.addEventListener("fullscreenchange", () => {
@@ -70,7 +63,7 @@ document.addEventListener("fullscreenchange", () => {
 
 <template>
   <div class="flex flex-col gap-4 p-6 items-center">
-    <div id="fullscreenvideoplayer"></div>
+    <div id="fullscreen"></div>
     <div v-if="cl" class="max-w-7xl justify-center prose">
       <p class="font-semibold prose-lg w-full text-center">{{ cl.title }}</p>
       <div class="flex justify-center flex-wrap md:flex-nowrap gap-6">
