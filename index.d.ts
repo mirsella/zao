@@ -20,3 +20,9 @@ export interface Comment extends Models.Document {
   content: string;
   verified: boolean;
 }
+
+export interface SQLiteVideo {
+  id: string;
+  data: string;
+  video_title: string;
+}
