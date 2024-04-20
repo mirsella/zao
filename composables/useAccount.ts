@@ -8,6 +8,7 @@ export const useAccount = async () => {
     () => null as Models.User<Models.Preferences> | null,
   );
   if (!call) {
+    console.log("fetching account");
     call = useAppwrite().account.get();
   }
   try {
@@ -17,6 +18,8 @@ export const useAccount = async () => {
   } catch {
     account.value = null;
   }
-  call = null;
+  call = async () => {
+    return null;
+  };
   return account;
 };
