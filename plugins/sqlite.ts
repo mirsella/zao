@@ -3,12 +3,13 @@ import {
   SQLiteConnection,
   SQLiteDBConnection,
 } from "@capacitor-community/sqlite";
+import { Buffer } from "buffer";
 import type { SQLiteVideo, Video } from "~";
 
 const sqlite = new SQLiteConnection(CapacitorSQLite);
 
 export default defineNuxtPlugin(async () => {
-  if (!useMobile()) return {};
+  // if (!useMobile()) return {};
 
   let db: SQLiteDBConnection;
   try {
@@ -31,33 +32,39 @@ export default defineNuxtPlugin(async () => {
     console.error(e);
   }
 
+  // https://github.com/capacitor-community/sqlite/blob/master/docs/SQLiteBlob.md
   return {
     provide: {
       storeVideo: async (url: string, video: Video) => {
-        const response = await fetch(url);
-        const blob = await response.blob();
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = async function () {
-          const base64data = reader.result;
-          console.log("storing a video", typeof base64data);
-          const change = await db.executeSet([
-            {
-              statement: `INSERT INTO videos (id, data, video_title) VALUES (?, ?, ?)`,
-              values: [video.$id, base64data, video.title],
-            },
-          ]);
-          console.log(change);
-        };
-        console.log("returning from storeVideo");
+        const blob = await (await fetch(url)).blob();
+        const imageBuffer = Buffer.from(
+          new Uint8Array(await blob.arrayBuffer()),
+        );
+        const ret = await db.run(
+          "INSERT INTO videos (id, data, video_title) VALUES (?, ?, ?)",
+          [video.$id, imageBuffer, video.title],
+        );
+        console.log(ret);
+        if (ret.changes?.changes !== 1) {
+          return Promise.reject(new Error("WriteImage failed"));
+        }
+        return ret.changes?.values;
       },
 
-      getVideo: async (id: string): Promise<SQLiteVideo | null> => {
-        const result = await db.query(`SELECT * FROM videos WHERE id = ?`, [
-          id,
-        ]);
-        console.log(result);
-        return result.values?.[0] as SQLiteVideo;
+      // getVideoData: async (id: string): Promise<SQLiteVideo | null> => {
+      //   const result = await db.query(`SELECT * FROM videos WHERE id = ?`, [
+      //     id,
+      //   ]);
+      //   console.log(result);
+      //   return result.values?.[0] as SQLiteVideo;
+      // },
+
+      getVideos: async (): Promise<SQLiteVideo[]> => {
+        // TODO:
+        return [];
+      },
+      deleteVideo: async (id: string) => {
+        // TODO:
       },
     },
   };

@@ -4,5 +4,8 @@
   "webDir": ".output/public",
   "server": {
     "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorSQLite": {}
   }
 }
