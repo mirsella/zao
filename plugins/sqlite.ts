@@ -70,14 +70,6 @@ export default defineNuxtPlugin(async () => {
         return ret.changes?.values;
       },
 
-      // getVideoData: async (id: string): Promise<SQLiteVideo | null> => {
-      //   const result = await db.query(`SELECT * FROM videos WHERE id = ?`, [
-      //     id,
-      //   ]);
-      //   console.log(result);
-      //   return result.values?.[0] as SQLiteVideo;
-      // },
-
       getVideos: async (): Promise<SQLiteVideo[]> => {
         const ret = await db.query("SELECT * FROM videos");
         console.log("getVideos", ret);
