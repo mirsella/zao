@@ -80,7 +80,7 @@ document.addEventListener("fullscreenchange", () => {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition"
+        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-2xl"
         @play="play"
       />
       <div>
