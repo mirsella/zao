@@ -52,7 +52,7 @@ async function redirectCustomerPortal() {
   try {
     const res = await functions.createExecution(
       "users",
-      JSON.stringify({ storeid: storeid, variantid: storeid }),
+      JSON.stringify({ storeid, variantid }),
       false,
       "/customer_portal",
       "POST",

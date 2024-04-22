@@ -82,10 +82,8 @@ export default async ({ req, res, log, error }: Context) => {
           billingAddress: { country: "FR" },
         },
       });
-      console.log(response);
-      console.log(response.error, response.error?.cause);
       if (response.error) {
-        throw new Error(JSON.stringify(response.error));
+        throw new Error(JSON.stringify(response.error, null, 2));
       }
       log(`created lemonsqueezy checkout for ${userid}`);
       return res.send(response.data?.data.attributes.url);
@@ -130,10 +128,6 @@ export default async ({ req, res, log, error }: Context) => {
       },
       [Permission.delete(Role.user(userid))],
     );
-    // const cl: any = await databases.getDocument("classes", "class", classid);
-    // await databases.updateDocument("classes", "class", classid, {
-    //   comments: [...cl.comments.map((c: any) => c.$id), new_comment.$id],
-    // });
     return res.send(new_comment);
   }
 
