@@ -33,7 +33,7 @@ export default async ({ req, res, log, error }: Context) => {
   const match = (req.headers["x-appwrite-event"] as string).match(
     /users\.(.+)\.(create|update|delete)/,
   )!;
-  console.log("match:", match);
+  log("match: " + match);
   const userid = match[1];
   const event = match[2];
   if (!userid || !event) {
