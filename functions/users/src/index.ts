@@ -83,8 +83,9 @@ export default async ({ req, res, log, error }: Context) => {
         },
       });
       console.log(response);
+      console.log(response.error, response.error?.cause);
       if (response.error) {
-        throw new Error(JSON.stringify(error));
+        throw new Error(JSON.stringify(response.error));
       }
       log(`created lemonsqueezy checkout for ${userid}`);
       return res.send(response.data?.data.attributes.url);
