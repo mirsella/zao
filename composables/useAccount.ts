@@ -1,6 +1,6 @@
 import type { Models } from "nuxt-appwrite";
 
-let call: any = null;
+let call: null | Promise<any> = null;
 
 export const useAccount = async () => {
   const account = useState(
@@ -18,8 +18,10 @@ export const useAccount = async () => {
   } catch {
     account.value = null;
   }
-  call = async () => {
-    return null;
-  };
+  // this weird shenaningan is to make sure the account state is not
+  // re assigned every time if it was manually cleared (ex: logout)
+  call = new Promise((resolve) => {
+    resolve(null);
+  });
   return account;
 };
