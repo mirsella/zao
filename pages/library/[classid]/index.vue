@@ -64,7 +64,7 @@ document.addEventListener("fullscreenchange", () => {
 <template>
   <div class="flex flex-col gap-4 p-6 items-center">
     <div id="fullscreen"></div>
-    <div v-if="cl" class="max-w-7xl justify-center prose">
+    <div v-if="cl" class="max-w-5xl justify-center prose">
       <p class="font-semibold prose-lg w-full text-center">{{ cl.title }}</p>
       <div class="flex justify-center flex-wrap md:flex-nowrap gap-6">
         <youtube-iframe
