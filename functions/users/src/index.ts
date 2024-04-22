@@ -75,18 +75,19 @@ export default async ({ req, res, log, error }: Context) => {
         return res.send("missing storeid or variantid in body", 400);
       }
       const authuser = await users.get(userid);
-      const { error, data } = await createCheckout(storeid, variantid, {
+      const response = await createCheckout(storeid, variantid, {
         checkoutData: {
           email: authuser.email,
           name: user.name,
           billingAddress: { country: "FR" },
         },
       });
-      if (error) {
+      console.log(response);
+      if (response.error) {
         throw new Error(JSON.stringify(error));
       }
       log(`created lemonsqueezy checkout for ${userid}`);
-      return res.send(data?.data.attributes.url);
+      return res.send(response.data?.data.attributes.url);
     }
   }
 
