@@ -64,7 +64,7 @@ export default async ({ req, res, log, error }: Context) => {
     log("waiting for the users document to be created");
     while (true) {
       try {
-        await databases.getDocument("classes", "users", user.$id);
+        await databases.getDocument("classes", "user", user.$id);
         break;
       } catch {
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -79,7 +79,7 @@ export default async ({ req, res, log, error }: Context) => {
   const status = req.body.data.attributes.status;
   if (status === "active") {
     labels.push("premium");
-    await databases.updateDocument("classes", "users", user.$id, {
+    await databases.updateDocument("classes", "user", user.$id, {
       lemonsqueezy_id: req.body.data.attributes.customer_id.toString(),
     });
     await users.updateLabels(user.$id, labels);
