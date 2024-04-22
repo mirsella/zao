@@ -6,7 +6,6 @@ definePageMeta({ middleware: "auth" });
 useHeadSafe({ title: "Compte / Paramètres" });
 const { storeid, variantid } = useRuntimeConfig().public;
 
-// this can't be null because of the middleware
 const user = await useAccount();
 const premium = computed(() => user.value?.labels.includes("premium"));
 

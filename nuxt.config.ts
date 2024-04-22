@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "nuxt-appwrite", "@nuxtjs/seo"],
+  app: {
+    keepAlive: true,
+  },
   devtools: { enabled: true },
   // for mobile we can't use ssr (capacitor)
   ssr: false,
