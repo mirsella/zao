@@ -31,8 +31,9 @@ export default async ({ req, res, log, error }: Context) => {
   }
 
   const match = (req.headers["x-appwrite-event"] as string).match(
-    /users\.(.+)\.(create|update\.name|delete)/,
+    /users\.(.+)\.(create|update|delete)/,
   )!;
+  console.log("match:", match);
   const userid = match[1];
   const event = match[2];
   if (!userid || !event) {
@@ -63,13 +64,14 @@ export default async ({ req, res, log, error }: Context) => {
   } else if (event === "delete") {
     await databases.deleteDocument("classes", "user", userid);
     log(`deleted document for user ${userid}`);
-  } else if (event === "update.name") {
+  } else if (event === "update") {
     const user = (await databases.getDocument(
       "classes",
       "user",
       userid,
     )) as User;
     await users.updateName(userid, user.name);
+    log(`updated document for user ${userid} with name ${user.name}`);
   } else {
     throw new Error("event didn't match any case");
   }
