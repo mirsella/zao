@@ -70,8 +70,11 @@ export default async ({ req, res, log, error }: Context) => {
       "user",
       userid,
     )) as User;
-    await users.updateName(userid, user.name);
-    log(`updated document for user ${userid} with name ${user.name}`);
+    const authuser = await users.get(userid);
+    if (authuser.name !== user.name) {
+      await users.updateName(userid, user.name);
+      log(`updated document for user ${userid} with name ${user.name}`);
+    }
   } else {
     throw new Error("event didn't match any case");
   }
