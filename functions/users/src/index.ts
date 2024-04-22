@@ -95,13 +95,13 @@ export default async ({ req, res, log, error }: Context) => {
     if (!name) {
       res.send("no name in query", 400);
     }
-    const withName = await databases.listDocuments("classes", "users", [
+    const withName = await databases.listDocuments("classes", "user", [
       Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
       res.send("name already taken", 409);
     }
-    await databases.updateDocument("classes", "users", userid, { name });
+    await databases.updateDocument("classes", "user", userid, { name });
     await users.updateName(userid, name);
     log(`updated name for ${userid} to ${name}`);
     return res.send("ok");
