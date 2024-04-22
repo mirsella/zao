@@ -38,9 +38,6 @@ dependencies:
   nuxt-appwrite:
     specifier: ^1.0.8
     version: 1.0.8
-  sql.js:
-    specifier: ^1.10.3
-    version: 1.10.3
   vue:
     specifier: ^3.4.21
     version: 3.4.21

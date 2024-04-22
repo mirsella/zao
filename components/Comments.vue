@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Comment } from "~/utils/databases";
+import type { Comment } from "~";
+
 const { database, functions } = useAppwrite();
 
 const user = await useAccount();
@@ -64,7 +65,7 @@ function deleteComment(id: string) {
 </script>
 <template>
   <div>
-    <div class="max-w-6xl grid" v-if="premium">
+    <div class="max-w-3xl grid mx-auto" v-if="premium">
       <textarea
         class="textarea !w-full bg-base-300"
         placeholder="Commentaire..."
@@ -87,7 +88,10 @@ function deleteComment(id: string) {
     >
       <div class="card-title">
         <span class="font-normal">auteur:</span>
-        <span class="grow font-medium">
+        <span
+          class="grow font-medium"
+          :class="{ 'font-semibold': comment.user.name === user?.name }"
+        >
           {{ comment.user.name }}
         </span>
         <span class="font-medium">
