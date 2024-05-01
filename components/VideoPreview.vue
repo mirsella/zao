@@ -1,7 +1,13 @@
 <script setup lang="ts">
-defineProps<{ data: Video }>();
+const { $storeVideo } = useNuxtApp();
+const props = defineProps<{ data: Video }>();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
+
+async function downloadVideo() {
+  const url = storage.getFileView("videos", file_id);
+  await storeVideo(url.href, props.data);
+}
 </script>
 
 <template>
@@ -10,24 +16,14 @@ const premium = computed(() => account.value?.labels.includes("premium"));
       <h4 class="card-title m-0">{{ data.title }}</h4>
       {{ data.description }}
       <div class="card-actions justify-end">
-        <div v-if="useMobile()">
-          <button class="btn btn-accent" v-if="premium">
-            Télécharger
-            <span class="i-carbon-download size-6"></span>
-            <!-- TODO: add to downloads -->
-          </button>
-
-          <div
-            class="tooltip tooltip-top tooltip-error"
-            v-else
-            data-tip="Vous devez être premium"
-          >
-            <button class="btn btn-disabled">
-              Télécharger
-              <span class="i-carbon-download size-6"></span>
-            </button>
-          </div>
-        </div>
+        <button
+          v-if="useMobile()"
+          :class="{ 'btn-disabled !cursor-not-allowed': !premium }"
+          class="btn"
+        >
+          Télécharger
+          <span class="i-carbon-download size-6"></span>
+        </button>
 
         <button
           class="btn btn-accent"
@@ -39,11 +35,11 @@ const premium = computed(() => account.value?.labels.includes("premium"));
         </button>
 
         <div
-          class="tooltip tooltip-left tooltip-error"
+          class="tooltip tooltip-left tooltip-error cursor-not-allowed"
           v-else
           data-tip="Vous devez être premium"
         >
-          <button class="btn btn-disabled">
+          <button class="btn btn-disabled cursor-not-allowed">
             Regarder
             <span class="i-carbon-play size-6"></span>
           </button>

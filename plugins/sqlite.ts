@@ -15,19 +15,16 @@ import {
 const sqlite = new SQLiteConnection(CapacitorSQLite);
 
 export default defineNuxtPlugin(async () => {
-  if (!useMobile()) {
-    // FIXME: this is only for dev, later we don't need sqlite on web platform
-    // return {};
-    applyPolyfills().then(() => {
-      jeepDefineCustomElements(window);
-    });
-    // Create the 'jeep-sqlite' Stencil component
-    const jeepSqlite = document.createElement("jeep-sqlite");
-    document.body.appendChild(jeepSqlite);
-    await customElements.whenDefined("jeep-sqlite");
-    // Initialize the Web store
-    await sqlite.initWebStore();
-  }
+  // FIXME: this is only for dev, later we don't need sqlite on web platform
+  applyPolyfills().then(() => {
+    jeepDefineCustomElements(window);
+  });
+  // Create the 'jeep-sqlite' Stencil component
+  const jeepSqlite = document.createElement("jeep-sqlite");
+  document.body.appendChild(jeepSqlite);
+  await customElements.whenDefined("jeep-sqlite");
+  // Initialize the Web store
+  await sqlite.initWebStore();
 
   const db: SQLiteDBConnection = await sqlite.createConnection(
     "video",

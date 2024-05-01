@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { $getVideos, $deleteVideo } = useNuxtApp();
+</script>
+
 <template>
-  <div>DOWNLOAD section</div>
+  <div v-for="video of $getVideos()">{{ video }}</div>
 </template>
