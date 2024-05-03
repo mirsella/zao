@@ -31,6 +31,7 @@ function ytsetVolume(volume: number) {
 async function play(file_id: string, title: string) {
   // pause the yt embed if it's playing
   ytplayer.value?.instance.pauseVideo();
+
   const url = storage.getFileView("videos", file_id);
   const res = await CapacitorVideoPlayer.initPlayer({
     // https://github.com/jepiqueau/capacitor-video-player/blob/master/docs/API.md#capvideoplayeroptions
@@ -56,7 +57,7 @@ document.addEventListener("fullscreenchange", () => {
     // doesn't work, but i'll keep it here
     CapacitorVideoPlayer.exitPlayer();
     // @ts-ignore this is the button (X) next to the <video> that close the player
-    videoplayer()?.nextSibling?.click();
+    document.querySelector("#fullscreen video")?.nextSibling?.click();
   }
 });
 </script>
@@ -85,7 +86,7 @@ document.addEventListener("fullscreenchange", () => {
       />
       <div>
         <p class="divider w-full">Commentaires:</p>
-        <Comments :comments="cl.comments" :classid="cl.$id" />
+        <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-2xl" />
       </div>
     </div>
     <span

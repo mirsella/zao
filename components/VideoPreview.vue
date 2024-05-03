@@ -1,12 +1,14 @@
 <script setup lang="ts">
 const { $storeVideo } = useNuxtApp();
+const { storage } = useAppwrite();
 const props = defineProps<{ data: Video }>();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
 
 async function downloadVideo() {
-  const url = storage.getFileView("videos", file_id);
-  await storeVideo(url.href, props.data);
+  console.log("downloadVideo id", props.data.$id);
+  const url = storage.getFileView("videos", props.data.$id);
+  await $storeVideo(url.href, props.data);
 }
 </script>
 
@@ -18,8 +20,9 @@ async function downloadVideo() {
       <div class="card-actions justify-end">
         <button
           v-if="useMobile()"
+          @click="downloadVideo()"
           :class="{ 'btn-disabled !cursor-not-allowed': !premium }"
-          class="btn"
+          class="btn btn-accent"
         >
           Télécharger
           <span class="i-carbon-download size-6"></span>

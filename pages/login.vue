@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import VOtpInput from "vue3-otp-input";
-const { ID } = useAppwrite();
-const { account } = useAppwrite();
+const { ID, account } = useAppwrite();
 const router = useRouter();
 useHeadSafe({ title: "Connection" });
 
@@ -59,7 +58,7 @@ async function submitOTP(value: string) {
 // FIXME: manual logging for development
 async function devlogin() {
   loading.value = true;
-  let res = await account.createEmailSession(
+  let res = await account.createEmailPasswordSession(
     email.value + "@gmail.com",
     "testtest",
   );

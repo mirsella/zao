@@ -64,17 +64,17 @@ function deleteComment(id: string) {
 }
 </script>
 <template>
-  <div>
-    <div class="max-w-3xl grid mx-auto" v-if="premium">
+  <div class="mx-auto">
+    <div class="grid" v-if="premium">
       <textarea
-        class="textarea !w-full bg-base-300"
+        class="textarea !w-full bg-base-300 mx-auto"
         placeholder="Commentaire..."
         v-model="newcomment"
         maxlength="1024"
       ></textarea>
       <button
         @click="postComment()"
-        class="m-4 justify-self-end btn px-8 btn-accent"
+        class="my-4 justify-self-end btn btn-accent"
         :class="newcomment.length === 0 && 'btn-disabled'"
       >
         <span v-if="!postLoading"> Poster </span>
@@ -84,7 +84,7 @@ function deleteComment(id: string) {
     <div
       :data="comment"
       v-for="comment of comments"
-      class="bg-base-200 my-2 p-2 rounded-md card card-compact prose max-w-2xl mx-auto"
+      class="bg-base-200 my-2 p-2 rounded-md card card-compact prose mx-auto"
     >
       <div class="card-title">
         <span class="font-normal">auteur:</span>
