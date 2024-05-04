@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { YoutubeIframe } from "@vue-youtube/component";
 import { CapacitorVideoPlayer } from "capacitor-video-player";
-import type { Class, Video } from "~/utils/databases";
+import type { Class, Video } from "~";
 const { storage } = useAppwrite();
 
 const route = useRoute();
