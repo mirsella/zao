@@ -75,7 +75,7 @@ document.addEventListener("fullscreenchange", () => {
           :cookie="false"
           @ready="ytsetVolume(40)"
         />
-        <p class="m-0">{{ cl.description }}</p>
+        <p class="m-0 p-2 md:p-0">{{ cl.description }}</p>
       </div>
       <p class="divider w-full">Épisodes:</p>
       <VideoPreview
