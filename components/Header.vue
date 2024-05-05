@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const account = await useAccount();
+const isloggedin = ref(false);
+onMounted(async () => {
+  isloggedin.value = (await useAccount()) !== null;
+});
 </script>
 <template>
   <div class="navbar">
@@ -31,7 +34,10 @@ const account = await useAccount();
         activeClass="shadow-md shadow-primary"
         data-tip="Compte / Paramètres"
       >
-        <span v-if="account" class="my-2 i-carbon-user-settings size-8"></span>
+        <span
+          v-if="isloggedin"
+          class="my-2 i-carbon-user-settings size-8"
+        ></span>
         <span v-else class="my-2 i-carbon-user size-8"></span>
       </NuxtLink>
     </div>

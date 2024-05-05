@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import type { SQLiteVideo } from "~";
 const { $getVideos, $deleteVideo } = useNuxtApp();
+
+const videos = ref<SQLiteVideo[]>([]);
+onMounted(async () => {
+  videos.value = await $getVideos();
+});
 </script>
 
 <template>
-  <div v-for="video of $getVideos()">{{ video }}</div>
+  <div v-for="video of videos" class="m-4 p-4 bg-base-300">
+    {{ video }}
+    <video
+      class="size-1/2"
+      :src="video.data"
+      controls="true"
+      onclick="this.play();arguments[0].preventDefault();"
+    ></video>
+  </div>
 </template>

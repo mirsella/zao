@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import type { Video } from "~";
+import type { SQLiteVideo, Video } from "~";
 
-const { $storeVideo } = useNuxtApp();
+const { $storeVideo, $videoExist } = useNuxtApp();
 const { storage } = useAppwrite();
 const props = defineProps<{ data: Video }>();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
+const video_downloaded = ref();
+
+onMounted(async () => {
+  video_downloaded.value = await $videoExist(props.data.$id);
+});
 
 async function downloadVideo() {
   console.log("downloadVideo id", props.data.$id);
@@ -21,7 +26,7 @@ async function downloadVideo() {
       {{ data.description }}
       <div class="card-actions justify-end">
         <button
-          v-if="useMobile()"
+          v-if="useMobile() && !video_downloaded"
           @click="downloadVideo()"
           :class="{ 'btn-disabled !cursor-not-allowed': !premium }"
           class="btn btn-accent"

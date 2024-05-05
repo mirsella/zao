@@ -21,6 +21,7 @@ export default defineNuxtPlugin(async () => {
   });
   // Create the 'jeep-sqlite' Stencil component
   const jeepSqlite = document.createElement("jeep-sqlite");
+  jeepSqlite.autoSave = true;
   document.body.appendChild(jeepSqlite);
   await customElements.whenDefined("jeep-sqlite");
   // Initialize the Web store
@@ -51,7 +52,7 @@ export default defineNuxtPlugin(async () => {
           await fetch(url, { credentials: "include" })
         ).blob();
         console.log("blob", blob.type, blob.text, blob.size);
-        if (blob.type !== "mp4") {
+        if (blob.type !== "video/mp4") {
           return Promise.reject(
             new Error("only supporting mp4 video: " + blob.type),
           );
@@ -69,7 +70,6 @@ export default defineNuxtPlugin(async () => {
         }
         return ret.changes?.values;
       },
-
       getVideos: async (): Promise<SQLiteVideo[]> => {
         const ret = await db.query("SELECT * FROM videos");
         console.log("getVideos", ret);
@@ -79,6 +79,14 @@ export default defineNuxtPlugin(async () => {
           video.data = URL.createObjectURL(blob);
         }
         return ret.values as SQLiteVideo[];
+      },
+      videoExist: async (id: string): Promise<boolean> => {
+        const ret = await db.query("SELECT id FROM videos WHERE id = ?", [id]);
+        if (ret.values?.length === 0) {
+          return false;
+        } else {
+          return true;
+        }
       },
       deleteVideo: async (id: string) => {
         const ret = await db.run("DELETE FROM videos WHERE id = ?", [id]);
