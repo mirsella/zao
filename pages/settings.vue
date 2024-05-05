@@ -129,7 +129,7 @@ async function logout() {
         class="bg-base-300 rounded-xl flex justify-center w-full max-w-xl p-4"
       >
         <button
-          class="w-2/3 btn gap-2 !border-error hover:scale-[1.05]"
+          class="w-2/3 btn gap-2 border-error hover:scale-[1.05]"
           @click="logout()"
         >
           <span>Se déconnecter</span>
@@ -137,9 +137,7 @@ async function logout() {
         </button>
       </div>
     </div>
-    <!-- FIXME: only for dev -->
-    <!-- <div v-if="useMobile()"> -->
-    <div>
+    <div v-if="useMobile()">
       <div class="divider m-4">Téléchargements</div>
       <Downloads />
     </div>

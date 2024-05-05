@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const isloggedin = ref(false);
 onMounted(async () => {
-  isloggedin.value = (await useAccount()) !== null;
+  const account = await useAccount();
+  watch(account, () => (isloggedin.value = account.value !== null));
 });
 </script>
 <template>
