@@ -43,13 +43,14 @@ export default defineNuxtPlugin(async () => {
         id TEXT PRIMARY KEY,
         data BLOB NOT NULL,
         video_title TEXT NOT NULL
+        class_title TEXT NOT NULL
       );
     `);
 
   // https://github.com/capacitor-community/sqlite/blob/master/docs/SQLiteBlob.md
   return {
     provide: {
-      storeVideo: async (url: string, video: Video) => {
+      storeVideo: async (url: string, video: Video, class_title: string) => {
         console.log("storeVideo: fetching video at", url);
         const blob = await (
           await fetch(url, { credentials: "include" })
@@ -64,8 +65,8 @@ export default defineNuxtPlugin(async () => {
           new Uint8Array(await blob.arrayBuffer()),
         );
         const ret = await db.run(
-          "INSERT INTO videos (id, data, video_title) VALUES (?, ?, ?)",
-          [video.$id, imageBuffer, video.title],
+          "INSERT INTO videos (id, data, video_title, class_title) VALUES (?, ?, ?, ?)",
+          [video.$id, imageBuffer, video.title, class_title],
         );
         console.log("storeVideo", ret);
         if (ret.changes?.changes !== 1) {

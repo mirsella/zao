@@ -3,6 +3,7 @@ import { YoutubeIframe } from "@vue-youtube/component";
 import { CapacitorVideoPlayer } from "capacitor-video-player";
 import type { Class, Video } from "~";
 const { storage } = useAppwrite();
+const { $storeVideo } = useNuxtApp();
 
 const route = useRoute();
 const cl = ref<Class>();
@@ -26,6 +27,11 @@ useClasses().then((classes) => {
 const ytplayer = ref();
 function ytsetVolume(volume: number) {
   ytplayer.value?.instance.setVolume(volume);
+}
+
+async function downloadVideo(video: Video) {
+  const url = storage.getFileView("videos", video.$id);
+  await $storeVideo(url.href, video, cl.value?.title || "");
 }
 
 async function play(file_id: string, title: string) {
@@ -82,7 +88,9 @@ document.addEventListener("fullscreenchange", () => {
         v-for="video of cl.videos"
         :data="video"
         class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-4xl"
+        :class_title="cl.title"
         @play="play"
+        @download="downloadVideo(video)"
       />
       <p class="divider w-full">Commentaires:</p>
       <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-4xl" />

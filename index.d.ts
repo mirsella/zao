@@ -25,4 +25,5 @@ export interface SQLiteVideo {
   id: string;
   data: string;
   video_title: string;
+  class_title: string;
 }
