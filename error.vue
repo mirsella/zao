@@ -15,7 +15,7 @@ defineProps({
       <div
         class="flex justify-center items-center flex-wrap md:flex-nowrap mt-2 w-full"
       >
-        <p>Vous pouvez essayer de recharger la page, ou</p>
+        <p>Vous pouvez essayer de relancer l'application, ou</p>
         <button
           class="btn btn-primary btn-sm m-2 shadow-md shadow-primary"
           @click="clearError({ redirect: '/library' })"

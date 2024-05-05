@@ -99,8 +99,10 @@ export default async ({ req, res, log, error }: Context) => {
       Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
+      log(`name already taken for ${userid}: ${name}`);
       res.send("name already taken", 409);
     }
+    log(`updating name for ${userid} to ${name}`);
     await databases.updateDocument("classes", "user", userid, { name });
     await users.updateName(userid, name);
     log(`updated name for ${userid} to ${name}`);
