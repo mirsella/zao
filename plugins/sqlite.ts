@@ -46,8 +46,10 @@ export default defineNuxtPlugin(async () => {
   return {
     provide: {
       storeVideo: async (url: string, video: Video) => {
-        console.log("storeVideo: fetching video at", url)
-        const blob = await (await fetch(url)).blob();
+        console.log("storeVideo: fetching video at", url);
+        const blob = await (
+          await fetch(url, { credentials: "include" })
+        ).blob();
         console.log("blob", blob.type, blob.text, blob.size);
         if (blob.type !== "mp4") {
           return Promise.reject(

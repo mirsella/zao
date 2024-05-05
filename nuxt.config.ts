@@ -13,7 +13,9 @@ export default defineNuxtConfig({
   schemaOrg: {
     enabled: false,
   },
-  appwrite: { project: "65ef4ce532070e537d98" },
+  appwrite: {
+    project: "65ef4ce532070e537d98",
+  },
   runtimeConfig: {
     public: {
       storeid: "75435",
