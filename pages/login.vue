@@ -47,7 +47,7 @@ async function submitEmail() {
 async function submitOTP(value: string) {
   loading.value = true;
   try {
-    const session = await account.createSession(userId, value);
+    await account.createSession(userId, value);
     (await useAccount()).value = await account.get();
   } catch (e: any) {
     loading.value = false;
@@ -115,6 +115,7 @@ async function devlogin() {
           input-classes="w-8 h-10 m-1 rounded-lg text-center !font-xl"
           @on-complete="submitOTP"
           separator=""
+          :disabled="loading"
         />
       </div>
       <h1 class="italic font-thin text-center">
