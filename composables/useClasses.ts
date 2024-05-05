@@ -1,3 +1,5 @@
+import type { Class } from "~";
+
 let call: any = null;
 export const useClasses = async () => {
   const { database, Query } = useAppwrite();

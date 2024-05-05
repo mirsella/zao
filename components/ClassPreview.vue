@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { YoutubeIframe } from "@vue-youtube/component";
+import type { Class } from "~";
+
 defineProps<{ data: Class }>();
 
 const player = ref();

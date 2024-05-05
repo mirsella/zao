@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Class } from "~";
+
 useHeadSafe({ title: "Bibliothèque" });
 const search = ref("");
 const classes = ref<Class[]>([]);

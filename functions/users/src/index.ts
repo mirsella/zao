@@ -9,7 +9,7 @@ import {
   Databases,
   Query,
   Permission,
-  Models,
+  type Models,
   Role,
   ID,
 } from "node-appwrite";

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Video } from "~";
+
 const { $storeVideo } = useNuxtApp();
 const { storage } = useAppwrite();
 const props = defineProps<{ data: Video }>();

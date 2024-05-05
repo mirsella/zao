@@ -1,4 +1,4 @@
-import { Client, Users, Databases, Query, Models } from "node-appwrite";
+import { Client, Users, Databases, Query, type Models } from "node-appwrite";
 
 interface Context {
   req: any;

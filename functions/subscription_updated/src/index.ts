@@ -1,4 +1,11 @@
-import { Client, Users, Databases, Query, ID, Models } from "node-appwrite";
+import {
+  Client,
+  Users,
+  Databases,
+  Query,
+  ID,
+  type Models,
+} from "node-appwrite";
 import crypto from "crypto";
 
 type Context = {
