@@ -17,5 +17,8 @@ onMounted(async () => {
       controls="true"
       onclick="this.play();arguments[0].preventDefault();"
     ></video>
+    <button class="btn btn-error" @click="$deleteVideo(video.id)">
+      delete
+    </button>
   </div>
 </template>

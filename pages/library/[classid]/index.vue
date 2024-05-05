@@ -7,6 +7,7 @@ const { $storeVideo } = useNuxtApp();
 
 const route = useRoute();
 const cl = ref<Class>();
+const videoPreviews = ref<any[]>([]);
 
 useClasses().then((classes) => {
   cl.value = classes.value.find((cl) => cl.$id === route.params.classid);
@@ -32,6 +33,14 @@ function ytsetVolume(volume: number) {
 async function downloadVideo(video: Video) {
   const url = storage.getFileView("videos", video.$id);
   await $storeVideo(url.href, video, cl.value?.title || "");
+  for (const vp of videoPreviews.value) {
+    // FIX: this doesn't work, but it should
+    console.log(vp, vp.updateDownloaded);
+    // vp.updateDownloaded();
+    // if (vp.updateDownloaded) {
+    //   vp.updateDownloaded();
+    // }
+  }
 }
 
 async function play(file_id: string, title: string) {
@@ -87,8 +96,9 @@ document.addEventListener("fullscreenchange", () => {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-4xl"
         :class_title="cl.title"
+        ref="videoPreviews"
+        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-4xl"
         @play="play"
         @download="downloadVideo(video)"
       />

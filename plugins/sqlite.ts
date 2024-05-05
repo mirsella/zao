@@ -42,7 +42,7 @@ export default defineNuxtPlugin(async () => {
       CREATE TABLE IF NOT EXISTS videos (
         id TEXT PRIMARY KEY,
         data BLOB NOT NULL,
-        video_title TEXT NOT NULL
+        video_title TEXT NOT NULL,
         class_title TEXT NOT NULL
       );
     `);

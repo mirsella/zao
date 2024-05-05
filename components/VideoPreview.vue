@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import type { SQLiteVideo, Video } from "~";
 
-const props = defineProps<{ data: Video; class_title: string }>();
+const props = defineProps<{ data: Video }>();
 const { $videoExist } = useNuxtApp();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
 const video_downloaded = ref();
 
-onMounted(async () => {
+async function updateDownloaded() {
   video_downloaded.value = await $videoExist(props.data.$id);
+}
+
+defineExpose({ updateDownloaded });
+defineEmits(["download", "play"]);
+
+onMounted(async () => {
+  updateDownloaded();
 });
 </script>
 
