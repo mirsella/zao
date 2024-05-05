@@ -25,7 +25,7 @@ async function updateName() {
       JSON.stringify({ name: name.value }),
       false,
       "/name",
-      "PUT",
+      undefined,
       { "Content-Type": "application/json" },
     );
     if (res.responseStatusCode === 409) {
@@ -55,7 +55,7 @@ async function redirectCustomerPortal() {
       JSON.stringify({ storeid, variantid }),
       false,
       "/customer_portal",
-      "POST",
+      undefined,
       { "Content-Type": "application/json" },
     );
     portalLoading.value = false;

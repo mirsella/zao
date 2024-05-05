@@ -81,13 +81,11 @@ document.addEventListener("fullscreenchange", () => {
       <VideoPreview
         v-for="video of cl.videos"
         :data="video"
-        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-2xl"
+        class="mx-auto m-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-4xl"
         @play="play"
       />
-      <div>
-        <p class="divider w-full">Commentaires:</p>
-        <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-2xl" />
-      </div>
+      <p class="divider w-full">Commentaires:</p>
+      <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-4xl" />
     </div>
     <span
       v-else

@@ -33,7 +33,7 @@ async function postComment() {
       JSON.stringify({ classid: props.classid, content: newcomment.value }),
       false,
       "/comment",
-      "POST",
+      undefined,
       { "Content-Type": "application/json" },
     );
     if (res.responseStatusCode !== 200) {
@@ -67,7 +67,7 @@ function deleteComment(id: string) {
   <div class="mx-auto">
     <div class="grid" v-if="premium">
       <textarea
-        class="textarea !w-full bg-base-300 mx-auto"
+        class="textarea !w-full bg-base-300 mx-auto h-32"
         placeholder="Commentaire..."
         v-model="newcomment"
         maxlength="1024"
@@ -84,7 +84,7 @@ function deleteComment(id: string) {
     <div
       :data="comment"
       v-for="comment of comments"
-      class="bg-base-200 my-2 p-2 rounded-md card card-compact prose mx-auto"
+      class="bg-base-200 my-2 p-2 rounded-md card card-compact mx-auto"
     >
       <div class="card-title">
         <span class="font-normal">auteur:</span>
