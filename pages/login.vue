@@ -21,20 +21,23 @@ watch(
   { immediate: true },
 );
 
-let userId;
+let userId: string;
 const loading = ref(false);
 const email = ref("");
 const showOTP = ref(false);
+const errorOPT = ref(false);
 
 async function submitEmail() {
   loading.value = true;
   try {
-    // TODO: when appwrite cloud 1.5 is released
-    // const sessionToken = await account.createEmailToken(ID.unique(), email.value);
-    // userId = sessionToken.userId;
+    const sessionToken = await account.createEmailToken(
+      ID.unique(),
+      email.value,
+    );
+    userId = sessionToken.userId;
   } catch (e: any) {
     loading.value = false;
-    console.log(e);
+    console.error("submitEmail", e);
     showError(e);
   }
   loading.value = false;
@@ -44,13 +47,16 @@ async function submitEmail() {
 async function submitOTP(value: string) {
   loading.value = true;
   try {
-    // TODO: when appwrite cloud 1.5 is released
-    // const session = await account.createSession(userId, value);
+    const session = await account.createSession(userId, value);
     (await useAccount()).value = await account.get();
   } catch (e: any) {
     loading.value = false;
-    console.log(e);
-    showError(e);
+    console.error("wrong code", e);
+    errorOPT.value = true;
+
+    setTimeout(() => {
+      errorOPT.value = false;
+    }, 1000);
   }
   loading.value = false;
 }
@@ -63,9 +69,6 @@ async function devlogin() {
     "testtest",
   );
   console.log(res);
-  await account.updateName(
-    `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`,
-  );
   (await useAccount()).value = await account.get();
   loading.value = false;
 }
@@ -99,7 +102,8 @@ async function devlogin() {
     </form>
     <div
       v-show="showOTP"
-      class="card card-body w-full max-w-sm md:max-w-lg mt-5 shadow-md bg-base-300"
+      class="card card-body w-full max-w-sm md:max-w-lg mt-5 shadow-md bg-base-300 transition-all duration-1000"
+      :class="{ '!shadow-error': errorOPT }"
     >
       <div class="flex flex-col items-center">
         <h1 class="mb-2">entrez le code reçu par mail:</h1>
