@@ -1,3 +1,6 @@
+<script setup lang="ts">
+const account = await useAccount();
+</script>
 <template>
   <div class="navbar">
     <div class="navbar-start">
@@ -28,7 +31,8 @@
         activeClass="shadow-md shadow-primary"
         data-tip="Compte / Paramètres"
       >
-        <span class="my-2 i-carbon-user-settings size-8"></span>
+        <span v-if="account" class="my-2 i-carbon-user-settings size-8"></span>
+        <span v-else class="my-2 i-carbon-user size-8"></span>
       </NuxtLink>
     </div>
   </div>
