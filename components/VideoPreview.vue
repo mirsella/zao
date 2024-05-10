@@ -1,33 +1,36 @@
 <script setup lang="ts">
-import type { SQLiteVideo, Video } from "~";
+import type { Video } from "~";
 
-const props = defineProps<{ data: Video }>();
-const { $videoExist } = useNuxtApp();
+const { storage } = useAppwrite();
+const props = defineProps<{ data: Video; class_title: string }>();
+const { $videoExist, $storeVideo } = useNuxtApp();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
-const video_downloaded = ref();
+const downloaded = ref(false);
+const downloading = ref(false);
 
-async function updateDownloaded() {
-  video_downloaded.value = await $videoExist(props.data.$id);
-}
-
-defineExpose({ updateDownloaded });
-defineEmits(["download", "play"]);
-
+defineEmits(["play"]);
 onMounted(async () => {
-  updateDownloaded();
+  downloaded.value = await $videoExist(props.data.$id);
 });
+
+async function download() {
+  downloading.value = true;
+  const url = storage.getFileView("videos", props.data.$id);
+  await $storeVideo(url.href, props.data, props.class_title || "");
+  downloaded.value = false;
+}
 </script>
 
 <template>
   <div class="card bg-base-200 card-compact prose">
     <div class="card-body">
-      <h4 class="card-title m-0">{{ data.title }}</h4>
-      {{ data.description }}
+      <p class="card-title m-0">{{ data.title }}</p>
+      <span>{{ data.description }}</span>
       <div class="card-actions justify-end">
         <button
-          v-if="useMobile() && !video_downloaded"
-          @click="$emit('download', data)"
+          v-if="useMobile() && !downloaded"
+          @click="download"
           :class="{ 'btn-disabled !cursor-not-allowed': !premium }"
           class="btn btn-accent"
         >
