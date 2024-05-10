@@ -9,6 +9,10 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div v-if="!videos.length" class="p-4 text-lg text-center w-full text-wrap">
+    Aucune vidéo téléchargée hors ligne. Vous pouvez télécharger des vidéos dans
+    la bibliothèque.
+  </div>
   <div v-for="video of videos" class="m-4 p-4 bg-base-300">
     {{ video }}
     <video
