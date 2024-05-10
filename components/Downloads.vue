@@ -4,9 +4,17 @@ import { CapacitorVideoPlayer } from "capacitor-video-player";
 const { $getVideos, $deleteVideo } = useNuxtApp();
 
 const videos = ref<SQLiteVideo[]>([]);
-onMounted(async () => {
+async function updateVideos() {
   videos.value = await $getVideos();
+}
+onMounted(async () => {
+  updateVideos();
 });
+
+async function deleteVideo(id: string) {
+  await $deleteVideo(id);
+  updateVideos();
+}
 
 async function play(video: SQLiteVideo) {
   const res = await CapacitorVideoPlayer.initPlayer({
@@ -56,9 +64,10 @@ document.addEventListener("fullscreenchange", () => {
         <p class="card-title m-0">{{ video.class_title }}</p>
         <p class="card-title !font-normal m-0">{{ video.video_title }}</p>
         <span>{{ video.description }}</span>
-
+        <!-- FIXME: dev debug -->
+        {{ video.data }}
         <div class="card-actions justify-end">
-          <button class="btn btn-error" @click="$deleteVideo(video.id)">
+          <button class="btn btn-error" @click="deleteVideo(video.id)">
             Supprimer
             <span class="i-carbon-trash-can size-6"></span>
           </button>
