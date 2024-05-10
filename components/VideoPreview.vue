@@ -6,19 +6,31 @@ const props = defineProps<{ data: Video; class_title: string }>();
 const { $videoExist, $storeVideo } = useNuxtApp();
 const account = await useAccount();
 const premium = computed(() => account.value?.labels.includes("premium"));
-const downloaded = ref(false);
-const downloading = ref(false);
+
+enum Status {
+  Downloading,
+  Downloaded,
+  NotDownloaded,
+}
+
+const status = ref<Status>(Status.NotDownloaded);
 
 defineEmits(["play"]);
 onMounted(async () => {
-  downloaded.value = await $videoExist(props.data.$id);
+  if (await $videoExist(props.data.$id)) {
+    status.value = Status.Downloaded;
+  }
 });
 
 async function download() {
-  downloading.value = true;
-  const url = storage.getFileView("videos", props.data.$id);
-  await $storeVideo(url.href, props.data, props.class_title || "");
-  downloaded.value = false;
+  status.value = Status.Downloading;
+  try {
+    const url = storage.getFileView("videos", props.data.$id);
+    await $storeVideo(url.href, props.data, props.class_title || "");
+  } catch (e) {
+    showError("impossible de télécharger la video: " + e);
+  }
+  status.value = Status.Downloaded;
 }
 </script>
 
@@ -29,13 +41,27 @@ async function download() {
       <span>{{ data.description }}</span>
       <div class="card-actions justify-end">
         <button
-          v-if="useMobile() && !downloaded"
+          v-if="useMobile()"
           @click="download"
-          :class="{ 'btn-disabled !cursor-not-allowed': !premium }"
+          :class="{
+            'btn-disabled !cursor-not-allowed':
+              !premium || status !== Status.NotDownloaded,
+          }"
           class="btn btn-accent"
         >
           Télécharger
-          <span class="i-carbon-download size-6"></span>
+          <span
+            v-if="status === Status.NotDownloaded"
+            class="i-carbon-download size-6"
+          ></span>
+          <span
+            v-else-if="status === Status.Downloading"
+            class="loading size-6"
+          ></span>
+          <span
+            v-else-if="status === Status.Downloaded"
+            class="i-carbon-checkmark size-6"
+          ></span>
         </button>
 
         <button
