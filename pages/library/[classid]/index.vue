@@ -44,7 +44,7 @@ async function play(file_id: string, title: string) {
   });
   if (!res.result) {
     console.error(res.message);
-    showError("Impossible de lire la vidéo:" + res.message);
+    showError("Impossible de lire la vidéo: " + res.message);
   }
   await CapacitorVideoPlayer.setVolume({
     playerId: "fullscreen",
@@ -54,7 +54,7 @@ async function play(file_id: string, title: string) {
 // the video player doesn't exit when fullscreen is exited, for example by pressing escape
 document.addEventListener("fullscreenchange", () => {
   if (!document.fullscreenElement) {
-    // doesn't work, but i'll keep it here
+    // empty function wtf ? https://github.com/jepiqueau/capacitor-video-player/issues/155
     CapacitorVideoPlayer.exitPlayer();
     // @ts-ignore this is the button (X) next to the <video> that close the player
     document.querySelector("#fullscreen video")?.nextSibling?.click();

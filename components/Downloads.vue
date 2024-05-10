@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SQLiteVideo } from "~";
+import { CapacitorVideoPlayer } from "capacitor-video-player";
 const { $getVideos, $deleteVideo } = useNuxtApp();
 
 const videos = ref<SQLiteVideo[]>([]);
@@ -8,8 +9,33 @@ onMounted(async () => {
 });
 
 async function play(video: SQLiteVideo) {
-  //TODO:
+  const res = await CapacitorVideoPlayer.initPlayer({
+    url: video.data,
+    playerId: "fullscreen",
+    componentTag: "div",
+    mode: "fullscreen",
+    title: video.video_title,
+    chromecast: false,
+  });
+  if (!res.result) {
+    console.error(res.message);
+    showError("Impossible de lire la vidéo: " + res.message);
+  }
+  await CapacitorVideoPlayer.setVolume({
+    playerId: "fullscreen",
+    volume: 0.4,
+  });
 }
+
+// the video player doesn't exit when fullscreen is exited, for example by pressing escape
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    // empty function wtf ? https://github.com/jepiqueau/capacitor-video-player/issues/155
+    CapacitorVideoPlayer.exitPlayer();
+    // @ts-ignore this is the button (X) next to the <video> that close the player
+    document.querySelector("#fullscreen video")?.nextSibling?.click();
+  }
+});
 </script>
 
 <template>
@@ -24,7 +50,7 @@ async function play(video: SQLiteVideo) {
   <div class="flex flex-wrap justify-center">
     <div
       v-for="video of videos"
-      class="m-2 p-4 card bg-base-300 card-compact w-full max-w-2xl"
+      class="m-2 p-4 hover:shadow-md hover:shadow-accent hover:scale-[1.02] transition max-w-4xl card bg-base-300 card-compact"
     >
       <div class="card-body">
         <p class="card-title m-0">{{ video.class_title }}</p>
