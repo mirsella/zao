@@ -23,7 +23,7 @@ onMounted(async () => {
       <NuxtLink
         v-if="$route.name != 'index'"
         to="/library"
-        class="mx-1 btn btn-primary tooltip tooltip-bottom hover:scale-105"
+        class="mx-1 btn btn-primary tooltip tooltip-left hover:scale-105"
         activeClass="shadow-md shadow-primary"
         data-tip="Bibliothèque"
       >

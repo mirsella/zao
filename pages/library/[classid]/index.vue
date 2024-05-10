@@ -31,15 +31,14 @@ function ytsetVolume(volume: number) {
 }
 
 async function downloadVideo(video: Video) {
-  const url = storage.getFileView("videos", video.$id);
-  await $storeVideo(url.href, video, cl.value?.title || "");
+  // const url = storage.getFileView("videos", video.$id);
+  // await $storeVideo(url.href, video, cl.value?.title || "");
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   for (const vp of videoPreviews.value) {
-    // FIX: this doesn't work, but it should
     console.log(vp, vp.updateDownloaded);
-    // vp.updateDownloaded();
-    // if (vp.updateDownloaded) {
-    //   vp.updateDownloaded();
-    // }
+    if (vp.updateDownloaded) {
+      // vp.updateDownloaded();
+    }
   }
 }
 
@@ -92,9 +91,10 @@ document.addEventListener("fullscreenchange", () => {
         />
         <p class="m-0 p-2 md:p-0">{{ cl.description }}</p>
       </div>
-      <p class="divider w-full">Épisodes:</p>
+      <p class="divider my-6">Épisodes:</p>
       <VideoPreview
         v-for="video of cl.videos"
+        :key="video.$id"
         :data="video"
         :class_title="cl.title"
         ref="videoPreviews"
@@ -102,7 +102,7 @@ document.addEventListener("fullscreenchange", () => {
         @play="play"
         @download="downloadVideo(video)"
       />
-      <p class="divider w-full">Commentaires:</p>
+      <p class="divider my-6">Commentaires:</p>
       <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-4xl" />
     </div>
     <span
