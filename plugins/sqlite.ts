@@ -43,6 +43,7 @@ export default defineNuxtPlugin(async () => {
         id TEXT PRIMARY KEY,
         data BLOB NOT NULL,
         video_title TEXT NOT NULL,
+        description TEXT NOT NULL,
         class_title TEXT NOT NULL
       );
     `);
@@ -65,8 +66,8 @@ export default defineNuxtPlugin(async () => {
           new Uint8Array(await blob.arrayBuffer()),
         );
         const ret = await db.run(
-          "INSERT INTO videos (id, data, video_title, class_title) VALUES (?, ?, ?, ?)",
-          [video.$id, imageBuffer, video.title, class_title],
+          "INSERT INTO videos (id, data, video_title, class_title, description) VALUES (?, ?, ?, ?, ?)",
+          [video.$id, imageBuffer, video.title, class_title, video.description],
         );
         console.log("storeVideo", ret);
         if (ret.changes?.changes !== 1) {

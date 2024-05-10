@@ -35,7 +35,7 @@ async function download() {
 </script>
 
 <template>
-  <div class="card bg-base-200 card-compact prose">
+  <div class="card bg-base-300 card-compact prose">
     <div class="card-body">
       <p class="card-title m-0">{{ data.title }}</p>
       <span>{{ data.description }}</span>

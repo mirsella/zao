@@ -84,7 +84,7 @@ function deleteComment(id: string) {
     <div
       :data="comment"
       v-for="comment of comments"
-      class="bg-base-200 my-2 p-2 rounded-md card card-compact mx-auto"
+      class="bg-base-300 my-2 p-2 rounded-md card card-compact mx-auto"
     >
       <div class="card-title">
         <span class="font-normal">auteur:</span>

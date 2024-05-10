@@ -12,7 +12,7 @@ function setVolume(volume: number) {
 
 <template>
   <div
-    class="h-auto bg-base-200 p-4 max-w-6xl"
+    class="h-auto bg-base-300 p-4 max-w-6xl"
   >
     <p class="font-bold text-md md:text-lg">
       {{ data.title }}
