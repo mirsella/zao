@@ -46,6 +46,7 @@ async function play(file_id: string, title: string) {
     console.error(res.message);
     showError("Impossible de lire la vidéo: " + res.message);
   }
+  document.querySelector("video")?.setAttribute("controlsList", "nodownload");
   await CapacitorVideoPlayer.setVolume({
     playerId: "fullscreen",
     volume: 0.4,
