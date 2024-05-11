@@ -59,7 +59,7 @@ document.addEventListener("fullscreenchange", () => {
     Aucune vidéo téléchargée hors ligne. Vous pouvez télécharger des vidéos dans
     la bibliothèque.
   </div>
-  <div class="flex flex-wrap flex-col place-items-center">
+  <div class="flex flex-wrap flex-col place-items-center mx-2">
     <div
       v-if="loading"
       class="loading loading-infinity bg-accent size-12"
@@ -75,7 +75,7 @@ document.addEventListener("fullscreenchange", () => {
         <span>{{ video.description }}</span>
 
         <!-- FIXME: dev debug -->
-        {{ video.data }}
+        <!-- {{ video.data }} -->
         <video
           class="size-1/2"
           :src="video.data"

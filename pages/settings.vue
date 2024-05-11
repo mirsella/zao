@@ -99,10 +99,12 @@ async function logout() {
             v-model="name"
           />
           <button
-            class="i-carbon-save size-4 btn"
+            class="btn !border-none translate-x-4 scale-[0.90]"
             @click="updateName()"
             :disabled="name.length === 0"
-          ></button>
+          >
+            <span class="i-carbon-save size-6"> </span>
+          </button>
         </label>
       </div>
       <div
