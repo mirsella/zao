@@ -3,13 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "nuxt:build": "nuxt build",
-    "nuxt:dev": "nuxt dev",
-    "nuxt:generate": "nuxt generate",
-    "nuxt:preview": "nuxt preview",
-    "nuxt:postinstall": "nuxt prepare",
-    "cap:sync": "cap sync",
-    "cap:android": "cap sync && cd android && ./gradlew assembleDebug && adb install -r -d -t $(fd -I -e apk) && adb shell am start -n com.inspire.app/.MainActivity"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "android": "cap sync && cd android && ./gradlew assembleDebug && adb install -r -d -t $(fd -I -e apk) && adb shell am start -n com.inspire.app/.MainActivity"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^5.7.2",
