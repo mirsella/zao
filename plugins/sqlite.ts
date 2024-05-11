@@ -52,11 +52,9 @@ export default defineNuxtPlugin(async () => {
   return {
     provide: {
       storeVideo: async (url: string, video: Video, class_title: string) => {
-        console.log("storeVideo: fetching video at", url);
         const blob = await (
           await fetch(url, { credentials: "include" })
         ).blob();
-        console.log("blob", blob.type, blob.text, blob.size);
         if (blob.type !== "video/mp4") {
           return Promise.reject(
             new Error("only supporting mp4 video: " + blob.type),
@@ -69,7 +67,6 @@ export default defineNuxtPlugin(async () => {
           "INSERT INTO videos (id, data, video_title, class_title, description) VALUES (?, ?, ?, ?, ?)",
           [video.$id, imageBuffer, video.title, class_title, video.description],
         );
-        console.log("storeVideo", ret);
         if (ret.changes?.changes !== 1) {
           return Promise.reject(new Error("WriteImage failed"));
         }
@@ -77,7 +74,6 @@ export default defineNuxtPlugin(async () => {
       },
       getVideos: async (): Promise<SQLiteVideo[]> => {
         const ret = await db.query("SELECT * FROM videos");
-        console.log("getVideos", ret);
         for (let video of ret.values!) {
           const arr = new Uint8Array(video.data);
           const blob = new Blob([arr], { type: "mp4" });
@@ -95,7 +91,6 @@ export default defineNuxtPlugin(async () => {
       },
       deleteVideo: async (id: string) => {
         const ret = await db.run("DELETE FROM videos WHERE id = ?", [id]);
-        console.log("deleteVideo", ret);
       },
     },
   };
