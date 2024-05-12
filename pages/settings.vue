@@ -18,7 +18,6 @@ onMounted(() => {
 
 const name = ref("");
 const nameUsed = ref(false);
-watch(name, () => (nameUsed.value = false));
 async function updateName() {
   nameUsed.value = false;
   try {
@@ -32,6 +31,11 @@ async function updateName() {
     );
     if (res.responseStatusCode === 409) {
       nameUsed.value = true;
+      name.value = `${name.value} est déjà utilisé`;
+      setTimeout(() => {
+        name.value = "";
+        nameUsed.value = false;
+      }, 2000);
     } else if (res.responseStatusCode !== 200) {
       throw new Error(res.responseBody);
     } else {
@@ -90,15 +94,16 @@ async function logout() {
     >
       <div
         class="tooltip bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
-        data-tip="uniquement utilise pour les commentaires"
+        data-tip="uniquement utilisé pour les commentaires"
       >
+        <!-- <p class="text-error" v-show="nameUsed">déjà en utilisation</p> -->
         <p class="mx-1">Pseudonyme</p>
-        <p class="text-error" v-show="nameUsed">déjà en utilisation</p>
         <label class="input-accent input w-2/3 flex items-center gap-2">
           <input
             class="grow min-w-10"
             :placeholder="user?.name"
             v-model="name"
+            :class="{ 'text-error': nameUsed }"
           />
           <button
             class="btn !border-none translate-x-4 scale-[0.90]"
