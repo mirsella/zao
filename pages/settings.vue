@@ -20,6 +20,7 @@ const name = ref("");
 const nameUsed = ref(false);
 watch(name, () => (nameUsed.value = false));
 async function updateName() {
+  nameUsed.value = false;
   try {
     const res = await functions.createExecution(
       "users",
@@ -33,9 +34,10 @@ async function updateName() {
       nameUsed.value = true;
     } else if (res.responseStatusCode !== 200) {
       throw new Error(res.responseBody);
+    } else {
+      user.value!.name = name.value;
+      name.value = "";
     }
-    if (user.value) user.value.name = name.value;
-    name.value = "";
   } catch (error) {
     console.error(error);
     showError("Impossible de changer le pseudonyme: " + error);
