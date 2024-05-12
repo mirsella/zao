@@ -2,7 +2,9 @@
 const isloggedin = ref(false);
 onMounted(async () => {
   const account = await useAccount();
-  watch(account, () => (isloggedin.value = account.value !== null));
+  watch(account, () => (isloggedin.value = account.value !== null), {
+    immediate: true,
+  });
 });
 </script>
 <template>
