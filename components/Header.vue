@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const network = useState("network");
 const isloggedin = ref(false);
 onMounted(async () => {
   const account = await useAccount();
@@ -12,7 +13,7 @@ onMounted(async () => {
     <div class="navbar-start">
       <button
         class="btn btn-circle btn-ghost hover:scale-105"
-        v-if="$route.name != 'index'"
+        v-if="$route.name != 'index' && network"
         @click="$router.back()"
       >
         <span class="i-carbon-arrow-left size-6"></span>
@@ -21,7 +22,7 @@ onMounted(async () => {
     <div class="navbar-center">
       <a class="font-bold text-center text-xl">Inspire 🍿</a>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end" v-if="network">
       <NuxtLink
         v-if="$route.name != 'index'"
         to="/library"
