@@ -12,10 +12,12 @@ cloudflare r2 good storage
 hetzner for server hosting ?
 
 TODO:
-ecouter hors ligne
 video to explain how to add new videos and classes
 hostname: appwrite, lemonsquessy, and nuxt client
 appwrite smtp
 chaine yt, video trailer
 google play store
 apple app store
+
+about offline video player
+https://chatgpt.com/share/32ce162a-42c3-4fe2-9b17-618e18b5bfca
