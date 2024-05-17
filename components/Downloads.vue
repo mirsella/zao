@@ -75,13 +75,12 @@ document.addEventListener("fullscreenchange", () => {
         <span>{{ video.description }}</span>
 
         <!-- FIXME: dev debug -->
-        <!-- {{ video.data }} -->
-        <video
-          class="size-1/2"
-          :src="video.data"
-          controls="true"
-          onclick="this.play();arguments[0].preventDefault();"
-        ></video>
+        <!-- <video -->
+        <!--   class="size-1/2" -->
+        <!--   :src="video.data" -->
+        <!--   controls="true" -->
+        <!--   onclick="this.play();arguments[0].preventDefault();" -->
+        <!-- ></video> -->
 
         <div class="card-actions justify-end">
           <button class="btn btn-error" @click="deleteVideo(video.id)">

@@ -72,7 +72,7 @@ document.addEventListener("fullscreenchange", () => {
         <youtube-iframe
           ref="ytplayer"
           :video-id="parseYoutubeId(cl.trailer)"
-          class="h-auto aspect-video max-w-sm md:max-w-xl w-auto"
+          class="aspect-video max-w-sm md:max-w-xl h-auto"
           :cookie="false"
           @ready="ytsetVolume(40)"
         />

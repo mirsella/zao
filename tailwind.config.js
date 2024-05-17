@@ -26,6 +26,8 @@ export default {
           accent: "#1DB8AB",
           neutral: "#2A3440",
           "base-100": "#f3f4f6",
+          "base-200": "#f3f4f6",
+          "base-300": "#e5e7eb",
           "--rounded-btn": "1.9rem",
         },
       },

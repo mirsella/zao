@@ -15,7 +15,7 @@ onMounted(() => {
     <NuxtPage class="mb-auto" />
     <Footer class="mt-10" v-if="!useMobile()" />
   </div>
-  <div v-else class="">
+  <div v-else>
     <p class="text-center text-xl prose m-6">
       Vous êtes hors ligne. vous pouvez seulement voir les vidéos préalablement
       télécharger.
