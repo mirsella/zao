@@ -19,6 +19,9 @@ async function deleteVideo(id: string) {
   updateVideos();
 }
 
+// this is not used anymore (using simple video element instead)
+// as `blob:http://localhost:3000/a0738e95-08da-44f6-b648-6a07a56f3a70` urls can't be played with capacitor-video-player
+// without doing hacky things like https://chatgpt.com/share/32ce162a-42c3-4fe2-9b17-618e18b5bfca (local webserver)
 async function play(video: SQLiteVideo) {
   const res = await CapacitorVideoPlayer.initPlayer({
     // url: video.data.replace("blob:", ""),
@@ -74,23 +77,22 @@ document.addEventListener("fullscreenchange", () => {
         <p class="card-title !font-normal m-0">{{ video.video_title }}</p>
         <span>{{ video.description }}</span>
 
-        <!-- FIXME: dev debug -->
-        <!-- <video -->
-        <!--   class="size-1/2" -->
-        <!--   :src="video.data" -->
-        <!--   controls="true" -->
-        <!--   onclick="this.play();arguments[0].preventDefault();" -->
-        <!-- ></video> -->
+        <video
+          class="aspect-video h-auto w-auto"
+          :src="video.data"
+          controls="true"
+          onclick="this.play();arguments[0].preventDefault();"
+        ></video>
 
         <div class="card-actions justify-end">
           <button class="btn btn-error" @click="deleteVideo(video.id)">
             Supprimer
             <span class="i-carbon-trash-can size-6"></span>
           </button>
-          <button class="btn btn-accent" @click="play(video)">
-            Regarder
-            <span class="i-carbon-play size-6"></span>
-          </button>
+          <!-- <button class="btn btn-accent" @click="play(video)"> -->
+          <!--   Regarder -->
+          <!--   <span class="i-carbon-play size-6"></span> -->
+          <!-- </button> -->
         </div>
       </div>
     </div>

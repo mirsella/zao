@@ -30,8 +30,8 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
       capacitor-video-player:
-        specifier: link:../capacitor-video-player
-        version: link:../capacitor-video-player
+        specifier: ^5.5.1
+        version: 5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.8)
       jeep-sqlite:
         specifier: ^2.7.0
         version: 2.7.0
@@ -2136,6 +2136,13 @@ packages:
   caniuse-lite@1.0.30001597:
     resolution: {integrity: sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==}
 
+  capacitor-video-player@5.5.1:
+    resolution: {integrity: sha512-8XbrEInrZifW0UXQwj3UFG4ZBNlom+CTvwoj/ksh/bei48lO1hKV2eZtyvY/UogPt5X59C/Z1+fCA2py3vWAiA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+      hls.js: ^1.4.0
+
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -2940,6 +2947,9 @@ packages:
   hex-rgb@4.3.0:
     resolution: {integrity: sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw==}
     engines: {node: '>=6'}
+
+  hls.js@1.5.8:
+    resolution: {integrity: sha512-hJYMPfLhWO7/7+n4f9pn6bOheCGx0WgvVz7k3ouq3Pp1bja48NN+HeCQu3XCGYzqWQF/wo7Sk6dJAyWVJD8ECA==}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -7708,6 +7718,11 @@ snapshots:
 
   caniuse-lite@1.0.30001597: {}
 
+  capacitor-video-player@5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.8):
+    dependencies:
+      '@capacitor/core': 5.7.2
+      hls.js: 1.5.8
+
   chalk@2.4.2:
     dependencies:
       ansi-styles: 3.2.1
@@ -8566,6 +8581,8 @@ snapshots:
       function-bind: 1.1.2
 
   hex-rgb@4.3.0: {}
+
+  hls.js@1.5.8: {}
 
   hookable@5.5.3: {}
 

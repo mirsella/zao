@@ -18,7 +18,7 @@
     "@vue-youtube/component": "^0.0.6",
     "@vue-youtube/core": "^0.0.6",
     "buffer": "^6.0.3",
-    "capacitor-video-player": "link:../capacitor-video-player",
+    "capacitor-video-player": "^5.5.1",
     "jeep-sqlite": "^2.7.0",
     "nuxt": "^3.10.3",
     "nuxt-appwrite": "^1.1.0",
