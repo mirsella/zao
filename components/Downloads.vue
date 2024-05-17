@@ -81,6 +81,7 @@ document.addEventListener("fullscreenchange", () => {
           class="aspect-video h-auto w-auto"
           :src="video.data"
           controls="true"
+          controlslist="nodownload"
           onclick="this.play();arguments[0].preventDefault();"
         ></video>
 
