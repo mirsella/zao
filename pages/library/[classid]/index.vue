@@ -88,7 +88,11 @@ document.addEventListener("fullscreenchange", () => {
         @play="play"
       />
       <p class="divider my-6">Commentaires:</p>
-      <Comments :comments="cl.comments" :classid="cl.$id" class="max-w-4xl" />
+      <Comments
+        :comments="cl.comments || []"
+        :classid="cl.$id"
+        class="max-w-4xl"
+      />
     </div>
     <span
       v-else
