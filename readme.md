@@ -1,7 +1,7 @@
 mentorclass.com
 mentorshow.com
 
-lemonsqueezy payements
+lemonsqueezy payements 0.5e + 5% fee
 serversmtp.com 200 emails/day free (15e/month after)
 domain: 12e/year for .com
 appwrite 15e/month
@@ -21,3 +21,8 @@ apple app store
 
 about offline video player
 https://chatgpt.com/share/32ce162a-42c3-4fe2-9b17-618e18b5bfca
+
+new idea:
+podcast. only audio ?
+improve style. how ?
+community. discord ? forum ?
