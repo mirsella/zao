@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">inspire</string>
-    <string name="title_activity_main">inspire</string>
-    <string name="package_name">com.inspire.app</string>
-    <string name="custom_url_scheme">com.inspire.app</string>
+    <string name="app_name">zao</string>
+    <string name="title_activity_main">zao</string>
+    <string name="package_name">com.zao.app</string>
+    <string name="custom_url_scheme">com.zao.app</string>
 </resources>

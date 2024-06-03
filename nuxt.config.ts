@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "nuxt-appwrite", "@nuxtjs/seo"],
   app: {
+    head: {
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+    },
     keepAlive: true,
   },
   devtools: { enabled: true },
@@ -30,8 +33,8 @@ export default defineNuxtConfig({
   // nuxt seo module
   site: {
     url: process.env.SITE_URL || "http://localhost:3000",
-    name: "Inspire",
-    description: "quality video classes to improve your life",
+    name: "Zao",
+    description: "quality podcast to improve your life",
     defaultLocale: "fr",
   },
 });

@@ -1,6 +1,6 @@
 {
-  "appId": "com.inspire.app",
-  "appName": "Inspire",
+  "appId": "com.zao.app",
+  "appName": "Zao",
   "webDir": ".output/public",
   "server": {
     "androidScheme": "https"

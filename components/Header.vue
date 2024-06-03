@@ -9,18 +9,18 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <div class="navbar">
-    <div class="navbar-start">
-      <button
-        class="btn btn-circle btn-ghost hover:scale-105"
-        v-if="$route.name != 'index' && network"
-        @click="$router.back()"
-      >
-        <span class="i-carbon-arrow-left size-6"></span>
-      </button>
-    </div>
-    <div class="navbar-center">
-      <a class="font-bold text-center text-xl">Inspire 🍿</a>
+  <div class="navbar md:p-4">
+    <div class="navbar-start gap-4">
+      <div class="flex items-center">
+        <img
+          src="/assets/owl.svg"
+          alt="logo"
+          class="size-10 dark:invert text opacity-85"
+        />
+        <a class="font-bold text-center text-xl">Zao</a>
+      </div>
+      <div>page histoire</div>
+      <div>page sante mental</div>
     </div>
     <div class="navbar-end" v-if="network">
       <NuxtLink

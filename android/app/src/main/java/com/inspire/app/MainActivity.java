@@ -1,4 +1,4 @@
-package com.inspire.app;
+package com.zao.app;
 
 import com.getcapacitor.BridgeActivity;
 
