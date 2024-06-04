@@ -1,10 +1,8 @@
 import { Capacitor } from "@capacitor/core";
 
 export const useMobile = () => {
-  // FIXME: to test mobile only components on dev
-  if (process.env.NODE_ENV === "development") {
-    return true;
-  }
-
-  return Capacitor.isNativePlatform();
+  // screen.orientation is usually defined on mobile devices but not on desktop
+  return (
+    Capacitor.isNativePlatform() || typeof screen.orientation !== "undefined"
+  );
 };
