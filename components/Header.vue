@@ -9,7 +9,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <div class="navbar md:p-4">
+  <div class="navbar">
     <div class="navbar-start gap-4">
       <Logo />
       <div>page histoire</div>
@@ -17,25 +17,18 @@ onMounted(async () => {
     </div>
     <div class="navbar-end" v-if="network">
       <NuxtLink
-        v-if="$route.name != 'index'"
-        to="/library"
-        class="mx-1 btn btn-primary tooltip tooltip-left hover:scale-105"
-        activeClass="shadow-md shadow-primary"
-        data-tip="Bibliothèque"
-      >
-        <span class="my-2 i-carbon-media-library size-8"></span>
-      </NuxtLink>
-      <NuxtLink
         to="/settings"
-        class="mx-1 btn btn-primary tooltip tooltip-left hover:scale-105"
+        class="mx-1 btn btn-primary"
         activeClass="shadow-md shadow-primary"
         data-tip="Compte / Paramètres"
       >
-        <span
-          v-if="isloggedin"
-          class="my-2 i-carbon-user-settings size-8"
+        <a v-if="isloggedin" class="my-2 flex items-center gap-2">
+          Compte & Paramètres
+          <span class="i-carbon-user-settings size-8"></span>
+        </a>
+        <span v-else class="my-2">
+          Se connecter <span class="i-carbon-user size-8"></span
         ></span>
-        <span v-else class="my-2 i-carbon-user size-8"></span>
       </NuxtLink>
     </div>
   </div>

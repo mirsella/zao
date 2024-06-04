@@ -26,8 +26,10 @@ onMounted(() => {
   </div>
 
   <div v-else>
-    <Header />
-    <NuxtPage class="mb-auto" />
+    <Header
+      class="p-6 bg-gradient-to-b from-base-300 from-80% to-transparent pb-10"
+    />
+    <NuxtPage />
     <Footer class="mt-10" />
   </div>
 </template>
