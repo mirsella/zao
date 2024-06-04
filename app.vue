@@ -15,6 +15,7 @@ onMounted(() => {
       <NuxtPage class="mb-auto" />
     </div>
     <div v-else>
+      <Logo class="p-4" />
       <p class="text-center text-xl prose m-6">
         Vous êtes hors ligne. vous pouvez seulement voir les vidéos
         préalablement télécharger.
@@ -23,6 +24,7 @@ onMounted(() => {
     </div>
     <NuxtPage class="mb-auto" />
   </div>
+
   <div v-else>
     <Header />
     <NuxtPage class="mb-auto" />

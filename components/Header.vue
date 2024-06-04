@@ -11,14 +11,7 @@ onMounted(async () => {
 <template>
   <div class="navbar md:p-4">
     <div class="navbar-start gap-4">
-      <div class="flex items-center">
-        <img
-          src="/assets/owl.svg"
-          alt="logo"
-          class="size-10 dark:invert text opacity-85"
-        />
-        <a class="font-bold text-center text-xl">Zao</a>
-      </div>
+      <Logo />
       <div>page histoire</div>
       <div>page sante mental</div>
     </div>
