@@ -14,8 +14,7 @@ definePageMeta({
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 class="text-5xl p-4 font-bold">
-            Du contenu de
-            <h1 class="font-extrabold underline">qualité.</h1>
+            Les meilleurs podcasts en illimite.
           </h1>
           <NuxtLink
             to="/library"

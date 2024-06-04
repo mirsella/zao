@@ -30,6 +30,7 @@
     "@capacitor/cli": "^5.7.2",
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@iconify-json/carbon": "^1.1.31",
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "2.0.0-rc.9",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@tailwindcss/typography": "^0.5.10",

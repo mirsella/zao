@@ -1,11 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "nuxt-appwrite", "@nuxtjs/seo"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "nuxt-appwrite",
+    "@nuxtjs/seo",
+    "@nuxtjs/google-fonts",
+  ],
   app: {
     head: {
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
     keepAlive: true,
+  },
+  googleFonts: {
+    families: {
+      Roboto: true,
+    },
   },
   devtools: { enabled: true },
   // for mobile we can't use ssr (capacitor)
