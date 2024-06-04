@@ -14,13 +14,13 @@ definePageMeta({
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 class="text-5xl p-4 font-bold">
-            Les meilleurs podcasts en illimite.
+            Les meilleurs podcasts en illimité.
           </h1>
           <NuxtLink
             to="/library"
             class="m-2 btn btn-primary shadow-primary shadow-md"
           >
-            Accéder a la bibliothèque
+            Commencer
             <span class="i-carbon-arrow-right size-6" />
           </NuxtLink>
         </div>

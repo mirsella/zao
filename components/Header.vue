@@ -10,17 +10,30 @@ onMounted(async () => {
 </script>
 <template>
   <div class="navbar">
-    <div class="navbar-start gap-4">
-      <Logo />
-      <div>page histoire</div>
-      <div>page sante mental</div>
+    <div class="navbar-start gap-4 !text-2xl">
+      <NuxtLink to="/">
+        <Logo />
+      </NuxtLink>
+      <NuxtLink
+        to="/history"
+        class="btn"
+        activeClass="shadow-md ring-1 ring-primary"
+      >
+        histoires
+      </NuxtLink>
+      <NuxtLink
+        to="/library"
+        class="btn"
+        activeClass="shadow-md ring-1 ring-primary"
+      >
+        santé mental
+      </NuxtLink>
     </div>
     <div class="navbar-end" v-if="network">
       <NuxtLink
         to="/settings"
-        class="mx-1 btn btn-primary"
-        activeClass="shadow-md shadow-primary"
-        data-tip="Compte / Paramètres"
+        class="btn"
+        activeClass="shadow-md ring-1 ring-primary"
       >
         <a v-if="isloggedin" class="my-2 flex items-center gap-2">
           Compte & Paramètres
