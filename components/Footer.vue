@@ -9,6 +9,7 @@
       <a class="link link-hover" href="mailto:mirsella@protonmail.com"
         >mirsella@protonmail.com</a
       >
+      <p>logo par iconscout.com</p>
     </nav>
     <nav>
       <h6 class="footer-title">Applications</h6>
