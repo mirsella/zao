@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: () => {
-    if (useMobile() && process.env.NODE_ENV !== "development") {
+    if (isMobile() && process.env.NODE_ENV !== "development") {
       return navigateTo("/library");
     }
   },

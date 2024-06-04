@@ -27,6 +27,6 @@ defineProps({
         Si l'erreur persiste, contactez nous.
       </p>
     </div>
-    <Footer class="mt-10" v-if="!useMobile()" />
+    <Footer class="mt-10" v-if="!isMobile()" />
   </div>
 </template>

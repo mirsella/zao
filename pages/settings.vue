@@ -147,7 +147,7 @@ async function logout() {
         </button>
       </div>
     </div>
-    <div v-if="useMobile()">
+    <div v-if="isMobile()">
       <div class="divider my-6">Téléchargements</div>
       <Downloads />
     </div>

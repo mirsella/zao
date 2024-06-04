@@ -41,7 +41,7 @@ async function download() {
       <span>{{ data.description }}</span>
       <div class="card-actions justify-end">
         <button
-          v-if="useMobile()"
+          v-if="isMobile()"
           @click="download"
           :class="{
             'btn-disabled !cursor-not-allowed':
