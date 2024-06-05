@@ -26,14 +26,14 @@ definePageMeta({
       </div>
       <div>CARROUSEL</div>
     </div>
-    <div class="grid grid-cols-1 m-6 gap-6">
-      <div class="card bg-base-300 shadow-xl">
+    <div class="grid grid-cols-1 m-6 gap-10">
+      <div class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <p class="card-title">Title 1</p>
           <p class="card-body">bla bla</p>
         </div>
       </div>
-      <div class="card bg-base-300 shadow-xl">
+      <div class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <p class="card-title">Applications IOS & Android</p>
           <p class="card-body">
@@ -42,7 +42,7 @@ definePageMeta({
           </p>
         </div>
       </div>
-      <div class="card bg-base-300 shadow-xl">
+      <div class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <p class="card-title">7€ par mois.</p>
           <div class="card-body">
