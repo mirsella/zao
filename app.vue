@@ -21,8 +21,8 @@ onMounted(() => {
         préalablement télécharger.
       </p>
       <Downloads />
+      <NuxtPage class="mb-auto" />
     </div>
-    <NuxtPage class="mb-auto" />
   </div>
 
   <div v-else>
