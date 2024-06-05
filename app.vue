@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <div v-if="isMobile()" class="flex flex-col h-screen">
     <div v-if="network">
-      <NuxtPage class="mb-auto" />
+      <NuxtPage class="m-10" />
     </div>
     <div v-else>
       <Logo class="p-4" />
@@ -21,14 +21,13 @@ onMounted(() => {
         préalablement télécharger.
       </p>
       <Downloads />
-      <NuxtPage class="mb-auto" />
     </div>
   </div>
 
   <div v-else>
     <Header class="p-6 bg-gradient-to-b from-base-300 from-80% pb-10" />
-    <NuxtPage />
-    <Footer class="mt-10" />
+    <NuxtPage class="m-10" />
+    <Footer />
   </div>
 </template>
 

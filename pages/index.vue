@@ -9,24 +9,24 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <div class="hero">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl p-4 font-bold">
-            Les meilleurs podcasts en illimité.
-          </h1>
-          <NuxtLink
-            to="/library"
-            class="m-2 btn btn-primary shadow-primary shadow-md"
-          >
-            Commencer
-            <span class="i-carbon-arrow-right size-6" />
-          </NuxtLink>
-        </div>
+  <div class="max-w-4xl mx-auto">
+    <div class="flex flex-wrap gap-6 mx-auto p-2">
+      <div class="max-w-md">
+        <p class="text-5xl py-6 font-bold">
+          Les podcasts qui vont transformer votre vie.
+        </p>
+        <p class="text-xl py-6">
+          contenus de qualité, exclusif, <br />
+          où que vous soyez.
+        </p>
+        <NuxtLink to="/library" class="my-4 btn shadow-md">
+          Commencer
+          <span class="i-carbon-arrow-right size-6" />
+        </NuxtLink>
       </div>
+      <div>CARROUSEL</div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 m-6 gap-6">
+    <div class="grid grid-cols-1 m-6 gap-6">
       <div class="card bg-base-300 shadow-xl">
         <div class="card-body">
           <p class="card-title">Title 1</p>
