@@ -9,7 +9,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto">
+  <div class="mx-auto max-w-[80%]">
     <div class="flex flex-wrap gap-6 mx-auto p-2">
       <div class="max-w-md">
         <p class="text-5xl py-6 font-bold">
