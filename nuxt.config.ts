@@ -6,6 +6,12 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxtjs/google-fonts",
   ],
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) =>
+        ["swiper-container", "swiper-slide"].includes(tag),
+    },
+  },
   app: {
     head: {
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],

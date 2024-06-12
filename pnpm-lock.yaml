@@ -41,6 +41,9 @@ importers:
       nuxt-appwrite:
         specifier: ^1.1.0
         version: 1.1.0(encoding@0.1.13)(rollup@4.13.0)
+      swiper:
+        specifier: ^11.1.4
+        version: 11.1.4
       vue:
         specifier: ^3.4.21
         version: 3.4.21
@@ -4672,6 +4675,10 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  swiper@11.1.4:
+    resolution: {integrity: sha512-1n7kbYJB2dFEpUHRFszq7gys/ofIBrMNibwTiMvPHwneKND/t9kImnHt6CfGPScMHgI+dWMbGTycCKGMoOO1KA==}
+    engines: {node: '>= 4.7.0'}
+
   system-architecture@0.1.0:
     resolution: {integrity: sha512-ulAk51I9UVUyJgxlv9M6lFot2WP3e7t8Kz9+IS6D4rVba1tR9kON+Ey69f+1R4Q8cd45Lod6a4IcJIxnzGc/zA==}
     engines: {node: '>=18'}
@@ -7321,7 +7328,7 @@ snapshots:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.9.0
       '@vueuse/shared': 10.9.0(vue@3.4.21)
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.8(vue@3.4.21)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -7330,7 +7337,7 @@ snapshots:
     dependencies:
       '@vueuse/core': 10.9.0(vue@3.4.21)
       '@vueuse/shared': 10.9.0(vue@3.4.21)
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.8(vue@3.4.21)
     optionalDependencies:
       focus-trap: 7.5.4
       fuse.js: 7.0.0
@@ -7347,7 +7354,7 @@ snapshots:
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
       nuxt: 3.10.3(@parcel/watcher@2.4.1)(@types/node@20.11.27)(encoding@0.1.13)(rollup@4.13.0)(sass@1.72.0)(terser@5.29.1)(vite@5.1.6(@types/node@20.11.27)(sass@1.72.0)(terser@5.29.1))
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.8(vue@3.4.21)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - rollup
@@ -7356,7 +7363,7 @@ snapshots:
 
   '@vueuse/shared@10.9.0(vue@3.4.21)':
     dependencies:
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.8(vue@3.4.21)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -8890,7 +8897,7 @@ snapshots:
     dependencies:
       vanilla-jsoneditor: 0.21.6(@lezer/common@1.2.1)
       vue: 3.4.21
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.8(vue@3.4.21)
     transitivePeerDependencies:
       - '@lezer/common'
 
@@ -10886,6 +10893,8 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.0.0
+
+  swiper@11.1.4: {}
 
   system-architecture@0.1.0: {}
 

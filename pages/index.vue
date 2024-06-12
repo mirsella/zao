@@ -10,8 +10,8 @@ definePageMeta({
 
 <template>
   <div class="mx-auto max-w-[80%]">
-    <div class="flex flex-wrap gap-6 mx-auto p-2">
-      <div class="max-w-md">
+    <div class="flex flex-wrap md:flex-nowrap gap-6 mx-auto p-2 items-center">
+      <div class="md:w-1/3">
         <p class="text-5xl py-6 font-bold">
           Les podcasts qui vont transformer votre vie.
         </p>
@@ -24,7 +24,7 @@ definePageMeta({
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
       </div>
-      <div>CARROUSEL</div>
+      <Carousel class="bg-red-100 md:w-2/3 h-full" />
     </div>
     <div class="grid grid-cols-1 m-6 gap-10">
       <div class="card bg-base-200 shadow-xl">

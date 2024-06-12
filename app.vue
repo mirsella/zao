@@ -25,7 +25,7 @@ onMounted(() => {
   </div>
 
   <div v-else>
-    <Header class="p-6 bg-gradient-to-b from-base-300 from-80% pb-10" />
+    <Header class="p-6 pb-10 bg-gradient-to-b from-base-300 from-80% mb-20" />
     <NuxtPage class="m-10" />
     <Footer />
   </div>
