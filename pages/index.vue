@@ -56,9 +56,9 @@ definePageMeta({
           <div class="card-title text-2xl justify-center">
             ou et quand vous voulez.
           </div>
-          <div class="card-body !gap-8 flex-nowrap">
+          <div class="card-body !gap-8">
             <div class="w-min">
-              <div class="mockup-phone">
+              <div class="mockup-phone p-1">
                 <div class="camera"></div>
                 <div class="display">
                   <div
@@ -78,7 +78,7 @@ definePageMeta({
               </div>
             </div>
 
-            <div class="card card-compact text-center">
+            <div class="card card-compact text-center w-min">
               <p class="card-title justify-center">✔️ hors connection</p>
               <p class="card-body">
                 telecharger vos capsules sur votre smartphone et ecouter les a
@@ -86,7 +86,7 @@ definePageMeta({
               </p>
             </div>
 
-            <div class="mockup-browser border border-base-300">
+            <div class="mockup-browser border-4 border-base-300">
               <div class="mockup-browser-toolbar">
                 <div class="input border border-base-300">https://zao.com</div>
               </div>
