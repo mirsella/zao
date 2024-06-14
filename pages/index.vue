@@ -24,7 +24,7 @@ definePageMeta({
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
       </div>
-      <Carousel class="bg-red-100 md:w-2/3 h-full" />
+      <Carousel class="md:w-2/3" />
     </div>
     <div class="grid grid-cols-1 m-6 gap-10">
       <div class="card bg-base-200 shadow-xl">
