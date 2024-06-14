@@ -6,16 +6,19 @@ register();
 const swiperParams: SwiperOptions = {
   slidesPerView: "auto",
   loop: true,
-  speed: 2000,
+  speed: 5000,
   autoplay: {
-    delay: 500,
-    reverseDirection: false,
+    delay: 1,
+    reverseDirection: true,
   },
   direction: "vertical",
   injectStyles: [
     `
-.swiper {max-height: 40vh;}
-`,
+    .swiper { max-height: 40vh; }
+    .swiper-wrapper {
+      transition-timing-function: linear !important;
+    }
+  `,
   ],
 };
 
@@ -26,7 +29,8 @@ onMounted(() => {
   Object.assign(swiper1.value, swiperParams);
   const reverseParams = structuredClone(swiperParams);
   // @ts-ignore is defined above
-  reverseParams.autoplay.reverseDirection = true;
+  reverseParams.autoplay.reverseDirection = false;
+  // TODO: reverseParams.initialSlide = lenght / 2;
   Object.assign(swiper2.value, reverseParams);
   swiper1.value.initialize();
   swiper2.value.initialize();
