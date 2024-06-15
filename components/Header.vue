@@ -15,7 +15,7 @@ onMounted(async () => {
         <Logo class="h-10" />
       </NuxtLink>
       <NuxtLink
-        to="/history"
+        to="/daily"
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >

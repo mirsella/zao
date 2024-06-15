@@ -36,20 +36,28 @@ const location = window.location;
         <figure>
           <Logo class="h-40" />
         </figure>
-        <div class="card-body max-lg:place-items-center">
+        <div class="card-body max-lg:place-items-center gap-4">
           <p class="card-title">histoires</p>
-          <p class="p-8">
+          <p>
             retrouver tous les jours des nouvelles histoires d'environ 20minutes
             etc...
           </p>
+          <div class="card-actions">
+            <NuxtLink to="/daily" class="btn max-w-48 btn-outline">
+              Commencer
+            </NuxtLink>
+          </div>
         </div>
       </div>
       <div class="card lg:card-side bg-base-200 shadow-md">
-        <div class="card-body place-items-center lg:place-items-end">
+        <div class="card-body place-items-center lg:place-items-end gap-4">
           <p class="card-title">sante mental</p>
-          <p class="p-8">
-            de petits audios de quelques minutes qui vous aident etc...
-          </p>
+          <p>de petits audios de quelques minutes qui vous aident etc...</p>
+          <div class="card-actions">
+            <NuxtLink to="/capsules" class="btn max-w-48 btn-outline">
+              Commencer
+            </NuxtLink>
+          </div>
         </div>
         <figure>
           <Logo class="h-40" />
