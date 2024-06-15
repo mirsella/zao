@@ -13,7 +13,7 @@ const location = window.location;
 <template>
   <div class="mx-auto max-w-[80%]">
     <div class="flex flex-wrap lg:flex-nowrap gap-6 mx-auto p-2 items-center">
-      <div class="lg:w-1/3">
+      <div class="lg:w-1/3 max-md:text-center">
         <p class="text-5xl py-6 font-bold">
           Les podcasts qui vont transformer votre vie.
         </p>
