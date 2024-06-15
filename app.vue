@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // preload account and classes
 useAccount();
-useClasses();
+usePodcasts();
 const network = useState("network", () => true);
 onMounted(() => {
   window.addEventListener("offline", () => (network.value = false));

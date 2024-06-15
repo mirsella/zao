@@ -7,7 +7,7 @@ const { storage } = useAppwrite();
 const route = useRoute();
 const cl = ref<Class>();
 
-useClasses().then((classes) => {
+usePodcasts().then((classes) => {
   cl.value = classes.value.find((cl) => cl.$id === route.params.classid);
   if (!cl.value) {
     showError("cette classe n'existe pas");

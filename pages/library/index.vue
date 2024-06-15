@@ -7,7 +7,7 @@ const classes = ref<Class[]>([]);
 const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
 
-useClasses().then((data) => {
+usePodcasts().then((data) => {
   classes.value = data.value;
   tags.value = Array.from(
     new Set(data.value.flatMap((cl) => cl.tags).filter((tag) => tag.length)),
