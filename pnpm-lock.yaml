@@ -20,18 +20,9 @@ importers:
       '@capacitor/ios':
         specifier: ^5.7.2
         version: 5.7.2(@capacitor/core@5.7.2)
-      '@vue-youtube/component':
-        specifier: ^0.0.6
-        version: 0.0.6(vue@3.4.21)
-      '@vue-youtube/core':
-        specifier: ^0.0.6
-        version: 0.0.6(vue@3.4.21)
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
-      capacitor-video-player:
-        specifier: ^5.5.1
-        version: 5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.8)
       jeep-sqlite:
         specifier: ^2.7.0
         version: 2.7.0
@@ -1684,33 +1675,6 @@ packages:
       vue:
         optional: true
 
-  '@vue-youtube/component@0.0.6':
-    resolution: {integrity: sha512-Ouv7VJy8r//F9gE8Y1H2M0d4IQmOtZh8I79ttgsAGge3a/AdtXzSBVJ7ijhCAH4ZNulkhsN3CO46V/ReW5mwKA==}
-    peerDependencies:
-      '@vue/composition-api': ^1.7.2
-      vue: ^2.7.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
-  '@vue-youtube/core@0.0.6':
-    resolution: {integrity: sha512-3bqs41WCP1901vv7EXxYD0/mKhhjq6YA3r9Lhr0wyFV+UHPLyxcZZ50yUtkXn1cIr9Pz0DRzEGwi65Quj94Pmg==}
-    peerDependencies:
-      '@vue/composition-api': ^1.7.2
-      vue: ^2.7.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
-  '@vue-youtube/shared@0.0.6':
-    resolution: {integrity: sha512-5GxwPkiHOhNpjBbRuL5UmE4EpX8hmTpA+UOiTNEZzeYyrGY6iSYwL8w3Ot+QJ8Koc3K0o9GHD8XywHrKDXbs3g==}
-    peerDependencies:
-      '@vue/composition-api': ^1.7.2
-      vue: ^2.7.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
   '@vue/babel-helper-vue-transform-on@1.2.1':
     resolution: {integrity: sha512-jtEXim+pfyHWwvheYwUwSXm43KwQo8nhOBDyjrUITV6X2tB7lJm6n/+4sqR8137UVZZul5hBzWHdZ2uStYpyRQ==}
 
@@ -2144,13 +2108,6 @@ packages:
 
   caniuse-lite@1.0.30001597:
     resolution: {integrity: sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==}
-
-  capacitor-video-player@5.5.1:
-    resolution: {integrity: sha512-8XbrEInrZifW0UXQwj3UFG4ZBNlom+CTvwoj/ksh/bei48lO1hKV2eZtyvY/UogPt5X59C/Z1+fCA2py3vWAiA==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@capacitor/core': ^5.0.0
-      hls.js: ^1.4.0
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2959,9 +2916,6 @@ packages:
   hex-rgb@4.3.0:
     resolution: {integrity: sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw==}
     engines: {node: '>=6'}
-
-  hls.js@1.5.8:
-    resolution: {integrity: sha512-hJYMPfLhWO7/7+n4f9pn6bOheCGx0WgvVz7k3ouq3Pp1bja48NN+HeCQu3XCGYzqWQF/wo7Sk6dJAyWVJD8ECA==}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -5094,17 +5048,6 @@ packages:
   vue-bundle-renderer@2.0.0:
     resolution: {integrity: sha512-oYATTQyh8XVkUWe2kaKxhxKVuuzK2Qcehe+yr3bGiaQAhK3ry2kYE4FWOfL+KO3hVFwCdLmzDQTzYhTi9C+R2A==}
 
-  vue-demi@0.14.7:
-    resolution: {integrity: sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
   vue-demi@0.14.8:
     resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
     engines: {node: '>=12'}
@@ -7221,24 +7164,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  '@vue-youtube/component@0.0.6(vue@3.4.21)':
-    dependencies:
-      '@vue-youtube/core': 0.0.6(vue@3.4.21)
-      '@vue-youtube/shared': 0.0.6(vue@3.4.21)
-      vue: 3.4.21
-      vue-demi: 0.14.7(vue@3.4.21)
-
-  '@vue-youtube/core@0.0.6(vue@3.4.21)':
-    dependencies:
-      '@vue-youtube/shared': 0.0.6(vue@3.4.21)
-      vue: 3.4.21
-      vue-demi: 0.14.8(vue@3.4.21)
-
-  '@vue-youtube/shared@0.0.6(vue@3.4.21)':
-    dependencies:
-      vue: 3.4.21
-      vue-demi: 0.14.8(vue@3.4.21)
-
   '@vue/babel-helper-vue-transform-on@1.2.1': {}
 
   '@vue/babel-plugin-jsx@1.2.1(@babel/core@7.24.0)':
@@ -7759,11 +7684,6 @@ snapshots:
       lodash.uniq: 4.5.0
 
   caniuse-lite@1.0.30001597: {}
-
-  capacitor-video-player@5.5.1(@capacitor/core@5.7.2)(hls.js@1.5.8):
-    dependencies:
-      '@capacitor/core': 5.7.2
-      hls.js: 1.5.8
 
   chalk@2.4.2:
     dependencies:
@@ -8630,8 +8550,6 @@ snapshots:
       function-bind: 1.1.2
 
   hex-rgb@4.3.0: {}
-
-  hls.js@1.5.8: {}
 
   hookable@5.5.3: {}
 
@@ -11430,10 +11348,6 @@ snapshots:
   vue-bundle-renderer@2.0.0:
     dependencies:
       ufo: 1.4.0
-
-  vue-demi@0.14.7(vue@3.4.21):
-    dependencies:
-      vue: 3.4.21
 
   vue-demi@0.14.8(vue@3.4.21):
     dependencies:
