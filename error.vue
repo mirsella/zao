@@ -7,7 +7,7 @@ defineProps({
 <template>
   <div class="flex flex-col h-screen">
     <NuxtLink to="/" class="m-6">
-      <Logo />
+      <Logo class="w-20" />
     </NuxtLink>
     <div class="mb-auto mt-6 grid place-items-center gap-4 m-2">
       <p class="text-3xl font-bold">Une erreur est survenue:</p>
@@ -20,7 +20,7 @@ defineProps({
         <p>Vous pouvez essayer de relancer l'application, ou</p>
         <button
           class="btn btn-primary btn-sm m-2 shadow-md shadow-primary"
-          @click="clearError({ redirect: '/library' })"
+          @click="clearError({ redirect: '/capsules' })"
         >
           retourner a la bibliothèque
         </button>

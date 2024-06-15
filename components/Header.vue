@@ -22,7 +22,7 @@ onMounted(async () => {
         HISTOIRES
       </NuxtLink>
       <NuxtLink
-        to="/library"
+        to="/capsules"
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >

@@ -75,7 +75,7 @@ function toggleTag(tag: string) {
         v-for="cl in classesfiltered"
         :data="cl"
         class="hover:shadow-md hover:shadow-secondary hover:scale-[1.01] btn"
-        @click="navigateTo(`/library/${cl.$id}`)"
+        @click="navigateTo(`/capsules/${cl.$id}`)"
       />
     </template>
     <span

@@ -14,7 +14,7 @@ watch(
       if (redirectPath) {
         router.back();
       } else {
-        await router.replace("/library");
+        await router.replace("/capsules");
       }
     }
   },

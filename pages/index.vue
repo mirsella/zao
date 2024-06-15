@@ -2,7 +2,7 @@
 definePageMeta({
   middleware: () => {
     if (isMobile() && process.env.NODE_ENV !== "development") {
-      return navigateTo("/library");
+      return navigateTo("/capsules");
     }
   },
 });
@@ -21,7 +21,7 @@ const location = window.location;
           contenus de qualité, exclusif, <br />
           où que vous soyez.
         </p>
-        <NuxtLink to="/library" class="my-4 btn shadow-md">
+        <NuxtLink to="/capsules" class="my-4 btn shadow-md">
           Commencer
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
