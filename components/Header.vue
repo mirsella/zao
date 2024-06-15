@@ -12,7 +12,7 @@ onMounted(async () => {
   <div class="navbar">
     <div class="navbar-start gap-4 !text-2xl">
       <NuxtLink to="/">
-        <Logo />
+        <Logo class="h-10" />
       </NuxtLink>
       <NuxtLink
         to="/history"

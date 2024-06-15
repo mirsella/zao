@@ -76,11 +76,11 @@ async function devlogin() {
 
 <template>
   <div class="items-center flex flex-col mt-4 max-w-3xl mx-auto">
-    <span class="text-center text-3xl font-bold">
+    <span class="text-center text-3xl font-bold m-6">
       Connectez vous. nous allons vous envoyer un code de vérification par mail.
     </span>
     <form
-      class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
+      class="card card-body grow-0 w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
       @submit.prevent="submitEmail"
     >
       <label class="flex input input-bordered items-center gap-2">

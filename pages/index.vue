@@ -32,7 +32,7 @@ const location = window.location;
     <div class="grid grid-cols-1 my-10 gap-10">
       <div class="card lg:card-side bg-base-200 shadow-md">
         <figure>
-          <img src="/assets/owl.svg" class="aspect-square size-36" />
+          <Logo class="h-40" />
         </figure>
         <div class="card-body">
           <p class="card-title">histoires</p>
@@ -50,7 +50,7 @@ const location = window.location;
           </p>
         </div>
         <figure>
-          <img src="/assets/owl.svg" class="aspect-square size-36" />
+          <Logo class="h-40" />
         </figure>
       </div>
 

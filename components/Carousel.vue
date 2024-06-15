@@ -42,13 +42,13 @@ onMounted(() => {
     <swiper-container init="false" class="!w-1/2" ref="swiper1">
       <swiper-slide v-for="index of 20" :key="index" class="h-40 border">
         Slide {{ index }}
-        <img src="/assets/owl.svg" class="aspect-square size-36" />
+        <Logo class="h-20" />
       </swiper-slide>
     </swiper-container>
     <swiper-container init="false" class="!w-1/2" ref="swiper2">
       <swiper-slide v-for="index of 20" :key="index" class="h-40 border">
         Slide {{ index }}
-        <img src="/assets/owl.svg" class="aspect-square size-36" />
+        <Logo class="h-20" />
       </swiper-slide>
     </swiper-container>
   </div>
