@@ -17,7 +17,7 @@ const objecturl = ref<string>();
 })();
 </script>
 <template>
-  <NuxtLink :to="`/capsules/${props.pod.$id}`">
+  <NuxtLink :to="`/podcast/${props.pod.$id}`">
     <img :src="objecturl" class="size-full rounded-lg" />
     <p v-if="title" class="text-md mt-4 px-2">{{ props.pod.title }}</p>
   </NuxtLink>

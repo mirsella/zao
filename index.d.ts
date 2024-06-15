@@ -3,7 +3,7 @@ import type { Models } from "nuxt-appwrite";
 export interface Pod extends Models.Document {
   title: string;
   description: string;
-  type: "history" | "mental";
+  type: "daily" | "capsule";
   tags: string[];
   key_points: string[];
   poster_id: string;

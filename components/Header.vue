@@ -19,14 +19,14 @@ onMounted(async () => {
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >
-        HISTOIRES
+        HISTOIRES QUOTIDIENNES
       </NuxtLink>
       <NuxtLink
         to="/capsules"
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >
-        SANTÉ MENTAL
+        CAPSULES MENTAL
       </NuxtLink>
     </div>
     <div class="navbar-end" v-if="network">

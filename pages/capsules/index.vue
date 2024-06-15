@@ -8,9 +8,9 @@ const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
 
 usePodcasts().then((data) => {
-  pods.value = data.value;
+  pods.value = data.value.filter((pod) => pod.type === "capsule");
   tags.value = Array.from(
-    new Set(data.value.flatMap((pod) => pod.tags).filter((tag) => tag.length)),
+    new Set(pods.value.flatMap((pod) => pod.tags).filter((tag) => tag.length)),
   );
 });
 
@@ -27,7 +27,10 @@ const podsfiltered = computed(() =>
       const searchLower = search.value.toLowerCase();
       if (
         !pod.title.toLowerCase().includes(searchLower) &&
-        !pod.description.toLowerCase().includes(searchLower)
+        !pod.description.toLowerCase().includes(searchLower) &&
+        !pod.key_points.some((point) =>
+          point.toLowerCase().includes(searchLower),
+        )
       ) {
         return false;
       }
@@ -58,7 +61,7 @@ function toggleTag(tag: string) {
     </label>
     <template v-if="pods.length">
       <div class="w-full flex items-center justify-center flex-wrap gap-2">
-        <h1 class="inline-block mx-2 prose">Catégories:</h1>
+        <h1 class="inline-block m-4 prose">Catégories:</h1>
         <button
           v-for="tag in tags"
           :class="[
@@ -72,7 +75,7 @@ function toggleTag(tag: string) {
           {{ tag.toLowerCase() }}
         </button>
       </div>
-      <div class="mt-10 grid grid-cols-3 gap-16 justify-between w-3/4">
+      <div class="mt-8 grid grid-cols-3 gap-16 justify-between w-3/4">
         <Poster
           :title="true"
           v-for="pod in podsfiltered"
