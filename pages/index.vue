@@ -118,7 +118,7 @@ const location = window.location;
           </div>
 
           <div
-            class="mockup-browser border-4 border-base-300 dark:border-neutral-700"
+            class="mockup-browser border-4 border-base-300 dark:border-neutral-700 max-md:scale-110"
           >
             <div class="mockup-browser-toolbar">
               <div class="input border border-base-300 dark:border-neutral-700">
@@ -130,7 +130,9 @@ const location = window.location;
             >
               <div class="card lg:w-4/5">
                 <div class="card-body !text-lg text-center">
-                  <p class="card-title">✔️ sur tous les supports</p>
+                  <p class="card-title justify-center">
+                    ✔️ sur tous les supports
+                  </p>
                   Retrouvez le meilleur de l'audio en accès illimité sur votre
                   smartphone, tablette et ordinateur.
                 </div>
