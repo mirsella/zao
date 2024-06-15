@@ -4,7 +4,7 @@ import {
   SQLiteDBConnection,
 } from "@capacitor-community/sqlite";
 import { Buffer } from "buffer";
-import type { SQLiteVideo, Video } from "~";
+import type { SQLitePod, Pod } from "~";
 import {
   defineCustomElements as jeepDefineCustomElements,
   applyPolyfills,
@@ -31,7 +31,7 @@ export default defineNuxtPlugin(async () => {
   }
 
   const db: SQLiteDBConnection = await sqlite.createConnection(
-    "video",
+    "podcasts",
     false,
     "no-encryption",
     1,
@@ -39,58 +39,60 @@ export default defineNuxtPlugin(async () => {
   );
   await db.open();
   await db.execute(`
-      CREATE TABLE IF NOT EXISTS videos (
+      CREATE TABLE IF NOT EXISTS podcasts (
         id TEXT PRIMARY KEY,
         data BLOB NOT NULL,
-        video_title TEXT NOT NULL,
+        title TEXT NOT NULL,
         description TEXT NOT NULL,
-        class_title TEXT NOT NULL
+        key_points TEXT NOT NULL
       );
     `);
 
   // https://github.com/capacitor-community/sqlite/blob/master/docs/SQLiteBlob.md
   return {
     provide: {
-      storeVideo: async (url: string, video: Video, class_title: string) => {
+      storePodcast: async (url: string, pod: Pod) => {
         const blob = await (
           await fetch(url, { credentials: "include" })
         ).blob();
-        if (blob.type !== "video/mp4") {
+        if (blob.type !== "audio/mp3") {
           return Promise.reject(
-            new Error("only supporting mp4 video: " + blob.type),
+            new Error("only supporting audio/mp3 podcast: " + blob.type),
           );
         }
         const imageBuffer = Buffer.from(
           new Uint8Array(await blob.arrayBuffer()),
         );
         const ret = await db.run(
-          "INSERT INTO videos (id, data, video_title, class_title, description) VALUES (?, ?, ?, ?, ?)",
-          [video.$id, imageBuffer, video.title, class_title, video.description],
+          "INSERT INTO podcasts (id, data, title, description, key_points) VALUES (?, ?, ?, ?, ?)",
+          [pod.$id, imageBuffer, pod.title, pod.key_points, pod.description],
         );
         if (ret.changes?.changes !== 1) {
           return Promise.reject(new Error("WriteImage failed"));
         }
         return ret.changes?.values;
       },
-      getVideos: async (): Promise<SQLiteVideo[]> => {
-        const ret = await db.query("SELECT * FROM videos");
-        for (let video of ret.values!) {
-          const arr = new Uint8Array(video.data);
-          const blob = new Blob([arr], { type: "mp4" });
-          video.data = URL.createObjectURL(blob);
+      getPodcasts: async (): Promise<SQLitePod[]> => {
+        const ret = await db.query("SELECT * FROM podcasts");
+        for (let podcast of ret.values!) {
+          const arr = new Uint8Array(podcast.data);
+          const blob = new Blob([arr], { type: "mp3" });
+          podcast.data = URL.createObjectURL(blob);
         }
-        return ret.values as SQLiteVideo[];
+        return ret.values as SQLitePod[];
       },
-      videoExist: async (id: string): Promise<boolean> => {
-        const ret = await db.query("SELECT id FROM videos WHERE id = ?", [id]);
+      podcastExist: async (id: string): Promise<boolean> => {
+        const ret = await db.query("SELECT id FROM podcasts WHERE id = ?", [
+          id,
+        ]);
         if (ret.values?.length === 0) {
           return false;
         } else {
           return true;
         }
       },
-      deleteVideo: async (id: string) => {
-        const ret = await db.run("DELETE FROM videos WHERE id = ?", [id]);
+      deletePodcast: async (id: string) => {
+        const ret = await db.run("DELETE FROM podcasts WHERE id = ?", [id]);
       },
     },
   };

@@ -4,6 +4,3 @@ project(':capacitor-android').projectDir = new File('../node_modules/.pnpm/@capa
 
 include ':capacitor-community-sqlite'
 project(':capacitor-community-sqlite').projectDir = new File('../node_modules/.pnpm/@capacitor-community+sqlite@5.7.2_@capacitor+core@5.7.2/node_modules/@capacitor-community/sqlite/android')
-
-include ':capacitor-video-player'
-project(':capacitor-video-player').projectDir = new File('../node_modules/.pnpm/capacitor-video-player@5.5.1_@capacitor+core@5.7.2_hls.js@1.5.8/node_modules/capacitor-video-player/android')
