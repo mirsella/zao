@@ -34,16 +34,16 @@ definePageMeta({
         </figure>
         <div class="card-body">
           <p class="card-title">histoires</p>
-          <p class="card-body">
+          <p class="p-8">
             retrouver tous les jours des nouvelles histoires d'environ 20minutes
             etc...
           </p>
         </div>
       </div>
       <div class="card lg:card-side bg-base-200 shadow-md">
-        <div class="card-body">
+        <div class="card-body place-items-end">
           <p class="card-title">sante mental</p>
-          <p class="card-body">
+          <p class="p-8">
             de petits audios de quelques minutes qui vous aident etc...
           </p>
         </div>
@@ -104,6 +104,9 @@ definePageMeta({
                       écoutez-les à tout moment pour ne rien manquer de vos
                       contenus favoris.
                     </p>
+                  </div>
+                  <div class="py-12 italic">
+                    app store & play store link here
                   </div>
                 </div>
               </div>
