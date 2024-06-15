@@ -75,10 +75,10 @@ async function devlogin() {
 </script>
 
 <template>
-  <div class="w-full items-center flex flex-col mt-4">
-    <button class="btn btn-error m-4" @click="devlogin">
-      dev login as insertemail@gmail.com
-    </button>
+  <div class="items-center flex flex-col mt-4 max-w-3xl mx-auto">
+    <span class="text-center text-3xl font-bold">
+      Connectez vous. nous allons vous envoyer un code de vérification par mail.
+    </span>
     <form
       class="card card-body w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
       @submit.prevent="submitEmail"
@@ -100,6 +100,13 @@ async function devlogin() {
         Envoyer le mail de vérification
       </button>
     </form>
+    <button
+      class="btn btn-error m-4 opacity-40 absolute left-0 top-80"
+      @click="devlogin"
+    >
+      <!-- FIXME: remove -->
+      dev login
+    </button>
     <div
       v-show="showOTP"
       class="card card-body w-full max-w-sm md:max-w-lg mt-5 shadow-md bg-base-300 transition-all duration-1000"
