@@ -1,32 +1,33 @@
 <script setup lang="ts">
-import type { Class } from "~";
+import type { Pod } from "~";
 
 useHeadSafe({ title: "Bibliothèque" });
 const search = ref("");
-const classes = ref<Class[]>([]);
+const pods = ref<Pod[]>([]);
 const tags = ref<string[]>([]);
 const selectedtags = ref<string[]>([]);
 
 usePodcasts().then((data) => {
-  classes.value = data.value;
+  pods.value = data.value;
   tags.value = Array.from(
-    new Set(data.value.flatMap((cl) => cl.tags).filter((tag) => tag.length)),
+    new Set(data.value.flatMap((pod) => pod.tags).filter((tag) => tag.length)),
   );
 });
 
-const classesfiltered = computed(() =>
-  classes.value.filter((cl) => {
+// TODO: better search with more
+const podsfiltered = computed(() =>
+  pods.value.filter((pod) => {
     if (
       selectedtags.value.length &&
-      !selectedtags.value.some((tag) => cl.tags.includes(tag))
+      !selectedtags.value.some((tag) => pod.tags.includes(tag))
     ) {
       return false;
     }
     if (search.value.length) {
       const searchLower = search.value.toLowerCase();
       if (
-        !cl.title.toLowerCase().includes(searchLower) &&
-        !cl.description.toLowerCase().includes(searchLower)
+        !pod.title.toLowerCase().includes(searchLower) &&
+        !pod.description.toLowerCase().includes(searchLower)
       ) {
         return false;
       }
@@ -46,7 +47,7 @@ function toggleTag(tag: string) {
 </script>
 
 <template>
-  <div class="flex flex-col w-full gap-4 p-4 items-center">
+  <div class="flex flex-col gap-4 items-center max-w-7xl mx-auto">
     <label class="input input-secondary flex items-center w-full max-w-lg">
       <input v-model.trim="search" class="grow" placeholder="Recherche..." />
       <button
@@ -55,9 +56,9 @@ function toggleTag(tag: string) {
         @click="search = ''"
       ></button>
     </label>
-    <template v-if="classes.length">
-      <div class="w-full flex items-center justify-center px-2 flex-wrap">
-        <h1 class="inline-block mx-2 prose">Tags:</h1>
+    <template v-if="pods.length">
+      <div class="w-full flex items-center justify-center flex-wrap gap-2">
+        <h1 class="inline-block mx-2 prose">Catégories:</h1>
         <button
           v-for="tag in tags"
           :class="[
@@ -71,12 +72,14 @@ function toggleTag(tag: string) {
           {{ tag.toLowerCase() }}
         </button>
       </div>
-      <ClassPreview
-        v-for="cl in classesfiltered"
-        :data="cl"
-        class="hover:shadow-md hover:shadow-secondary hover:scale-[1.01] btn"
-        @click="navigateTo(`/capsules/${cl.$id}`)"
-      />
+      <div class="mt-10 grid grid-cols-3 gap-16 justify-between w-3/4">
+        <Poster
+          :title="true"
+          v-for="pod in podsfiltered"
+          :pod="pod"
+          class="size-56 my-8"
+        />
+      </div>
     </template>
     <span
       v-else

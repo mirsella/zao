@@ -15,7 +15,7 @@ onMounted(() => {
       <Logo class="h-20 p-4" />
     </NuxtLink>
     <div v-if="network">
-      <NuxtPage class="m-10" />
+      <NuxtPage class="p-10" />
     </div>
     <div v-else>
       <p class="text-center text-xl prose m-6">
@@ -28,7 +28,7 @@ onMounted(() => {
 
   <div v-else>
     <Header class="p-6 pb-10 bg-gradient-to-b from-base-300 from-80% mb-20" />
-    <NuxtPage class="m-10 min-h-screen" />
+    <NuxtPage class="p-10 min-h-screen" />
     <Footer />
   </div>
 </template>
