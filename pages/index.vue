@@ -6,6 +6,8 @@ definePageMeta({
     }
   },
 });
+
+const location = window.location;
 </script>
 
 <template>
@@ -115,7 +117,7 @@ definePageMeta({
 
           <div class="mockup-browser border-4 border-base-300 w-full">
             <div class="mockup-browser-toolbar">
-              <div class="input border border-base-300">https://zao.com</div>
+              <div class="input border border-base-300">{{ location }}</div>
             </div>
             <div
               class="flex justify-center items-center px-4 py-16 border-t border-base-300"
