@@ -5,7 +5,7 @@ export interface Pod extends Models.Document {
   description: string;
   tags: string[];
   key_points: string[];
-  poster: string;
+  poster_id: string;
   file_id: string;
   type: "history" | "mental";
 }
