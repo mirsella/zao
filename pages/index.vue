@@ -93,13 +93,13 @@ const location = window.location;
           </div>
 
           <div class="w-min">
-            <div class="mockup-phone max-md:scale-90">
+            <div class="mockup-phone max-md:scale-75">
               <div class="camera"></div>
               <div class="display">
                 <div
                   class="artboard artboard-demo phone-1 bg-base-200 flex justify-center px-4 py-16"
                 >
-                  <div class="card card-compact text-center">
+                  <div class="card card-compact text-center max-md:scale-[1.2]">
                     <p class="card-title justify-center">
                       ✔️ Même hors connexion
                     </p>
@@ -128,8 +128,8 @@ const location = window.location;
             <div
               class="flex justify-center items-center lg:py-16 border-t border-base-300 dark:border-neutral-700"
             >
-              <div class="card w-4/5">
-                <div class="card-body !text-lg">
+              <div class="card lg:w-4/5">
+                <div class="card-body !text-lg text-center">
                   <p class="card-title">✔️ sur tous les supports</p>
                   Retrouvez le meilleur de l'audio en accès illimité sur votre
                   smartphone, tablette et ordinateur.

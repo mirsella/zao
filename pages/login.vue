@@ -80,7 +80,7 @@ async function devlogin() {
       Connectez vous. nous allons vous envoyer un code de vérification par mail.
     </span>
     <form
-      class="card card-body grow-0 w-full max-w-sm md:max-w-lg shadow-md bg-base-300"
+      class="w-full gap-6 max-w-sm md:max-w-lg"
       @submit.prevent="submitEmail"
     >
       <label class="flex input input-bordered items-center gap-2">
@@ -94,7 +94,7 @@ async function devlogin() {
         />
       </label>
       <button
-        class="btn mt-2 btn-primary tooltip tooltip-bottom"
+        class="btn mt-2 btn-primary tooltip tooltip-bottom w-full"
         data-tip="Vous allez recevoir un code de verification par mail pour se connecter"
       >
         Envoyer le mail de vérification
@@ -109,13 +109,12 @@ async function devlogin() {
     </button>
     <div
       v-show="showOTP"
-      class="card card-body w-full max-w-sm md:max-w-lg mt-5 shadow-md bg-base-300 transition-all duration-1000"
-      :class="{ '!shadow-error': errorOPT }"
+      class="w-full max-w-sm md:max-w-lg mt-10 transition-all duration-2000 rounded-lg"
+      :class="{ 'shadow-[0px_5px_4px_0px] shadow-error': errorOPT }"
     >
       <div class="flex flex-col items-center">
         <h1 class="mb-2">entrez le code reçu par mail:</h1>
         <VOtpInput
-          value=""
           :should-auto-focus="true"
           :should-focus-order="true"
           :num-inputs="6"
