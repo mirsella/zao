@@ -44,61 +44,84 @@ definePageMeta({
         <div class="card-body">
           <p class="card-title">sante mental</p>
           <p class="card-body">
-            de petits audios de quelques minutes qui vous aident à vous etc...
+            de petits audios de quelques minutes qui vous aident etc...
           </p>
         </div>
         <figure>
           <img src="/assets/owl.svg" class="aspect-square size-36" />
         </figure>
       </div>
+
       <div class="card bg-base-200 shadow-md">
-        <div class="card-body">
-          <div class="card-title text-2xl justify-center">
+        <div class="card-body gap-8 flex-wrap flex-row justify-center">
+          <p class="card-title text-2xl justify-center w-full">
             ou et quand vous voulez.
+          </p>
+
+          <div class="flex items-center justify-around flex-col">
+            <div class="card card-compact text-center max-w-80 h-min">
+              <div class="card-body !text-lg">
+                <p class="card-title justify-center">
+                  ✔️ Annulez à tout moment
+                </p>
+                votre accès en illimité. C'est sans engagement : vous annulez
+                quand vous voulez !
+              </div>
+            </div>
+            <div class="card card-compact text-center max-w-80 h-min">
+              <div class="card-body !text-lg">
+                <p class="card-title justify-center">
+                  ✔️ Écoutez les plus grandes histoires
+                </p>
+                Faites le plein d'émotions en écoutant des centaines de
+                créations originales.
+              </div>
+            </div>
+            <div class="card card-compact text-center max-w-80 h-min">
+              <div class="card-body !text-lg">
+                <p class="card-title justify-center">
+                  ✔️ L'audio qui vous ressemble.
+                </p>
+                Personnalisez votre expérience en suivant plus de 70 thématiques
+                au choix, selon vos envies du moment.
+              </div>
+            </div>
           </div>
-          <div class="card-body !gap-8">
-            <div class="w-min">
-              <div class="mockup-phone p-1">
-                <div class="camera"></div>
-                <div class="display">
-                  <div
-                    class="artboard artboard-demo phone-1 bg-base-200 flex justify-center px-4 py-16"
-                  >
-                    <div class="card card-compact text-center">
-                      <p class="card-title justify-center">
-                        ✔️ hors connection
-                      </p>
-                      <p class="card-body">
-                        telecharger vos capsules sur votre smartphone et ecouter
-                        les a tout moment
-                      </p>
-                    </div>
+
+          <div class="w-min">
+            <div class="mockup-phone p-1">
+              <div class="camera"></div>
+              <div class="display">
+                <div
+                  class="artboard artboard-demo phone-1 bg-base-200 flex justify-center px-4 py-16"
+                >
+                  <div class="card card-compact text-center">
+                    <p class="card-title justify-center">
+                      ✔️ Même hors connexion
+                    </p>
+                    <p class="card-body !text-lg">
+                      Téléchargez vos épisodes sur votre smartphone et
+                      écoutez-les à tout moment pour ne rien manquer de vos
+                      contenus favoris.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="card card-compact text-center w-min">
-              <p class="card-title justify-center">✔️ hors connection</p>
-              <p class="card-body">
-                telecharger vos capsules sur votre smartphone et ecouter les a
-                tout moment
-              </p>
+          <div class="mockup-browser border-4 border-base-300 w-full">
+            <div class="mockup-browser-toolbar">
+              <div class="input border border-base-300">https://zao.com</div>
             </div>
-
-            <div class="mockup-browser border-4 border-base-300">
-              <div class="mockup-browser-toolbar">
-                <div class="input border border-base-300">https://zao.com</div>
-              </div>
-              <div
-                class="flex justify-center px-4 py-16 border-t border-base-300"
-              >
-                <div class="card card-compact">
+            <div
+              class="flex justify-center items-center px-4 py-16 border-t border-base-300"
+            >
+              <div class="card w-4/5">
+                <div class="card-body !text-lg">
                   <p class="card-title">✔️ sur tous les supports</p>
-                  <p class="card-body">
-                    Retrouvez le meilleur de l'audio en accès illimité sur votre
-                    smartphone, tablette et ordinateur.
-                  </p>
+                  Retrouvez le meilleur de l'audio en accès illimité sur votre
+                  smartphone, tablette et ordinateur.
                 </div>
               </div>
             </div>

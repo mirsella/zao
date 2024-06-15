@@ -19,14 +19,14 @@ onMounted(async () => {
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >
-        histoires
+        HISTOIRES
       </NuxtLink>
       <NuxtLink
         to="/library"
         class="btn"
         activeClass="shadow-md ring-1 ring-primary"
       >
-        santé mental
+        SANTÉ MENTAL
       </NuxtLink>
     </div>
     <div class="navbar-end" v-if="network">
@@ -39,7 +39,7 @@ onMounted(async () => {
           Compte & Paramètres
           <span class="i-carbon-user-settings size-8"></span>
         </a>
-        <span v-else class="my-2">
+        <span v-else class="my-2 flex items-center gap-2">
           Se connecter <span class="i-carbon-user size-8"></span
         ></span>
       </NuxtLink>
