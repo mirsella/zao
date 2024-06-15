@@ -30,11 +30,13 @@ const location = window.location;
     </div>
 
     <div class="grid grid-cols-1 my-10 gap-10">
-      <div class="card lg:card-side bg-base-200 shadow-md">
+      <div
+        class="card lg:card-side bg-base-200 shadow-md max-lg:flex-col-reverse"
+      >
         <figure>
           <Logo class="h-40" />
         </figure>
-        <div class="card-body">
+        <div class="card-body max-lg:place-items-center">
           <p class="card-title">histoires</p>
           <p class="p-8">
             retrouver tous les jours des nouvelles histoires d'environ 20minutes
@@ -43,7 +45,7 @@ const location = window.location;
         </div>
       </div>
       <div class="card lg:card-side bg-base-200 shadow-md">
-        <div class="card-body place-items-end">
+        <div class="card-body place-items-center lg:place-items-end">
           <p class="card-title">sante mental</p>
           <p class="p-8">
             de petits audios de quelques minutes qui vous aident etc...
@@ -91,7 +93,7 @@ const location = window.location;
           </div>
 
           <div class="w-min">
-            <div class="mockup-phone p-1">
+            <div class="mockup-phone max-md:scale-90">
               <div class="camera"></div>
               <div class="display">
                 <div
@@ -115,12 +117,16 @@ const location = window.location;
             </div>
           </div>
 
-          <div class="mockup-browser border-4 border-base-300 w-full">
+          <div
+            class="mockup-browser border-4 border-base-300 dark:border-neutral-700"
+          >
             <div class="mockup-browser-toolbar">
-              <div class="input border border-base-300">{{ location }}</div>
+              <div class="input border border-base-300 dark:border-neutral-700">
+                {{ location }}
+              </div>
             </div>
             <div
-              class="flex justify-center items-center px-4 py-16 border-t border-base-300"
+              class="flex justify-center items-center lg:py-16 border-t border-base-300 dark:border-neutral-700"
             >
               <div class="card w-4/5">
                 <div class="card-body !text-lg">

@@ -11,11 +11,13 @@ onMounted(() => {
 
 <template>
   <div v-if="isMobile()" class="flex flex-col h-screen">
+    <NuxtLink to="/">
+      <Logo class="h-20 p-4" />
+    </NuxtLink>
     <div v-if="network">
       <NuxtPage class="m-10" />
     </div>
     <div v-else>
-      <Logo class="p-4" />
       <p class="text-center text-xl prose m-6">
         Vous êtes hors ligne. vous pouvez seulement voir les vidéos
         préalablement télécharger.
