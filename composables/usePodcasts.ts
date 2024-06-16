@@ -10,7 +10,10 @@ export const usePodcasts = async () => {
   if (!podcasts.value.length) {
     try {
       if (!call || network === false)
-        call = database.listDocuments("podcasts", "pod", [Query.limit(1000)]);
+        call = database.listDocuments("podcasts", "pod", [
+          Query.limit(1000),
+          Query.orderDesc("$createdAt"),
+        ]);
       podcasts.value = (await call).documents as Pod[];
       // FIXME: for dev only
       podcasts.value = [

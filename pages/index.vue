@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Pod } from "~";
+
 definePageMeta({
   middleware: () => {
     if (isMobile() && process.env.NODE_ENV !== "development") {
@@ -6,7 +8,7 @@ definePageMeta({
     }
   },
 });
-
+const pods = await usePodcasts();
 const location = window.location;
 </script>
 
@@ -29,14 +31,18 @@ const location = window.location;
       <Carousel class="w-full lg:w-2/3 h-96 lg:h-[30rem]" />
     </div>
 
-    <div class="grid grid-cols-1 my-10 gap-10">
+    <div class="grid grid-cols-1 my-20 md:mt-36 gap-20">
       <div
         class="card lg:card-side bg-base-200 shadow-md max-lg:flex-col-reverse"
       >
-        <figure>
-          <Logo class="h-40" />
-        </figure>
-        <div class="card-body max-lg:place-items-center gap-4">
+        <div class="flex place-items-center gap-4 p-4">
+          <Poster
+            v-for="pod in pods.filter((p) => p.type === 'daily')!.slice(0, 2)"
+            :pod="pod"
+            class="size-40 lg:size-56"
+          />
+        </div>
+        <div class="card-body max-lg:place-items-center gap-4 p-4">
           <p class="card-title">histoires</p>
           <p>
             retrouver tous les jours des nouvelles histoires d'environ 20minutes
@@ -50,7 +56,7 @@ const location = window.location;
         </div>
       </div>
       <div class="card lg:card-side bg-base-200 shadow-md">
-        <div class="card-body place-items-center lg:place-items-end gap-4">
+        <div class="card-body place-items-center lg:place-items-end gap-4 p-4">
           <p class="card-title">sante mental</p>
           <p>de petits audios de quelques minutes qui vous aident etc...</p>
           <div class="card-actions">
@@ -59,9 +65,13 @@ const location = window.location;
             </NuxtLink>
           </div>
         </div>
-        <figure>
-          <Logo class="h-40" />
-        </figure>
+        <div class="flex place-items-center gap-4 p-4">
+          <Poster
+            v-for="pod in pods.filter((p) => p.type === 'capsule')!.slice(0, 2)"
+            :pod="pod"
+            class="size-40 lg:size-56"
+          />
+        </div>
       </div>
 
       <div class="card bg-base-200 shadow-md">
