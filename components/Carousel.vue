@@ -6,7 +6,7 @@ register();
 const swiperParams: SwiperOptions = {
   slidesPerView: "auto",
   loop: true,
-  speed: 5000,
+  speed: 7000,
   autoplay: {
     delay: 1,
     reverseDirection: true,
@@ -14,7 +14,7 @@ const swiperParams: SwiperOptions = {
   direction: "vertical",
   injectStyles: [
     `
-    .swiper { max-height: 40vh; }
+    // .swiper { max-height: 40vh; }
     .swiper-wrapper {
       transition-timing-function: linear !important;
     }

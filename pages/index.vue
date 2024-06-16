@@ -26,7 +26,7 @@ const location = window.location;
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
       </div>
-      <Carousel class="w-full lg:w-2/3" />
+      <Carousel class="w-full lg:w-2/3 h-96 lg:h-[30rem]" />
     </div>
 
     <div class="grid grid-cols-1 my-10 gap-10">
