@@ -52,7 +52,11 @@ function toggleTag(tag: string) {
 <template>
   <div class="flex flex-col gap-4 items-center max-w-7xl mx-auto">
     <label class="input input-secondary flex items-center w-full max-w-lg">
-      <input v-model.trim="search" class="grow" placeholder="Recherche..." />
+      <input
+        v-model.trim="search"
+        class="grow text-lg"
+        placeholder="Recherche..."
+      />
       <button
         class="i-carbon-close size-6"
         v-show="search.length !== 0"
@@ -61,15 +65,15 @@ function toggleTag(tag: string) {
     </label>
     <template v-if="pods.length">
       <div class="w-full flex items-center justify-center flex-wrap gap-2">
-        <h1 class="inline-block m-4 prose">Catégories:</h1>
+        <h1 class="text-xl inline-block md:m-4">Catégories:</h1>
         <button
           v-for="tag in tags"
           :class="[
             selectedtags.includes(tag)
-              ? '!bg-secondary text-secondary-content'
-              : '!bg-base-300 text-base-content',
+              ? 'bg-secondary text-secondary-content'
+              : 'bg-base-300 text-base-content',
           ]"
-          class="btn btn-sm ml-px hover:scale-105 transition hover:brightness-90"
+          class="btn btn-sm mx-px hover:scale-105 transition text-lg"
           @click="toggleTag(tag)"
         >
           {{ tag.toLowerCase() }}
