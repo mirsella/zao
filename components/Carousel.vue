@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-nowrap justify-center gap-4">
+  <div class="flex flex-nowrap justify-center gap-4 relative">
     <swiper-container init="false" ref="swiper1" class="m-0">
       <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-16">
         <Poster :pod="pod" />
@@ -52,5 +52,30 @@ onMounted(() => {
         <Poster :pod="pod" />
       </swiper-slide>
     </swiper-container>
+    <div id="top-blur"></div>
+    <div id="bottom-blur"></div>
   </div>
 </template>
+
+<!-- FIXME: background color should be dynamic -->
+<style scoped>
+#top-blur {
+  z-index: 1;
+  background-image: linear-gradient(#f9fafb, transparent);
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+}
+
+#bottom-blur {
+  z-index: 1;
+  background-image: linear-gradient(transparent, #f9fafb);
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+</style>

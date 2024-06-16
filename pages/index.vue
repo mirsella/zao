@@ -13,8 +13,8 @@ const location = window.location;
 </script>
 
 <template>
-  <div class="mx-auto max-w-[80%]">
-    <div class="flex flex-wrap lg:flex-nowrap gap-6 mx-auto items-center">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex flex-wrap lg:flex-nowrap gap-6 mx-auto justify-center">
       <div class="lg:w-1/3 max-md:text-center">
         <p class="text-5xl py-6 font-bold">
           Les podcasts qui vont transformer votre vie.
@@ -28,7 +28,7 @@ const location = window.location;
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
       </div>
-      <Carousel class="w-full lg:w-2/3 h-96 lg:h-[30rem]" />
+      <Carousel class="w-full md:w-1/2 h-96 lg:h-[30rem]" />
     </div>
 
     <div class="grid grid-cols-1 my-20 md:mt-36 gap-20">
