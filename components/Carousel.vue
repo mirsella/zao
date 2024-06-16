@@ -33,7 +33,7 @@ onMounted(() => {
   const reverseParams = structuredClone(swiperParams);
   // @ts-ignore is defined above
   reverseParams.autoplay.reverseDirection = false;
-  reverseParams.initialSlide = pods.value.length / 2;
+  reverseParams.initialSlide = pods.value.length / 3;
   Object.assign(swiper2.value, reverseParams);
   swiper1.value.initialize();
   swiper2.value.initialize();
