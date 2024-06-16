@@ -13,7 +13,7 @@ window.addEventListener("online", () => (network.value = true));
       <Logo class="h-20 p-4" />
     </NuxtLink>
     <template v-if="network">
-      <NuxtPage class="p-10" />
+      <NuxtPage class="p-4" />
       <!-- TODO: mobile navbar -->
     </template>
     <template v-else>
@@ -27,8 +27,10 @@ window.addEventListener("online", () => (network.value = true));
 
   <template v-else>
     <div class="min-h-screen">
-      <Header class="p-6 bg-gradient-to-b from-base-300 from-80% mb-20" />
-      <NuxtPage class="p-10" />
+      <Header
+        class="p-6 bg-gradient-to-b from-base-300 from-80% pb-12 md:mb-4"
+      />
+      <NuxtPage class="px-4" />
     </div>
     <Footer />
   </template>
