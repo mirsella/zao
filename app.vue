@@ -27,7 +27,7 @@ window.addEventListener("online", () => (network.value = true));
 
   <template v-else>
     <div class="min-h-screen">
-      <Header class="p-6 pb-10 bg-gradient-to-b from-base-300 from-80% mb-20" />
+      <Header class="p-6 bg-gradient-to-b from-base-300 from-80% mb-20" />
       <NuxtPage class="p-10" />
     </div>
     <Footer />

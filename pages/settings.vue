@@ -89,11 +89,9 @@ async function logout() {
 </script>
 <template>
   <div>
-    <div
-      class="flex gap-2 lg:gap-6 lg:px-20 p-4 w-full flex-wrap justify-center"
-    >
+    <div class="flex flex-col gap-2 lg:gap-6 w-full items-center">
       <div
-        class="tooltip bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
+        class="tooltip rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
         data-tip="uniquement utilisé pour les commentaires"
       >
         <!-- <p class="text-error" v-show="nameUsed">déjà en utilisation</p> -->
@@ -115,7 +113,7 @@ async function logout() {
         </label>
       </div>
       <div
-        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
+        class="rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
       >
         <p class="mx-1">Email</p>
         <input
@@ -124,7 +122,7 @@ async function logout() {
         />
       </div>
       <div
-        class="bg-base-300 rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
+        class="rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
       >
         <p class="mx-1">Premium</p>
         <button
@@ -135,9 +133,7 @@ async function logout() {
           <span class="size-6" :class="portalbuttonicon"></span>
         </button>
       </div>
-      <div
-        class="bg-base-300 rounded-xl flex justify-center w-full max-w-xl p-4"
-      >
+      <div class="rounded-xl flex justify-center w-full max-w-xl p-4">
         <button
           class="w-2/3 btn gap-2 border-error hover:scale-[1.05]"
           @click="logout()"
