@@ -104,9 +104,7 @@ async function logout() {
             :class="{ 'text-error': nameUsed }"
           />
           <button
-            class="btn !border-none translate-x-4 scale-[0.90]"
-            @click="updateName()"
-            :disabled="name.length === 0"
+            class="btn bg-base-300 !border-none !translate-x-[17px] scale-[0.95] hover:scale-100 active:scale-110"
           >
             <span class="i-carbon-save size-6"> </span>
           </button>
@@ -116,10 +114,7 @@ async function logout() {
         class="rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
       >
         <p class="mx-1">Email</p>
-        <input
-          class="!text-base-content input w-2/3 flex items-center input-disabled truncate"
-          :value="user?.email"
-        />
+        <p class="w-2/3 truncate px-4">{{ user?.email }}</p>
       </div>
       <div
         class="rounded-xl flex place-items-center gap-2 w-full justify-between max-w-xl p-4"
