@@ -17,7 +17,6 @@
     "@capacitor/ios": "^5.7.6",
     "buffer": "^6.0.3",
     "jeep-sqlite": "^2.7.2",
-    "nuxt": "^3.10.3",
     "nuxt-appwrite": "^1.1.0",
     "swiper": "^11.1.4",
     "vue": "^3.4.29",
@@ -34,6 +33,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "cross-fetch": "^4.0.0",
     "daisyui": "^4.12.2",
-    "nitropack": "^2.9.6"
+    "nitropack": "^2.9.6",
+    "nuxt": "^3.12.2"
   }
 }
