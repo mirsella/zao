@@ -115,6 +115,7 @@ async function devlogin() {
       <div class="flex flex-col items-center">
         <h1 class="mb-2">entrez le code reçu par mail:</h1>
         <VOtpInput
+          value=""
           :should-auto-focus="true"
           :should-focus-order="true"
           :num-inputs="6"
