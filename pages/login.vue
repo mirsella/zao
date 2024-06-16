@@ -8,7 +8,6 @@ useHeadSafe({ title: "Connection" });
 watch(
   await useAccount(),
   async (account) => {
-    console.log("watch account", account);
     if (account) {
       // redirect to the previous page
       const redirectPath = useRoute().redirectedFrom?.path;
@@ -73,7 +72,6 @@ async function devlogin() {
     "testtest",
   );
   (await useAccount()).value = await account.get();
-  console.log("updated account", (await useAccount()).value);
   loading.value = false;
 }
 </script>

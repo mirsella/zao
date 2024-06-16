@@ -17,11 +17,11 @@
     "@capacitor/ios": "^5.7.6",
     "buffer": "^6.0.3",
     "jeep-sqlite": "^2.7.2",
-    "nuxt": "^3.12.1",
+    "nuxt": "^3.10.3",
     "nuxt-appwrite": "^1.1.0",
     "swiper": "^11.1.4",
-    "vue": "^3.4.29",
-    "vue-router": "^4.3.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
     "vue3-otp-input": "^0.4.4"
   },
   "devDependencies": {
