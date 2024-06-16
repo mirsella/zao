@@ -14,23 +14,26 @@ onMounted(() => {
     <NuxtLink to="/">
       <Logo class="h-20 p-4" />
     </NuxtLink>
-    <div v-if="network">
+    <template v-if="network">
       <NuxtPage class="p-10" />
-    </div>
-    <div v-else>
+      <!-- TODO: mobile navbar -->
+    </template>
+    <template v-else>
       <p class="text-center text-xl prose m-6">
         Vous êtes hors ligne. vous pouvez seulement voir les vidéos
         préalablement télécharger.
       </p>
       <Downloads />
-    </div>
+    </template>
   </div>
 
-  <div v-else>
-    <Header class="p-6 pb-10 bg-gradient-to-b from-base-300 from-80% mb-20" />
-    <NuxtPage class="p-10 min-h-screen" />
+  <template v-else>
+    <div class="min-h-screen">
+      <Header class="p-6 pb-10 bg-gradient-to-b from-base-300 from-80% mb-20" />
+      <NuxtPage class="p-10" />
+    </div>
     <Footer />
-  </div>
+  </template>
 </template>
 
 <style>
