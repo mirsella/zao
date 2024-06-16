@@ -75,8 +75,8 @@ async function devlogin() {
 </script>
 
 <template>
-  <div class="items-center flex flex-col mt-4 max-w-3xl mx-auto">
-    <span class="text-center text-3xl font-bold m-6">
+  <div class="items-center flex flex-col max-w-3xl mx-auto">
+    <span class="text-center text-3xl font-bold mb-14">
       Connectez vous. nous allons vous envoyer un code de vérification par mail.
     </span>
     <form
@@ -101,7 +101,7 @@ async function devlogin() {
       </button>
     </form>
     <button
-      class="btn btn-error m-4 opacity-40 absolute left-0 top-80"
+      class="btn btn-error m-4 opacity-10 absolute left-0 top-20"
       @click="devlogin"
     >
       <!-- FIXME: remove -->
