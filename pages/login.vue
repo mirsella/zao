@@ -8,6 +8,7 @@ useHeadSafe({ title: "Connection" });
 watch(
   await useAccount(),
   async (account) => {
+    console.log("watch account", account);
     if (account) {
       // redirect to the previous page
       const redirectPath = useRoute().redirectedFrom?.path;
@@ -18,7 +19,7 @@ watch(
       }
     }
   },
-  { immediate: true },
+  { immediate: true, deep: true },
 );
 
 let userId: string;
@@ -63,13 +64,16 @@ async function submitOTP(value: string) {
 
 // FIXME: manual logging for development
 async function devlogin() {
+  if (!email.value.length) {
+    return;
+  }
   loading.value = true;
-  let res = await account.createEmailPasswordSession(
+  await account.createEmailPasswordSession(
     email.value + "@gmail.com",
     "testtest",
   );
-  console.log(res);
   (await useAccount()).value = await account.get();
+  console.log("updated account", (await useAccount()).value);
   loading.value = false;
 }
 </script>

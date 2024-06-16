@@ -3,10 +3,8 @@
 useAccount();
 usePodcasts();
 const network = useState("network", () => true);
-onMounted(() => {
-  window.addEventListener("offline", () => (network.value = false));
-  window.addEventListener("online", () => (network.value = true));
-});
+window.addEventListener("offline", () => (network.value = false));
+window.addEventListener("online", () => (network.value = true));
 </script>
 
 <template>
