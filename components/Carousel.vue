@@ -52,30 +52,7 @@ onMounted(() => {
         <Poster :pod="pod" />
       </swiper-slide>
     </swiper-container>
-    <div id="top-blur"></div>
-    <div id="bottom-blur"></div>
+    <div class="bg-gradient-to-b from-base-100 z-10 w-full h-32 absolute top-0 bottom-auto"></div>
+    <div class="bg-gradient-to-t from-base-100 z-10 w-full h-32 absolute top-auto bottom-0"></div>
   </div>
 </template>
-
-<!-- FIXME: background color should be dynamic -->
-<style scoped>
-#top-blur {
-  z-index: 1;
-  background-image: linear-gradient(#f9fafb, transparent);
-  width: 100%;
-  height: 20%;
-  position: absolute;
-  top: 0%;
-  bottom: auto;
-}
-
-#bottom-blur {
-  z-index: 1;
-  background-image: linear-gradient(transparent, #f9fafb);
-  width: 100%;
-  height: 20%;
-  position: absolute;
-  top: auto;
-  bottom: 0;
-}
-</style>
