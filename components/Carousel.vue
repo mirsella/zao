@@ -33,7 +33,7 @@ onMounted(() => {
   const reverseParams = structuredClone(swiperParams);
   // @ts-ignore is defined above
   reverseParams.autoplay.reverseDirection = false;
-  reverseParams.initialSlide = pods.value.length / 3;
+  reverseParams.initialSlide = pods.value.length - 3;
   Object.assign(swiper2.value, reverseParams);
   swiper1.value.initialize();
   swiper2.value.initialize();
@@ -43,16 +43,20 @@ onMounted(() => {
 <template>
   <div class="flex flex-nowrap justify-center gap-4 relative">
     <swiper-container init="false" ref="swiper1" class="m-0">
-      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-16">
+      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-14">
         <Poster :pod="pod" />
       </swiper-slide>
     </swiper-container>
     <swiper-container init="false" ref="swiper2" class="m-0">
-      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-16">
+      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-14">
         <Poster :pod="pod" />
       </swiper-slide>
     </swiper-container>
-    <div class="bg-gradient-to-b from-base-100 z-10 w-full h-32 absolute top-0 bottom-auto"></div>
-    <div class="bg-gradient-to-t from-base-100 z-10 w-full h-32 absolute top-auto bottom-0"></div>
+    <div
+      class="bg-gradient-to-b from-base-100 z-10 w-full h-32 absolute top-0 bottom-auto"
+    ></div>
+    <div
+      class="bg-gradient-to-t from-base-100 z-10 w-full h-32 absolute top-auto bottom-0"
+    ></div>
   </div>
 </template>
