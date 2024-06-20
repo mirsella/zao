@@ -15,14 +15,6 @@ export const usePodcasts = async () => {
           Query.orderDesc("$createdAt"),
         ]);
       podcasts.value = (await call).documents as Pod[];
-      // FIXME: for dev only
-      podcasts.value = [
-        ...podcasts.value,
-        ...podcasts.value,
-        ...podcasts.value,
-        ...podcasts.value,
-        ...podcasts.value,
-      ];
       network = true;
     } catch (e) {
       if ((e as Error).message.includes("NetworkError")) {
