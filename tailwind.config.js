@@ -20,7 +20,6 @@ export default {
     themes: [
       {
         customlight: {
-          "color-scheme": "light",
           primary: "#1eb854",
           secondary: "#1DB88E",
           accent: "#1DB8AB",
