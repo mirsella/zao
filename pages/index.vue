@@ -14,8 +14,10 @@ const location = window.location;
 
 <template>
   <div class="mx-auto max-w-7xl">
-    <div class="flex flex-wrap lg:flex-nowrap gap-6 mx-auto justify-center">
-      <div class="lg:w-1/3 max-md:text-center">
+    <div
+      class="flex flex-wrap lg:flex-nowrap gap-6 mt-10 mx-auto justify-center"
+    >
+      <div class="lg:w-1/3 max-md:text-center flex flex-col justify-center">
         <p class="text-5xl py-6 font-bold">
           Les podcasts qui vont transformer votre vie.
         </p>
@@ -44,10 +46,7 @@ const location = window.location;
         </div>
         <div class="card-body max-lg:place-items-center gap-4 p-4">
           <p class="card-title">histoires</p>
-          <p>
-            retrouver tous les jours des nouvelles histoires d'environ 20minutes
-            etc...
-          </p>
+          <p>retrouver quotidiennement des nouvelles histoires etc...</p>
           <div class="card-actions">
             <NuxtLink to="/daily" class="btn max-w-48 btn-outline">
               Commencer
@@ -58,7 +57,7 @@ const location = window.location;
       <div class="card lg:card-side bg-base-200 shadow-md">
         <div class="card-body place-items-center lg:place-items-end gap-4 p-4">
           <p class="card-title">sante mental</p>
-          <p>de petits audios de quelques minutes qui vous aident etc...</p>
+          <p>quelques minutes pour vous aider etc...</p>
           <div class="card-actions">
             <NuxtLink to="/capsules" class="btn max-w-48 btn-outline">
               Commencer
