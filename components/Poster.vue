@@ -19,9 +19,9 @@ watchEffect(async () => {
 <template>
   <NuxtLink
     :to="`/podcast/${props.pod.$id}`"
-    class="hover:scale-105 transition"
+    class="hover:scale-105 transition flex flex-col"
   >
-    <img :src="objecturl" class="w-full rounded-lg" />
+    <img :src="objecturl" class="w-full rounded-lg my-auto" />
     <p v-if="title" class="text-md md:text-lg pt-4 px-3">
       {{ props.pod.title }}
     </p>
