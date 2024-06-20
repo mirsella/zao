@@ -5,7 +5,7 @@ const { storage } = useAppwrite();
 const props = defineProps<{ pod: Pod; title?: boolean }>();
 const objecturl = ref<string>();
 
-(async () => {
+watchEffect(async () => {
   try {
     const url = storage.getFileView("poster", props.pod.poster_id);
     const blob = await (await fetch(url, { credentials: "include" })).blob();
@@ -14,7 +14,7 @@ const objecturl = ref<string>();
     console.error(e);
     showError("Error downloading poster: " + e);
   }
-})();
+});
 </script>
 <template>
   <NuxtLink
