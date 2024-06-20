@@ -77,7 +77,7 @@ async function devlogin() {
 </script>
 
 <template>
-  <div class="items-center flex flex-col max-w-3xl mx-auto">
+  <div class="items-center flex flex-col max-w-3xl mx-auto mt-32">
     <span class="text-center text-3xl font-bold mb-14">
       Connectez vous. nous allons vous envoyer un code de vérification par mail.
     </span>
