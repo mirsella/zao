@@ -68,11 +68,10 @@ function toggleTag(tag: string) {
         <h1 class="text-xl inline-block md:m-4">Catégories:</h1>
         <button
           v-for="tag in tags"
-          :class="[
-            selectedtags.includes(tag)
-              ? 'bg-secondary text-secondary-content'
-              : 'bg-base-300 text-base-content',
-          ]"
+          :class="{
+            'bg-secondary text-secondary-content hover:bg-secondary':
+              selectedtags.includes(tag),
+          }"
           class="btn btn-sm mx-px hover:scale-105 transition text-lg"
           @click="toggleTag(tag)"
         >
