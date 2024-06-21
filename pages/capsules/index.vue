@@ -36,7 +36,7 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
     >
       <span
         class="w-96 md:w-80 lg:w-72 xl:w-80 aspect-[1/1.3] px-8 skeleton"
-        v-for="_ in 10"
+        v-for="_ in 5"
       />
     </div>
   </div>
