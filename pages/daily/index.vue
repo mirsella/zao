@@ -21,7 +21,7 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
     />
     <ul
       v-if="pods.length"
-      class="mt-12 max-md:pr-4 timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+      class="mt-12 max-md:pr-4 timeline timeline-snap-icon max-md:timeline-compact timeline-vertical md:w-4/5 max-w-6xl"
     >
       <li v-for="pod in podsfiltered" class="group w-full">
         <div class="timeline-middle i-carbon-checkmark-outline size-6" />
