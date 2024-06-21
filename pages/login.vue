@@ -4,7 +4,7 @@ const { ID, account } = useAppwrite();
 const router = useRouter();
 useHeadSafe({ title: "Connection" });
 
-// automaticlly redirect when the user is logged in
+// automatically redirect when the user is logged in
 watch(
   await useAccount(),
   async (account) => {
