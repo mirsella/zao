@@ -19,13 +19,23 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
       :pods="pods"
       @filtered="(pods) => (podsfiltered = pods)"
     />
-    <ul v-if="pods.length" class="mt-12 max-w-6xl mx-auto">
-      <Poster
-        :title="true"
-        v-for="pod in podsfiltered"
-        :pod="pod"
-        class="text-xl w-96 md:w-80 lg:w-72 xl:w-80 px-8"
-      />
+    <ul
+      v-if="pods.length"
+      class="mt-12 max-md:pr-4 timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+    >
+      <li v-for="pod in podsfiltered" class="group w-full">
+        <div class="timeline-middle i-carbon-checkmark-outline size-6" />
+        <div class="max-md:!mt-2 timeline-start md:group-even:timeline-end">
+          {{ pod.$createdAt }}
+        </div>
+        <div
+          class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-full my-4"
+        >
+          <div class="text-lg font-black">{{ pod.title }}</div>
+          <Poster :pod="pod" class="my-4 w-full" />
+        </div>
+        <hr class="mt-2" />
+      </li>
     </ul>
     <div
       v-else
