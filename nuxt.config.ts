@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Roboto: true,
+      Manrope: true,
     },
   },
   devtools: { enabled: true },

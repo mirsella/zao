@@ -36,6 +36,6 @@ window.addEventListener("online", () => (network.value = true));
 
 <style>
 html {
-  font-family: Roboto, sans;
+  font-family: Manrope, sans;
 }
 </style>
