@@ -16,7 +16,7 @@ window.addEventListener("online", () => (network.value = true));
       <NuxtPage class="p-4" />
       <!-- TODO: mobile navbar -->
     </template>
-    <template v-else>
+    <template v-else-if="isNative()">
       <p class="text-center text-xl prose m-6">
         Vous êtes hors ligne. vous pouvez seulement voir les vidéos
         préalablement télécharger.

@@ -3,12 +3,14 @@ import type { Pod } from "~";
 
 definePageMeta({
   middleware: () => {
-    if (isMobile() && process.env.NODE_ENV !== "development") {
+    if (isNative()) {
       return navigateTo("/capsules");
     }
   },
 });
-const pods = await usePodcasts();
+
+const pods = ref<Pod[]>([]);
+usePodcasts().then((podcasts) => (pods.value = podcasts.value));
 const location = window.location;
 </script>
 
