@@ -6,7 +6,7 @@ useHeadSafe({ title: "Bibliothèque" });
 const pods = ref<Pod[]>([]);
 usePodcasts().then(
   (podcasts) =>
-    (pods.value = podcasts.value.filter((pod) => pod.type === "capsule")),
+    (pods.value = podcasts.value.filter((pod) => pod.type === "daily")),
 );
 
 const podsfiltered = ref<Pod[]>([...pods.value]);
