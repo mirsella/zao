@@ -10,14 +10,12 @@ import {
   applyPolyfills,
 } from "jeep-sqlite/loader";
 
-// TODO: https://github.com/capacitor-community/sqlite/blob/master/docs/Web-Usage.md
+// NOTE: https://github.com/capacitor-community/sqlite/blob/master/docs/Web-Usage.md
 
-const sqlite = new SQLiteConnection(CapacitorSQLite);
-
-import { Capacitor } from "@capacitor/core";
 export default defineNuxtPlugin(async () => {
-  if (Capacitor.getPlatform() === "web") {
-    // FIXME: this is only for dev, later we don't need sqlite on web platform
+  const sqlite = new SQLiteConnection(CapacitorSQLite);
+  // FIXME: this is only for dev, later we don't need sqlite on web platform
+  if (!isNative()) {
     applyPolyfills().then(() => {
       jeepDefineCustomElements(window);
     });
