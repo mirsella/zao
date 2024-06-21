@@ -26,7 +26,14 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
       <li v-for="pod in podsfiltered" class="group w-full">
         <div class="timeline-middle i-carbon-checkmark-outline size-6" />
         <div class="max-md:!mt-2 timeline-start md:group-even:timeline-end">
-          {{ pod.$createdAt }}
+          {{
+            new Date(pod.$createdAt).toLocaleString("fr-FR", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+            })
+          }}
         </div>
         <div
           class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-full my-4"
