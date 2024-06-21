@@ -30,9 +30,14 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
         class="text-xl w-96 md:w-80 lg:w-72 xl:w-80 px-8"
       />
     </div>
-    <span
+    <div
       v-else
-      class="loading loading-infinity text-secondary loading-lg mt-10"
-    />
+      class="mt-12 gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:max-w-6xl justify-items-center mx-auto"
+    >
+      <span
+        class="w-96 md:w-80 lg:w-72 xl:w-80 aspect-[1/1.3] px-8 skeleton"
+        v-for="_ in 10"
+      />
+    </div>
   </div>
 </template>
