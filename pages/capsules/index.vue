@@ -27,7 +27,7 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
         :title="true"
         v-for="pod in podsfiltered"
         :pod="pod"
-        class="text-xl w-96 md:w-80 lg:w-72 xl:w-80 px-8"
+        class="font-black w-96 md:w-80 lg:w-72 xl:w-80 px-8"
       />
     </div>
     <div
