@@ -3,14 +3,17 @@ import type { Pod } from "~";
 
 useHeadSafe({ title: "Bibliothèque" });
 
-const pods = ref<Pod[]>(
-  (await usePodcasts()).value.filter((pod) => pod.type === "capsule"),
+const pods = ref<Pod[]>([]);
+usePodcasts().then(
+  (podcasts) =>
+    (pods.value = podcasts.value.filter((pod) => pod.type === "capsule")),
 );
+
 const podsfiltered = ref<Pod[]>([...pods.value]);
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col place-items-center">
     <Search
       class="my-6"
       :pods="pods"

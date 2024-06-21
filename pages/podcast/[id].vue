@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Pod } from "~";
-const { storage } = useAppwrite();
 
 const route = useRoute();
 const pod = ref<Pod>();
