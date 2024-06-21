@@ -5,38 +5,34 @@ import {
 } from "@capacitor-community/sqlite";
 import { Buffer } from "buffer";
 import type { SQLitePod, Pod } from "~";
-import {
-  defineCustomElements as jeepDefineCustomElements,
-  applyPolyfills,
-} from "jeep-sqlite/loader";
-
+import { JeepSqlite } from "jeep-sqlite/dist/components/jeep-sqlite";
+customElements.define("jeep-sqlite", JeepSqlite);
 // NOTE: https://github.com/capacitor-community/sqlite/blob/master/docs/Web-Usage.md
 
-export default defineNuxtPlugin(async () => {
+export default defineNuxtPlugin(async (nuxtApp) => {
   const sqlite = new SQLiteConnection(CapacitorSQLite);
-  // FIXME: this is only for dev, later we don't need sqlite on web platform
-  if (!isNative()) {
-    applyPolyfills().then(() => {
-      jeepDefineCustomElements(window);
-    });
-    // Create the 'jeep-sqlite' Stencil component
-    const jeepSqlite = document.createElement("jeep-sqlite");
-    jeepSqlite.autoSave = true;
-    document.body.appendChild(jeepSqlite);
-    await customElements.whenDefined("jeep-sqlite");
-    // Initialize the Web store
-    await sqlite.initWebStore();
-  }
 
-  const db: SQLiteDBConnection = await sqlite.createConnection(
-    "podcasts",
-    false,
-    "no-encryption",
-    1,
-    false,
-  );
-  await db.open();
-  await db.execute(`
+  // Function to initialize SQLite
+  const initializeSQLite = async () => {
+    if (!isNative()) {
+      // Create the 'jeep-sqlite' Stencil component
+      const jeepSqlite = document.createElement("jeep-sqlite");
+      jeepSqlite.autoSave = true;
+      document.body.appendChild(jeepSqlite);
+      await customElements.whenDefined("jeep-sqlite");
+      // Initialize the Web store
+      await sqlite.initWebStore();
+    }
+
+    const db: SQLiteDBConnection = await sqlite.createConnection(
+      "podcasts",
+      false,
+      "no-encryption",
+      1,
+      false,
+    );
+    await db.open();
+    await db.execute(`
       CREATE TABLE IF NOT EXISTS podcasts (
         id TEXT PRIMARY KEY,
         data BLOB NOT NULL,
@@ -46,10 +42,21 @@ export default defineNuxtPlugin(async () => {
       );
     `);
 
-  // https://github.com/capacitor-community/sqlite/blob/master/docs/SQLiteBlob.md
+    return db;
+  };
+
+  let db: SQLiteDBConnection;
+  onMounted(async () => {
+    db = await initializeSQLite();
+  });
+
   return {
     provide: {
       storePodcast: async (url: string, pod: Pod) => {
+        if (!db) {
+          throw new Error("Database is not initialized yet");
+        }
+
         const blob = await (
           await fetch(url, { credentials: "include" })
         ).blob();
@@ -71,26 +78,34 @@ export default defineNuxtPlugin(async () => {
         return ret.changes?.values;
       },
       getPodcasts: async (): Promise<SQLitePod[]> => {
+        if (!db) {
+          throw new Error("Database is not initialized yet");
+        }
+
         const ret = await db.query("SELECT * FROM podcasts");
         for (let podcast of ret.values!) {
           const arr = new Uint8Array(podcast.data);
-          const blob = new Blob([arr], { type: "mp3" });
+          const blob = new Blob([arr], { type: "audio/mp3" });
           podcast.data = URL.createObjectURL(blob);
         }
         return ret.values as SQLitePod[];
       },
       podcastExist: async (id: string): Promise<boolean> => {
+        if (!db) {
+          throw new Error("Database is not initialized yet");
+        }
+
         const ret = await db.query("SELECT id FROM podcasts WHERE id = ?", [
           id,
         ]);
-        if (ret.values?.length === 0) {
-          return false;
-        } else {
-          return true;
-        }
+        return ret.values?.length !== 0;
       },
       deletePodcast: async (id: string) => {
-        const ret = await db.run("DELETE FROM podcasts WHERE id = ?", [id]);
+        if (!db) {
+          throw new Error("Database is not initialized yet");
+        }
+
+        await db.run("DELETE FROM podcasts WHERE id = ?", [id]);
       },
     },
   };
