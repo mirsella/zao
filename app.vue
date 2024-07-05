@@ -30,7 +30,7 @@ window.addEventListener("online", () => (network.value = true));
       <Header class="p-6 bg-gradient-to-b from-base-300 from-80% pb-12 mb-4" />
       <NuxtPage class="px-4" />
     </div>
-    <Footer />
+    <Footer class="mt-48" />
   </template>
 </template>
 
