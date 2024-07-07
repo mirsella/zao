@@ -22,7 +22,7 @@ usePodcasts().then((pods) => {
         </div>
         <div class="flex-1 text-center md:text-left">
           <hr class="hidden md:block border-primary border-t-2 w-9 pb-1" />
-          <p class="text-sm font-normal pb-2 capitalize">
+          <p class="text-md font-normal pb-2 capitalize">
             {{ pod.type === "daily" ? "histoire" : "story" }}
           </p>
           <h1 class="text-2xl font-bold">{{ pod.title }}</h1>
