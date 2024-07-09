@@ -21,7 +21,7 @@ watchEffect(async () => {
     :to="`/podcast/${props.pod.$id}`"
     class="hover:scale-105 transition flex flex-col"
   >
-    <img :src="objecturl" class="w-full rounded-lg my-auto" />
+    <img :src="objecturl" class="h-full w-full rounded-lg my-auto" />
     <p v-if="title" class="text-lg xl:text-xl pt-4 px-3">
       {{ props.pod.title }}
     </p>

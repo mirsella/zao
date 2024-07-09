@@ -18,8 +18,8 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
     </NuxtLink>
     <template v-if="network">
       <NuxtPage class="p-4" />
-      <div v-if="currentPodcast" class="mb-20">
-        <Player class="w-full fixed bottom-0" />
+      <div v-if="currentPodcast" class="mb-40">
+        <Player class="w-full fixed bottom-0 h-40" />
         <!-- TODO: mobile navbar -->
       </div>
     </template>
@@ -38,8 +38,8 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
       <NuxtPage class="px-4" />
     </div>
     <Footer class="mt-48" />
-    <div v-if="currentPodcast" class="mb-20">
-      <Player class="w-full fixed bottom-0" />
+    <div v-if="currentPodcast" class="mb-40">
+      <Player class="w-full fixed bottom-0 h-40" />
     </div>
   </template>
 </template>

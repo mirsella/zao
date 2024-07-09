@@ -37,15 +37,18 @@ function formatTime(seconds: number) {
 </script>
 
 <template>
-  <div class="bg-purple-200 h-20 z-10">
+  <div class="bg-purple-200 z-10 flex gap-4 p-4" v-if="currentPodcast">
     <Poster
-      v-if="currentPodcast instanceof Pod"
-      :pod="currentPodcast"
-      class="w-full"
+      v-if="(currentPodcast as Pod).poster_id"
+      :pod="currentPodcast as Pod"
+      class="h-auto"
     />
-    <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
+    <div class="flex flex-col items-center justify-center">
+      {{ currentPodcast.title }}
+      <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
+      <input type="range" v-model="currentTime" :max="duration" @input="seek" />
+      <span>{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
+    </div>
     <button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</button>
-    <input type="range" v-model="currentTime" :max="duration" @input="seek" />
-    <span>{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
   </div>
 </template>
