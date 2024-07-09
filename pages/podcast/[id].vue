@@ -25,25 +25,26 @@ usePodcasts().then((pods) => {
           <p class="text-md font-normal pb-2 capitalize">
             {{ pod.type === "daily" ? "histoire" : "story" }}
           </p>
-          <h1 class="text-2xl font-bold">{{ pod.title }}</h1>
+          <p class="text-2xl font-bold">{{ pod.title }}</p>
           <div class="bg-base-200 p-6 mt-6 rounded-xl space-y-5">
-            <h2 class="text-xl font-bold">Vous allez découvrir :</h2>
-            <ul>
-              <li
-                v-for="point in pod.key_points"
-                class="flex items-center text-cloud text-lg"
-              >
-                <span class="i-carbon-checkmark size-6 px-6"></span>
-                {{ point }}
-              </li>
-            </ul>
+            <p class="text-xl font-bold">Vous allez découvrir :</p>
+            <div
+              v-for="point in pod.key_points"
+              class="flex items-center text-cloud text-lg"
+            >
+              <span class="i-carbon-checkmark size-6 px-6"></span>
+              {{ point }}
+            </div>
           </div>
         </div>
       </div>
       <div class="text-lg font-normal text-center md:text-left">
-        <p>
-          {{ pod.description }}
-        </p>
+        {{ pod.description }}
+      </div>
+      <div class="btn w-full md:btn-wide text-lg">
+        regarder
+        <span class="i-carbon-play size-6"></span>
+        <!-- TODO: do something -->
       </div>
     </div>
   </div>
