@@ -11,6 +11,11 @@ usePodcasts().then((pods) => {
   }
   useHeadSafe({ title: pod.value?.title });
 });
+
+function play() {
+  const currentPodcast = useState("currentPodcast");
+  currentPodcast.value = pod.value;
+}
 </script>
 
 <template>
@@ -41,10 +46,9 @@ usePodcasts().then((pods) => {
       <div class="text-lg font-normal text-center md:text-left">
         {{ pod.description }}
       </div>
-      <div class="btn w-full md:btn-wide text-lg">
+      <div class="btn w-full md:btn-wide text-lg" @click="play()">
         regarder
         <span class="i-carbon-play size-6"></span>
-        <!-- TODO: do something -->
       </div>
     </div>
   </div>
