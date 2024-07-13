@@ -23,7 +23,7 @@ function play() {
     <div class="space-y-10" v-if="pod">
       <div class="md:flex md:space-x-20">
         <div class="w-60 md:w-1/3 mx-auto pb-5 md:pb-0">
-          <Poster :pod="pod" :title="false" />
+          <Poster :pod="pod" :hidetitle="true" class="max-h-[70%]" />
         </div>
         <div class="flex-1 text-center md:text-left">
           <hr class="hidden md:block border-primary border-t-2 w-9 pb-1" />
@@ -47,7 +47,7 @@ function play() {
         {{ pod.description }}
       </div>
       <div class="btn w-full md:btn-wide text-lg" @click="play()">
-        regarder
+        écouter
         <span class="i-carbon-play size-6"></span>
       </div>
     </div>
