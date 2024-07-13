@@ -37,18 +37,34 @@ function formatTime(seconds: number) {
 </script>
 
 <template>
-  <div class="bg-purple-200 z-10 flex gap-4 p-4" v-if="currentPodcast">
-    <Poster
-      v-if="(currentPodcast as Pod).poster_id"
-      :pod="currentPodcast as Pod"
-      class="h-auto"
-    />
-    <div class="flex flex-col items-center justify-center">
-      {{ currentPodcast.title }}
-      <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
-      <input type="range" v-model="currentTime" :max="duration" @input="seek" />
+  <div class="bg-base-300 z-10 flex gap-8 p-4" v-if="currentPodcast">
+    <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
+    <div
+      class="hidden md:flex items-center gap-4 max-w-[30%] overflow-hidden navbar-start"
+    >
+      <Poster
+        v-if="(currentPodcast as Pod).poster_id"
+        :pod="currentPodcast as Pod"
+        :hidetitle="true"
+        class="h-32"
+      />
+      <p class="text-lg font-bold text-ellipsis max-w-[70%]">
+        {{ currentPodcast.title }}
+      </p>
+    </div>
+    <div
+      class="flex flex-col items-center justify-center gap-4 w-full md:w-1/2 flex-shrink-0"
+    >
+      <button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</button>
+      <!-- TODO: add volume, forward rewind 10sec  -->
+      <input
+        class="range range-primary range-xs"
+        type="range"
+        v-model="currentTime"
+        :max="duration"
+        @input="seek"
+      />
       <span>{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
     </div>
-    <button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</button>
   </div>
 </template>
