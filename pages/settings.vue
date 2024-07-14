@@ -8,7 +8,7 @@ const { storeid, variantid } = useRuntimeConfig().public;
 
 // NOTE: this is ok to await in the setup function because the middleware already wait for it
 const user = await useAccount();
-const premium = computed(() => user.value?.labels.includes("premium"));
+const premium = await isPremium();
 
 onMounted(() => {
   window.addEventListener("focus", async () => {
