@@ -13,9 +13,6 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
 
 <template>
   <div v-if="isMobile()" class="flex flex-col h-screen">
-    <NuxtLink to="/">
-      <Logo class="h-20 p-4" />
-    </NuxtLink>
     <template v-if="network">
       <NuxtPage class="p-4" />
       <div v-if="currentPodcast" class="mb-40">
