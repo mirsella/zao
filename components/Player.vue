@@ -37,20 +37,18 @@ function formatTime(seconds: number) {
 </script>
 
 <template>
-  <div class="bg-base-300 z-10 flex gap-8 p-4" v-if="currentPodcast">
+  <div
+    class="bg-base-200 border-t z-10 flex gap-8 px-4 py-2"
+    v-if="currentPodcast"
+  >
     <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
-    <div
-      class="hidden md:flex items-center gap-4 max-w-[30%] overflow-hidden navbar-start"
-    >
+    <div class="hidden md:flex items-center gap-4 max-w-[30%] navbar-start">
       <Poster
         v-if="(currentPodcast as Pod).poster_id"
         :pod="currentPodcast as Pod"
-        :hidetitle="true"
-        class="h-32"
+        :sidetitle="true"
+        class="h-full"
       />
-      <p class="text-lg font-bold text-ellipsis max-w-[70%]">
-        {{ currentPodcast.title }}
-      </p>
     </div>
     <div
       class="flex flex-col items-center justify-center gap-4 w-full md:w-1/2 flex-shrink-0"
