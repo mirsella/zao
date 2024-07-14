@@ -19,7 +19,7 @@ const location = window.location;
     <div
       class="flex flex-wrap lg:flex-nowrap gap-6 mt-10 mx-auto justify-center"
     >
-      <div class="lg:w-1/3 max-md:text-center flex flex-col justify-center">
+      <div class="lg:w-1/3 max-lg:text-center flex flex-col justify-center">
         <p class="text-5xl py-6 font-bold">
           Les podcasts qui vont transformer votre vie.
         </p>
@@ -27,12 +27,15 @@ const location = window.location;
           contenus de qualité, exclusif, <br />
           où que vous soyez.
         </p>
-        <NuxtLink to="/capsules" class="my-4 btn shadow-md">
+        <NuxtLink
+          to="/capsules"
+          class="my-4 btn shadow-md max-w-xs w-full max-lg:mx-auto"
+        >
           Commencer
           <span class="i-carbon-arrow-right size-6" />
         </NuxtLink>
       </div>
-      <Carousel class="w-full md:w-1/2 h-96 lg:h-[30rem]" />
+      <Carousel class="w-full lg:w-1/2 h-96 lg:h-[30rem]" />
     </div>
 
     <div class="grid grid-cols-1 my-20 md:mt-36 gap-20">
