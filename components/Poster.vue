@@ -6,7 +6,7 @@ const props = defineProps<{
   pod: Pod;
   hidetitle?: boolean;
   hideposter?: boolean;
-  sidetext?: boolean;
+  sidetitle?: boolean;
 }>();
 const objecturl = ref<string>();
 
@@ -24,15 +24,15 @@ watchEffect(async () => {
 <template>
   <NuxtLink
     :to="`/podcast/${props.pod.$id}`"
-    class="hover:scale-105 transition flex"
-    :class="{ 'flex-col': !sidetext }"
+    class="hover:scale-[1.02] transition flex"
+    :class="{ 'flex-col': !sidetitle }"
   >
     <img
       v-if="!hideposter"
       :src="objecturl"
       class="w-auto max-h-full overflow-hidden rounded-lg my-auto"
     />
-    <p v-if="!hidetitle" class="text-lg xl:text-xl pt-4 px-3">
+    <p v-if="!hidetitle" class="text-lg xl:text-xl pt-4 px-3 m-auto">
       {{ props.pod.title }}
     </p>
   </NuxtLink>
