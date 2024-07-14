@@ -124,7 +124,7 @@ async function logout() {
           class="flex place-items-center gap-2 w-2/3 text-center btn !border-accent hover:scale-[1.05]"
           @click="redirectCustomerPortal()"
         >
-          <span>{{ premium ? "Gérer" : "S'inscrire" }}</span>
+          <span>{{ premium ? "Gérer" : "S'abonner" }}</span>
           <span class="size-6" :class="portalbuttonicon"></span>
         </button>
       </div>
