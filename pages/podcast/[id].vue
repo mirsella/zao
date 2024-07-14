@@ -25,7 +25,7 @@ function play() {
         <Poster :pod="pod" :hidetitle="true" class="max-h-[90%]" />
       </div>
       <div class="flex-1 text-center md:text-left">
-        <hr class="hidden md:block border-primary border-t-2 w-9 pb-1" />
+        <hr class="border-primary max-md:mx-auto mt-4 border-t-2 w-12" />
         <p class="text-md font-normal pb-2 capitalize">
           {{ pod.type === "daily" ? "histoire" : "story" }}
         </p>
