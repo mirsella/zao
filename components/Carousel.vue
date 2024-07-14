@@ -43,12 +43,12 @@ onMounted(() => {
 <template>
   <div class="flex flex-nowrap justify-center gap-4 relative">
     <swiper-container init="false" ref="swiper1" class="m-0">
-      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-14">
+      <swiper-slide v-for="pod of pods" class="my-14">
         <Poster :pod="pod" :hidetitle="true" />
       </swiper-slide>
     </swiper-container>
     <swiper-container init="false" ref="swiper2" class="m-0">
-      <swiper-slide v-for="pod of pods" class="size-40 lg:size-60 my-14">
+      <swiper-slide v-for="pod of pods" class="my-14">
         <Poster :pod="pod" :hidetitle="true" />
       </swiper-slide>
     </swiper-container>
