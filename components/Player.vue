@@ -1,13 +1,26 @@
 <script setup lang="ts">
 import type { Pod, SQLitePod } from "~";
+const { storage } = useAppwrite();
 
 const currentPodcast = useState<null | Pod | SQLitePod>(
   "currentPodcast",
   () => null,
 );
-const currentSrc = computed(() => {
-  // TODO: get src from the currentPodcast value
-  return "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_500KB_MP3.mp3";
+const currentSrc = ref<string>();
+watchEffect(async () => {
+  if (!currentPodcast.value) return "";
+  if ((currentPodcast.value as Pod).file_id) {
+    const url = storage.getFileView(
+      "audio",
+      (currentPodcast.value as Pod).file_id,
+    );
+    const res = await fetch(url, {
+      credentials: "include",
+    });
+    currentSrc.value = URL.createObjectURL(await res.blob());
+  } else {
+    currentSrc.value = (currentPodcast.value as SQLitePod).data;
+  }
 });
 const isPlaying = ref(false);
 const currentTime = ref(0);
