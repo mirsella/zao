@@ -9,8 +9,8 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <div class="navbar">
-    <div class="navbar-start gap-4 !text-2xl">
+  <div class="navbar overflow-scroll">
+    <div class="grow min-w-[31rem] gap-4 !text-2xl">
       <NuxtLink to="/">
         <Logo class="h-10" />
       </NuxtLink>
@@ -29,7 +29,7 @@ onMounted(async () => {
         CAPSULES MENTAL
       </NuxtLink>
     </div>
-    <div class="navbar-end" v-if="network">
+    <div class="" v-if="network">
       <NuxtLink
         to="/settings"
         class="btn"
