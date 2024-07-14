@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Pod } from "~";
 
+const premium = await isPremium();
 const route = useRoute();
 const pod = ref<Pod>();
 
@@ -40,9 +41,19 @@ function play() {
             {{ point }}
           </div>
         </div>
-        <div class="btn my-4 w-full md:btn-wide text-lg" @click="play()">
-          écouter
-          <span class="i-carbon-play size-6"></span>
+        <div
+          :class="{ tooltip: !premium }"
+          class="my-4"
+          data-tip="Réserver aux abonnés premium"
+        >
+          <div
+            class="btn btn-wide text-lg"
+            @click="play()"
+            :disabled="!premium"
+          >
+            écouter
+            <span class="i-carbon-play size-6"></span>
+          </div>
         </div>
       </div>
     </div>
