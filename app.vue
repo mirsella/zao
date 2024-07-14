@@ -15,8 +15,8 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
   <div v-if="isMobile()" class="flex flex-col h-screen">
     <template v-if="network">
       <NuxtPage class="p-4" />
-      <div v-if="currentPodcast" class="mb-[length:var(--player-height)]">
-        <Player class="w-full fixed bottom-0 h-[length:var(--player-height)]" />
+      <div v-if="currentPodcast" class="mb-[var(--player-height)]">
+        <Player class="w-full fixed bottom-0 h-[var(--player-height)]" />
         <!-- TODO: mobile navbar -->
       </div>
     </template>
@@ -35,8 +35,8 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
       <NuxtPage class="px-4" />
     </div>
     <Footer class="mt-48" />
-    <div v-if="currentPodcast" class="mb-[length:var(--player-height)]">
-      <Player class="w-full fixed bottom-0 h-[length:var(--player-height)]" />
+    <div v-if="currentPodcast" class="mb-[var(--player-height)]">
+      <Player class="w-full fixed bottom-0 h-[var(--player-height)]" />
     </div>
   </template>
 </template>
