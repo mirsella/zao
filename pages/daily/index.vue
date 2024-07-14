@@ -36,10 +36,10 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
           }}
         </div>
         <div
-          class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-full my-4"
+          class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-2/3 my-4"
         >
           <div class="text-lg font-black">{{ pod.title }}</div>
-          <Poster :pod="pod" class="my-4 w-full" />
+          <Poster :pod="pod" class="my-4 w-full" :hidetitle="true" />
         </div>
         <hr class="mt-2" />
       </li>
