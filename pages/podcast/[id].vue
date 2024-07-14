@@ -21,7 +21,7 @@ function play() {
 <template>
   <div v-if="pod" class="max-w-5xl mx-auto p-6">
     <div class="md:flex md:space-x-20">
-      <div class="w-60 md:w-1/3 mx-auto">
+      <div class="w-60 md:w-1/3 m-auto">
         <Poster :pod="pod" :hidetitle="true" class="max-h-[90%]" />
       </div>
       <div class="flex-1 text-center md:text-left">
@@ -46,7 +46,7 @@ function play() {
         </div>
       </div>
     </div>
-    <div class="text-lg font-normal text-center md:text-left">
+    <div class="text-lg font-normal text-center md:text-left mt-6">
       {{ pod.description }}
     </div>
   </div>
