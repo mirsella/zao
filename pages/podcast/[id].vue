@@ -49,7 +49,7 @@ function play() {
           <div
             class="btn btn-wide text-lg"
             @click="play()"
-            :disabled="!premium"
+            :class="{ 'btn-disabled': !premium }"
           >
             écouter
             <span class="i-carbon-play size-6"></span>
