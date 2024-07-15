@@ -63,11 +63,15 @@ function formatTime(seconds: number) {
         class="h-full"
       />
     </div>
-    <div
-      class="flex flex-col items-center justify-center gap-4 w-full md:w-1/2 flex-shrink-0"
-    >
-      <button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</button>
-      <!-- TODO: add volume, forward rewind 10sec  -->
+    <div class="flex flex-col items-center gap-2 w-full md:w-1/2">
+      <div>
+        <!-- TODO: add volume, forward rewind 10sec  -->
+        <button
+          @click="togglePlay"
+          class="size-4 btn btn-primary btn-sm"
+          :class="[isPlaying ? 'i-carbon-pause' : 'i-carbon-play']"
+        />
+      </div>
       <input
         class="range range-primary range-xs"
         type="range"
