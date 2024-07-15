@@ -33,11 +33,12 @@ function togglePlay() {
   } else {
     audio.value?.play();
   }
-  isPlaying.value = !isPlaying.value;
+  isPlaying.value = !audio.value?.paused;
 }
 function updateTime() {
   currentTime.value = audio.value!.currentTime;
   duration.value = audio.value!.duration;
+  isPlaying.value = !audio.value?.paused;
 }
 function seek() {
   audio.value!.currentTime = currentTime.value;
@@ -64,12 +65,25 @@ function formatTime(seconds: number) {
       />
     </div>
     <div class="flex flex-col items-center gap-2 w-full md:w-1/2">
-      <div>
-        <!-- TODO: add volume, forward rewind 10sec  -->
+      <div class="space-x-2">
+        <button
+          @click="
+            currentTime -= 5;
+            seek();
+          "
+          class="btn btn-primary btn-md min-h-10 i-carbon-rewind-5"
+        />
         <button
           @click="togglePlay"
-          class="size-4 btn btn-primary btn-sm"
+          class="min-h-10 btn btn-primary btn-md"
           :class="[isPlaying ? 'i-carbon-pause' : 'i-carbon-play']"
+        />
+        <button
+          @click="
+            currentTime += 5;
+            seek();
+          "
+          class="min-h-10 btn btn-primary btn-md i-carbon-forward-5"
         />
       </div>
       <input
