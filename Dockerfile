@@ -34,11 +34,6 @@ COPY --link . .
 # Build application
 RUN pnpm run build
 
-# BUG: problem with nuxt's depedencies
-# Remove development dependencies
-# RUN pnpm prune --prod
-
-
 # Final stage for app image
 FROM base
 

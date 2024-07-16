@@ -7,7 +7,7 @@ import { Buffer } from "buffer";
 import type { SQLitePod, Pod } from "~";
 import { JeepSqlite } from "jeep-sqlite/dist/components/jeep-sqlite";
 customElements.define("jeep-sqlite", JeepSqlite);
-// NOTE: https://github.com/capacitor-community/sqlite/blob/master/docs/Web-Usage.md
+// https://github.com/capacitor-community/sqlite/blob/master/docs/Web-Usage.md
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const sqlite = new SQLiteConnection(CapacitorSQLite);

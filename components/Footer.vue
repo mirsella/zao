@@ -22,7 +22,6 @@
     <!-- <nav> -->
     <!--   <h6 class="footer-title">Social</h6> -->
     <!--   <div class="grid grid-flow-col gap-4"> -->
-    <!--     <!-- TODO: add youtube link -->
     <!--     <a href="https://youtube.com" class="i-carbon-logo-youtube size-6"></a> -->
     <!--   </div> -->
     <!-- </nav> -->
