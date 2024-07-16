@@ -3,7 +3,7 @@
     {
       "appId": "fd2a596b",
       "dependencyInstallCommand": "pnpm i",
-      "webBuildCommand": "pnpm nuxt:generate"
+      "webBuildCommand": "pnpm nuxt generate"
     }
   ]
 }
