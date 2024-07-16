@@ -99,6 +99,10 @@ export default async ({ req, res, log, error }: Context) => {
       Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
+      if (withName.documents[0].$id == userid) {
+        log(`${name} (${userid}) tried to change its name to the same`);
+        return res.send("ok");
+      }
       log(`name already taken for ${userid}: ${name}`);
       return res.send("name already taken", 409);
     }
