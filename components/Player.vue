@@ -21,6 +21,8 @@ watchEffect(async () => {
   } else {
     currentSrc.value = (currentPodcast.value as SQLitePod).data;
   }
+  // currentTime.value = 0;
+  // audio.value?.play();
 });
 const isPlaying = ref(false);
 const currentTime = ref(0);
@@ -50,6 +52,7 @@ function seek() {
   audio.value!.currentTime = currentTime.value;
 }
 function formatTime(seconds: number) {
+  if (isNaN(seconds)) return "00:00";
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;

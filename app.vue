@@ -18,6 +18,9 @@ const currentPodcast = useState<null | Pod>("currentPodcast");
       <div v-if="currentPodcast" class="mb-[var(--player-height)]">
         <Player class="w-full fixed bottom-0 h-[var(--player-height)]" />
         <!-- TODO: mobile navbar -->
+        <Header
+          class="p-6 bg-gradient-to-b from-base-300 from-80% pb-12 mb-4"
+        />
       </div>
     </template>
     <template v-else-if="isNative()">
