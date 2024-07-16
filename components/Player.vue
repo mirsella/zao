@@ -21,8 +21,8 @@ watchEffect(async () => {
   } else {
     currentSrc.value = (currentPodcast.value as SQLitePod).data;
   }
-  // currentTime.value = 0;
-  // audio.value?.play();
+  currentTime.value = 0;
+  audio.value?.play();
 });
 const isPlaying = ref(false);
 const currentTime = ref(0);
