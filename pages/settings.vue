@@ -18,7 +18,6 @@ onMounted(() => {
 
 const name = ref("");
 const nameUsed = ref(false);
-// TODO: use it
 async function updateName() {
   nameUsed.value = false;
   try {
@@ -38,6 +37,7 @@ async function updateName() {
         nameUsed.value = false;
       }, 2000);
     } else if (res.responseStatusCode !== 200) {
+      console.error(res);
       throw new Error(res.responseBody);
     } else {
       user.value!.name = name.value;
@@ -106,6 +106,7 @@ async function logout() {
           />
           <button
             class="btn bg-base-300 !border-none !translate-x-[17px] scale-[0.95] hover:scale-100 active:scale-110"
+            @click="updateName()"
           >
             <span class="i-carbon-save size-6"> </span>
           </button>
