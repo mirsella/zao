@@ -51,22 +51,22 @@ export default async ({ req, res, log, error }: Context) => {
     let name = "";
     while (true) {
       name = `anonyme-${Math.floor(Math.random() * 1_000_000_000)}`;
-      let res = await databases.listDocuments("classes", "user", [
+      let res = await databases.listDocuments("podcast", "user", [
         Query.equal("name", [name]),
       ]);
       if (res.total === 0) break;
     }
-    const doc = await databases.createDocument("classes", "user", userid, {
+    const doc = await databases.createDocument("podcast", "user", userid, {
       name,
     });
     await users.updateName(userid, name);
     log(`created document ${JSON.stringify(doc)} for user ${userid}`);
   } else if (event === "delete") {
-    await databases.deleteDocument("classes", "user", userid);
+    await databases.deleteDocument("podcast", "user", userid);
     log(`deleted document for user ${userid}`);
   } else if (event === "update") {
     const user = (await databases.getDocument(
-      "classes",
+      "podcast",
       "user",
       userid,
     )) as User;
