@@ -54,7 +54,7 @@ export default async ({ req, res, log, error }: Context) => {
 
   if (req.path === "/customer_portal") {
     const user = (await databases.getDocument(
-      "podcast",
+      "podcasts",
       "user",
       userid,
     )) as User;
@@ -95,7 +95,7 @@ export default async ({ req, res, log, error }: Context) => {
     if (!name) {
       return res.send("no name in query", 400);
     }
-    const withName = await databases.listDocuments("podcast", "user", [
+    const withName = await databases.listDocuments("podcasts", "user", [
       Query.equal("name", [name]),
     ]);
     if (withName.total > 0) {
@@ -103,7 +103,7 @@ export default async ({ req, res, log, error }: Context) => {
       return res.send("name already taken", 409);
     }
     log(`updating name for ${userid} to ${name}`);
-    await databases.updateDocument("podcast", "user", userid, { name });
+    await databases.updateDocument("podcasts", "user", userid, { name });
     await users.updateName(userid, name);
     log(`updated name for ${userid} to ${name}`);
     return res.send("ok");
