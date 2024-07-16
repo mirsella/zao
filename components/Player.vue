@@ -25,6 +25,7 @@ watchEffect(async () => {
 const isPlaying = ref(false);
 const currentTime = ref(0);
 const duration = ref(0);
+const playbackrate = ref(1);
 const audio = ref<HTMLAudioElement>();
 
 function togglePlay() {
@@ -34,6 +35,11 @@ function togglePlay() {
     audio.value?.play();
   }
   isPlaying.value = !audio.value?.paused;
+}
+function fasterplayback() {
+  playbackrate.value += 0.1;
+  if (Math.round(playbackrate.value * 10) / 10 > 2) playbackrate.value = 1;
+  audio.value!.playbackRate = playbackrate.value;
 }
 function updateTime() {
   currentTime.value = audio.value!.currentTime;
@@ -65,7 +71,7 @@ function formatTime(seconds: number) {
       />
     </div>
     <div class="flex flex-col items-center gap-2 w-full md:w-1/2">
-      <div class="space-x-2">
+      <div class="space-x-2 flex justify-center items-end">
         <button
           @click="
             currentTime -= 5;
@@ -85,6 +91,9 @@ function formatTime(seconds: number) {
           "
           class="min-h-10 btn btn-primary btn-md i-carbon-forward-5"
         />
+        <button @click="fasterplayback()" class="h-10 btn btn-sm">
+          {{ playbackrate.toFixed(1) }}x
+        </button>
       </div>
       <input
         class="range range-primary range-xs"
