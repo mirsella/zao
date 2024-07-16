@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import type { Pod } from "~";
+import { App as CapacitorApp } from "@capacitor/app";
+
+const router = useRouter();
+CapacitorApp.addListener("backButton", () => {
+  const redirectPath = useRoute().redirectedFrom?.path;
+  if (redirectPath) {
+    router.back();
+  } else {
+    CapacitorApp.exitApp();
+  }
+});
 
 // preload account and classes
 useAccount();

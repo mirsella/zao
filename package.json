@@ -13,6 +13,7 @@
   "dependencies": {
     "@capacitor-community/sqlite": "^6.0.1",
     "@capacitor/android": "^6.1.0",
+    "@capacitor/app": "^6.0.0",
     "@capacitor/core": "^6.1.0",
     "@capacitor/ios": "^6.1.0",
     "buffer": "^6.0.3",
@@ -23,7 +24,6 @@
     "vue3-otp-input": "^0.4.4"
   },
   "devDependencies": {
-    "jeep-sqlite": "^2.7.2",
     "@capacitor/cli": "^6.1.0",
     "@egoist/tailwindcss-icons": "^1.8.1",
     "@iconify-json/carbon": "^1.1.36",
@@ -33,6 +33,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "cross-fetch": "^4.0.0",
     "daisyui": "^4.12.2",
+    "jeep-sqlite": "^2.7.2",
     "nitropack": "^2.9.6",
     "nuxt": "^3.12.2"
   }
