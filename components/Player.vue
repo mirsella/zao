@@ -71,7 +71,7 @@ function formatTime(seconds: number) {
       />
     </div>
     <div class="flex flex-col items-center gap-2 w-full md:w-1/2">
-      <div class="space-x-2 flex justify-center items-end">
+      <div class="gap-2 flex justify-center items-end">
         <button
           @click="
             currentTime -= 5;
@@ -91,7 +91,7 @@ function formatTime(seconds: number) {
           "
           class="min-h-10 btn btn-primary btn-md i-carbon-forward-5"
         />
-        <button @click="fasterplayback()" class="h-10 btn btn-sm">
+        <button @click="fasterplayback()" class="h-10 text-lg">
           {{ playbackrate.toFixed(1) }}x
         </button>
       </div>
