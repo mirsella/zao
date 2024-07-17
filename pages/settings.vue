@@ -10,14 +10,14 @@ const { storeid, variantid } = useRuntimeConfig().public;
 const user = await useAccount();
 const premium = await isPremium();
 
-const refreshAcconut = async () => {
+const refreshAccount = async () => {
   user.value = await account.get();
 };
 onMounted(() => {
-  window.addEventListener("focusin", refreshAcconut);
-  window.addEventListener("focusout", refreshAcconut);
-  window.addEventListener("focus", refreshAcconut);
-  window.addEventListener("blur", refreshAcconut);
+  window.addEventListener("focusin", refreshAccount);
+  window.addEventListener("focusout", refreshAccount);
+  window.addEventListener("focus", refreshAccount);
+  window.addEventListener("blur", refreshAccount);
 });
 
 const name = ref("");
