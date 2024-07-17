@@ -11,7 +11,10 @@ const user = await useAccount();
 const premium = await isPremium();
 
 onMounted(() => {
-  window.addEventListener("focus", async () => {
+  window.addEventListener("focusin", async () => {
+    user.value = await account.get();
+  });
+  window.addEventListener("focusout", async () => {
     user.value = await account.get();
   });
 });
@@ -19,6 +22,7 @@ onMounted(() => {
 const name = ref("");
 const nameUsed = ref(false);
 async function updateName() {
+  if (!name.value) return;
   nameUsed.value = false;
   try {
     const res = await functions.createExecution(
@@ -107,6 +111,7 @@ async function logout() {
           <button
             class="btn bg-base-300 !border-none !translate-x-[17px] scale-[0.95] hover:scale-100 active:scale-110"
             @click="updateName()"
+            :class="{ 'btn-disabled': !name.length }"
           >
             <span class="i-carbon-save size-6"> </span>
           </button>
