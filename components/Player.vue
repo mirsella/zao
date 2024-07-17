@@ -7,8 +7,14 @@ const currentPodcast = useState<null | Pod | SQLitePod>(
   () => null,
 );
 const currentSrc = ref<string>();
+const isPlaying = ref(false);
+const currentTime = ref(0);
+const duration = ref(0);
+const playbackrate = ref(1);
+const audio = ref<HTMLAudioElement>();
 watchEffect(async () => {
   if (!currentPodcast.value) return "";
+  currentTime.value = 0;
   if ((currentPodcast.value as Pod).file_id) {
     const url = storage.getFileView(
       "audio",
@@ -21,20 +27,17 @@ watchEffect(async () => {
   } else {
     currentSrc.value = (currentPodcast.value as SQLitePod).data;
   }
-  currentTime.value = 0;
-  audio.value?.play();
+  setTimeout(() => {
+    // calling play instantly throws
+    audio.value?.play();
+  }, 50);
 });
-const isPlaying = ref(false);
-const currentTime = ref(0);
-const duration = ref(0);
-const playbackrate = ref(1);
-const audio = ref<HTMLAudioElement>();
 
 function togglePlay() {
-  if (isPlaying.value) {
-    audio.value?.pause();
-  } else {
+  if (audio.value?.paused) {
     audio.value?.play();
+  } else {
+    audio.value?.pause();
   }
   isPlaying.value = !audio.value?.paused;
 }
