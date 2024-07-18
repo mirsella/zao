@@ -64,7 +64,7 @@ function formatTime(seconds: number) {
 
 <template>
   <div
-    class="bg-base-200 border-t z-10 flex gap-8 px-4 py-2"
+    class="bg-base-200 border-t dark:border-neutral-600 z-10 flex gap-8 px-4 py-2"
     v-if="currentPodcast"
   >
     <audio ref="audio" :src="currentSrc" @timeupdate="updateTime"></audio>
@@ -83,11 +83,11 @@ function formatTime(seconds: number) {
             currentTime -= 5;
             seek();
           "
-          class="btn btn-primary btn-md min-h-10 i-carbon-rewind-5"
+          class="btn btn-primary btn-md min-h-10 i-carbon-rewind-5 dark:text-current"
         />
         <button
           @click="togglePlay"
-          class="min-h-10 btn btn-primary btn-md"
+          class="min-h-10 btn btn-primary btn-md dark:text-current"
           :class="[isPlaying ? 'i-carbon-pause' : 'i-carbon-play']"
         />
         <button
@@ -95,9 +95,12 @@ function formatTime(seconds: number) {
             currentTime += 5;
             seek();
           "
-          class="min-h-10 btn btn-primary btn-md i-carbon-forward-5"
+          class="min-h-10 btn btn-primary btn-md i-carbon-forward-5 dark:text-current"
         />
-        <button @click="fasterplayback()" class="h-10 text-lg">
+        <button
+          @click="fasterplayback()"
+          class="h-10 text-lg btn btn-sm hover:text-primary"
+        >
           {{ playbackrate.toFixed(1) }}x
         </button>
       </div>
