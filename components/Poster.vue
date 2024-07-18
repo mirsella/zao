@@ -32,7 +32,11 @@ watchEffect(async () => {
       :src="objecturl"
       class="w-auto max-h-full overflow-hidden rounded-lg my-auto"
     />
-    <p v-if="!hidetitle" class="text-lg xl:text-xl pt-4 px-3 m-auto">
+    <p
+      v-if="!hidetitle"
+      class="text-lg xl:text-xl px-3 m-auto"
+      :class="{ 'pt-4 ': !sidetitle }"
+    >
       {{ props.pod.title }}
     </p>
   </NuxtLink>
