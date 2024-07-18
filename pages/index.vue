@@ -46,6 +46,7 @@ const location = window.location;
           <Poster
             v-for="pod in pods.filter((p) => p.type === 'daily')!.slice(0, 2)"
             :pod="pod"
+            :hidetitle="true"
             class="size-40 lg:size-56"
           />
         </div>
@@ -71,6 +72,7 @@ const location = window.location;
         </div>
         <div class="flex place-items-center gap-4 p-4">
           <Poster
+            :hidetitle="true"
             v-for="pod in pods.filter((p) => p.type === 'capsule')!.slice(0, 2)"
             :pod="pod"
             class="size-40 lg:size-56"
