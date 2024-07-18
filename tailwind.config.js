@@ -19,7 +19,7 @@ export default {
   daisyui: {
     themes: [
       {
-        customlight: {
+        light: {
           primary: "#1eb854",
           secondary: "#1DB88E",
           accent: "#1DB8AB",
@@ -29,8 +29,12 @@ export default {
           "base-300": "#e4e4e7",
           "--rounded-btn": "1.9rem",
         },
+        forest: {
+          ...require("daisyui/src/theming/themes")["forest"],
+          // default "base-100": "#171212",
+          "base-100": "#262626",
+        },
       },
-      "forest",
     ],
     darkTheme: "forest",
   },
