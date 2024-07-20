@@ -36,16 +36,16 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
           }}
         </div>
         <div
-          class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-2/3 my-4"
+          class="timeline-end group-odd:!text-start md:group-even:timeline-start timeline-box md:text-end w-full md:w-2/3 my-4"
         >
           <div class="text-lg font-black">{{ pod.title }}</div>
           <Poster :pod="pod" class="my-4 w-full" :hidetitle="true" />
         </div>
         <hr class="mt-2" />
       </li>
-      <li class="w-full">
+      <li v-if="podsfiltered.length" class="w-full">
         <div
-          class="timeline-middle bg-gradient-to-t from-base-100 w-2 h-[30rem] z-10 -translate-y-[30rem]"
+          class="timeline-middle bg-gradient-to-t from-20% max-md:ml-2 from-base-100 w-2 h-[30rem] z-10 -translate-y-[30rem]"
         ></div>
       </li>
     </ul>
