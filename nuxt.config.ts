@@ -6,35 +6,44 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxtjs/google-fonts",
   ],
+
   vue: {
     compilerOptions: {
       isCustomElement: (tag) =>
         ["swiper-container", "swiper-slide"].includes(tag),
     },
   },
+
   app: {
     head: {
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
     keepAlive: true,
   },
+
   googleFonts: {
     families: {
       Manrope: true,
     },
   },
+
   devtools: { enabled: true },
+
   // for mobile we can't use ssr (capacitor)
   ssr: false,
+
   // useless without ssr
   ogImage: { enabled: false },
+
   // useless without ssr
   schemaOrg: {
     enabled: false,
   },
+
   appwrite: {
     project: "65ef4ce532070e537d98",
   },
+
   runtimeConfig: {
     public: {
       storeid: "75435",
@@ -42,10 +51,12 @@ export default defineNuxtConfig({
       variantid: "317198",
     },
   },
+
   nitro: {
     // gzip doesn't work with capacitor
     compressPublicAssets: { gzip: false, brotli: true },
   },
+
   // nuxt seo module
   site: {
     url: process.env.SITE_URL || "http://localhost:3000",
@@ -53,4 +64,6 @@ export default defineNuxtConfig({
     description: "quality podcast to improve your life",
     defaultLocale: "fr",
   },
+
+  compatibilityDate: "2024-07-20",
 });
