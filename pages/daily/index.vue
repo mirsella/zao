@@ -43,7 +43,7 @@ const podsfiltered = ref<Pod[]>([...pods.value]);
         </div>
         <hr class="mt-2" />
       </li>
-      <li v-if="podsfiltered.length" class="w-full">
+      <li v-if="podsfiltered.length" class="w-full h-0">
         <div
           class="timeline-middle bg-gradient-to-t from-20% max-md:ml-2 from-base-100 w-2 h-[30rem] z-10 -translate-y-[30rem]"
         ></div>
