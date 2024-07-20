@@ -58,7 +58,7 @@ importers:
         specifier: 2.0.0-rc.9
         version: 2.0.0-rc.9(h3@1.12.0)(magicast@0.3.4)(rollup@4.19.0)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3))(vue@3.4.33)
       '@nuxtjs/tailwindcss':
-        specifier: ^6.12.0
+        specifier: ^6.12.1
         version: 6.12.1(magicast@0.3.4)(rollup@4.19.0)
       '@tailwindcss/typography':
         specifier: ^0.5.13
