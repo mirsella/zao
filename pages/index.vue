@@ -39,9 +39,7 @@ const location = window.location;
     </div>
 
     <div class="grid grid-cols-1 my-20 md:mt-36 gap-20">
-      <div
-        class="card lg:card-side bg-base-200 shadow-md max-lg:flex-col-reverse"
-      >
+      <div class="card lg:card-side shadow-md max-lg:flex-col-reverse">
         <div class="flex place-items-center gap-4 p-4">
           <Poster
             v-for="pod in pods.filter((p) => p.type === 'daily')!.slice(0, 2)"
@@ -60,7 +58,7 @@ const location = window.location;
           </div>
         </div>
       </div>
-      <div class="card lg:card-side bg-base-200 shadow-md">
+      <div class="card lg:card-side shadow-md">
         <div class="card-body place-items-center lg:place-items-end gap-4 p-4">
           <p class="card-title">sante mental</p>
           <p>quelques minutes pour vous aider etc...</p>
@@ -80,7 +78,7 @@ const location = window.location;
         </div>
       </div>
 
-      <div class="card bg-base-200 shadow-md">
+      <div class="card shadow-md">
         <div class="card-body gap-8 flex-wrap flex-row justify-center">
           <p class="card-title text-2xl justify-center w-full">
             ou et quand vous voulez.
