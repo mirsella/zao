@@ -12,30 +12,41 @@ const currentTime = ref(0);
 const duration = ref(0);
 const playbackrate = ref(1);
 const audio = ref<HTMLAudioElement>();
+audio.value?.addEventListener("error", (e) =>
+  showError("impossible de lire le fichier audio: " + e),
+);
 watchEffect(async () => {
   if (!currentPodcast.value) return "";
   currentTime.value = 0;
-  if ((currentPodcast.value as Pod).file_id) {
-    const url = storage.getFileView(
-      "audio",
-      (currentPodcast.value as Pod).file_id,
-    );
-    const res = await fetch(url, {
-      credentials: "include",
-    });
-    currentSrc.value = URL.createObjectURL(await res.blob());
-  } else {
-    currentSrc.value = (currentPodcast.value as SQLitePod).data;
+  try {
+    if ((currentPodcast.value as Pod).file_id) {
+      const url = storage.getFileView(
+        "audio",
+        (currentPodcast.value as Pod).file_id,
+      );
+      const res = await fetch(url, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error(await res.text());
+      currentSrc.value = URL.createObjectURL(await res.blob());
+    } else {
+      currentSrc.value = (currentPodcast.value as SQLitePod).data;
+    }
+  } catch (e) {
+    showError("impossible de récupérer le fichier audio: " + e);
   }
-  setTimeout(() => {
-    // calling play instantly throws
-    audio.value?.play();
-  }, 50);
+  audio.value?.addEventListener("canplay", togglePlay, {
+    once: true,
+  });
 });
 
-function togglePlay() {
+async function togglePlay() {
   if (audio.value?.paused) {
-    audio.value?.play();
+    try {
+      await audio.value?.play();
+    } catch (e) {
+      return showError("impossible de lire le fichier audio: " + e);
+    }
   } else {
     audio.value?.pause();
   }
