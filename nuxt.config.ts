@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   // for mobile we can't use ssr (capacitor)
   ssr: false,
