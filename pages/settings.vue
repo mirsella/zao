@@ -104,7 +104,7 @@ async function logout() {
         <p class="mx-1">Pseudonyme</p>
         <label class="input-accent input w-2/3 flex items-center gap-2">
           <input
-            class="grow min-w-10"
+            class="grow min-w-10 placeholder:text-base-content placeholder:text-opacity-50"
             :placeholder="user?.name"
             v-model="name"
             :class="{ 'text-error': nameUsed }"

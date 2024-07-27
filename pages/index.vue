@@ -148,7 +148,7 @@ const location = window.location;
               </div>
             </div>
             <div
-              class="flex justify-center items-center lg:py-16 border-t border-base-300 dark:border-neutral-700"
+              class="flex justify-center items-center lg:py-16 border-t border-base-300 dark:border-neutral-700 bg-base-200"
             >
               <div class="card lg:w-4/5">
                 <div class="card-body !text-lg text-center">

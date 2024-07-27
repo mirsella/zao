@@ -3,7 +3,7 @@
     <img
       src="/assets/owl.svg"
       alt="logo"
-      class="dark:invert text opacity-85 !aspect-square h-full"
+      class="dark:invert opacity-85 !aspect-square h-full"
     />
     <a class="font-bold text-xl">Zao</a>
   </div>

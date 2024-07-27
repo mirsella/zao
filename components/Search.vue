@@ -53,7 +53,7 @@ function toggleTag(tag: string) {
     >
       <input
         v-model.trim="search"
-        class="grow text-lg"
+        class="grow text-lg placeholder:text-base-content"
         placeholder="Recherche..."
       />
       <button
