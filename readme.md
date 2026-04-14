@@ -4,6 +4,12 @@ Audio and podcast app built with Nuxt, Capacitor, and Appwrite.
 
 This repo contains the web app, mobile packaging, and backend functions used around the service.
 
+## How It Works
+
+The frontend is a Nuxt SPA with SSR disabled so the same codebase can power both the web app and the Capacitor mobile app. Appwrite handles authentication, document storage, and file storage, while the repository's serverless functions handle username management, premium/subscription sync, and checkout-related flows.
+
+The player can stream audio from Appwrite storage, and the mobile side also supports offline downloads through the Capacitor SQLite plugin.
+
 ## Run
 
 ```bash
@@ -26,6 +32,12 @@ pnpm android
 ## Config
 
 Appwrite and runtime settings live in `appwrite.json` and `nuxt.config.ts`.
+
+## Notes
+
+- This repo is not fully self-contained: it expects an Appwrite project and related secrets.
+- Subscription flows depend on the backend functions and external billing configuration.
+- Mobile packaging expects a built app output for Capacitor.
 
 ## Screenshots
 
